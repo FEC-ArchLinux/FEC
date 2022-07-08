@@ -1,7 +1,7 @@
-import react from "react";
+import React from "react";
 
-const RelatedItemsAndComparison = () => {
-  return <h2>RelatedItemsAndComparison Widget</h2>
+function RelatedItemsAndComparison() {
+  return <h2>RelatedItemsAndComparison Widget</h2>;
 }
 
 export default RelatedItemsAndComparison;

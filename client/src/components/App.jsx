@@ -1,10 +1,11 @@
-import react from "react";
+import React from "react";
 import QuestionsAndAnswers from "./QuestionsAndAnswers/QuestionsAndAnswers.jsx";
 import Overview from "./Overview/Overview.jsx";
 import RelatedItemsAndComparison from "./RelatedItemsAndComparison/RelatedItemsAndComparison.jsx";
-import RatingsAndReviews from"./RatingsAndReviews/RatingsAndReviews.jsx";
+// eslint-disable-next-line import/extensions
+import RatingsAndReviews from "./RatingsAndReviews/RatingsAndReviews.jsx";
 
-const App = () => {
+function App() {
   return (
     <>
       <h1>Hello World from App</h1>
@@ -13,7 +14,7 @@ const App = () => {
       <QuestionsAndAnswers />
       <RatingsAndReviews />
     </>
-  )
+  );
 }
 
 export default App;
