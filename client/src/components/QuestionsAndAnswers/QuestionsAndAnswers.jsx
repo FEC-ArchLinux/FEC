@@ -1,7 +1,7 @@
-import react from "react"
+import React from "react";
 
-const QuestionsAndAnswers = () => {
-  return <h2>QuestionsAndAnswers Widget</h2>
+function QuestionsAndAnswers() {
+  return <h2>QuestionsAndAnswers Widget</h2>;
 }
 
-export default QuestionsAndAnswers
+export default QuestionsAndAnswers;

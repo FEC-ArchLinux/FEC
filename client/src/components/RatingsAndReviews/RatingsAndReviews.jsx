@@ -1,7 +1,7 @@
-import react from "react";
+import React from "react";
 
-const RatingsAndReviews = () => {
-  return <h2>RatingsAndReviews Widget</h2>
+function RatingsAndReviews() {
+  return <h2>RatingsAndReviews Widget</h2>;
 }
 
 export default RatingsAndReviews;

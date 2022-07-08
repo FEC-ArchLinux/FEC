@@ -1,7 +1,7 @@
-import react from "react";
+import React from "react";
 
-const Overview = () => {
-  return <h2>Overview Widget</h2>
+function Overview() {
+  return <h2>Overview Widget</h2>;
 }
 
 export default Overview;
