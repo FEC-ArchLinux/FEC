@@ -1,7 +1,12 @@
 import React from "react";
+import ReviewList from "./ReviewList.jsx";
 
 function RatingsAndReviews() {
-  return <h2>RatingsAndReviews Widget</h2>;
+  return (
+    <div>
+      <ReviewList />
+    </div>
+  );
 }
 
 export default RatingsAndReviews;
