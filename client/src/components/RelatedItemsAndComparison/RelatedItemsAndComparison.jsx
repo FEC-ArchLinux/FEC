@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from 'react';
+import Outfit from './outfit.jsx';
+import RelatedItems from './relateditems.jsx';
 
 function RelatedItemsAndComparison() {
-  return <h2>RelatedItemsAndComparison Widget</h2>;
+  return (
+    <>
+      <RelatedItems />
+      <Outfit />
+    </>
+  );
 }
 
 export default RelatedItemsAndComparison;
