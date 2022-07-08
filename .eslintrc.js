@@ -19,9 +19,6 @@ module.exports = {
   ],
   rules: {
     quotes: 0,
-    "arrowbody-style": "off",
-    "arrow-parens": "off",
-    "arrow-spacing": "off",
     "import/extensions": "off",
   },
 };
