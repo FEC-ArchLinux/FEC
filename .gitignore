@@ -1,6 +1,5 @@
 node_modules
 package-lock.json
-.env
+token.js
 *bundle.js
 *bundle.js.map
-bundle.js.ma
