@@ -1,10 +1,26 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from "react";
 import ReviewList from "./ReviewList.jsx";
+import GH_TOKEN from '../../../../token.js';
 
-function RatingsAndReviews() {
+const axios = require('axios');
+
+function RatingsAndReviews({ productId }) {
+  const [productStyleInfo, setProductStyleInfo] = useState([]);
+
+  function getMetaData() {
+
+  }
+
+  useEffect(() => {
+    getMetaData();
+  }, []);
+
   return (
     <div>
-      <ReviewList />
+      <h3> Ratings and Reviews</h3>
+      <ReviewList productId={productId} />
     </div>
   );
 }
