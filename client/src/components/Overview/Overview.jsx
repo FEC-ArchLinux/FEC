@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductDetails from './ProductDetails.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
+import ProductDescription from './ProductDescription.jsx';
 
 function Overview(props) {
   const [productInfo, setProductInfo] = useState([]);
@@ -39,9 +40,10 @@ function Overview(props) {
     <>
       <h2>Overview Widget</h2>
       <ImageGallery styles={productStyleInfo.results} />
-      <ProductDetails />
-      <StyleSelector />
+      <ProductDetails productInfo={productInfo} />
+      <StyleSelector styles={productStyleInfo.results} />
       <PurchaseOptions />
+      <ProductDescription />
     </>
   );
 }
