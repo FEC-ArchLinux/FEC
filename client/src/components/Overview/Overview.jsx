@@ -7,12 +7,12 @@ import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
 import ProductDescription from './ProductDescription.jsx';
 
-function Overview(props) {
+function Overview({ productId }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
 
   function getProductInfo() {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${props.productId}`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`, {
       headers: {
         authorization: GH_TOKEN,
       },
@@ -22,7 +22,7 @@ function Overview(props) {
   }
 
   function getProductStyleInfo() {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${props.productId}/styles`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/styles`, {
       headers: {
         authorization: GH_TOKEN,
       },
