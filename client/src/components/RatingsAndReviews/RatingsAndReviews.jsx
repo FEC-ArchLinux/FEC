@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import ReviewList from "./ReviewList.jsx";
 import GH_TOKEN from '../../../../token.js';
-
-const axios = require('axios');
 
 function RatingsAndReviews({ productId }) {
   const [productStyleInfo, setProductStyleInfo] = useState([]);

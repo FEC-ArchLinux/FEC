@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 
-const axios = require('axios');
 
 function ReviewList({ productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
