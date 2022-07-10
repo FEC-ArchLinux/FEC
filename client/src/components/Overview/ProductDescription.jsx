@@ -1,8 +1,11 @@
 import React from 'react';
 
-function ProductDescription(props) {
+function ProductDescription({ productInfo }) {
   return (
-    <h4>Product Description</h4>
+    <>
+      <h3>Product Description</h3>
+      <p>{productInfo.description}</p>
+    </>
   );
 }
 

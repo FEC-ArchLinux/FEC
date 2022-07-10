@@ -2,7 +2,7 @@ import React from 'react';
 
 function PurchaseOptions(props) {
   return (
-    <h4>Purchase Options</h4>
+    <h3>Purchase Options</h3>
   );
 }
 

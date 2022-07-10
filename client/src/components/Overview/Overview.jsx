@@ -10,6 +10,7 @@ import ProductDescription from './ProductDescription.jsx';
 function Overview({ productId }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
+  const [activeStyle, setActiveStyle] = useState(0);
 
   function getProductInfo() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`, {
@@ -39,11 +40,11 @@ function Overview({ productId }) {
   return (
     <>
       <h2>Overview Widget</h2>
-      <ImageGallery styles={productStyleInfo.results} />
-      <ProductDetails productInfo={productInfo} />
-      <StyleSelector styles={productStyleInfo.results} />
+      <ImageGallery styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <ProductDetails productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <StyleSelector styles={productStyleInfo.results} setActiveStyle={setActiveStyle} />
       <PurchaseOptions />
-      <ProductDescription />
+      <ProductDescription productInfo={productInfo} />
     </>
   );
 }

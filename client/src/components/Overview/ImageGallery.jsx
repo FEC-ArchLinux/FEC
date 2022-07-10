@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-function ImageGallery({ styles }) {
+function ImageGallery({ styles, activeStyle }) {
   if (styles) {
     return (
       <>
-        <h4>Image Gallery</h4>
-        <img width="100px" src={styles[0].photos[0].thumbnail_url} alt="style-img" />
+        <h3>Image Gallery</h3>
+        {styles[activeStyle].photos.map((photo) => <img width="100px" src={photo.thumbnail_url} alt="style-img" />)}
       </>
     );
   }
