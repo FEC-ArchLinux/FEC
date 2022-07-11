@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 import React from "react";
 
@@ -11,7 +12,7 @@ function SingleReviewTile({ review }) {
       <span>{review.body}</span>
       <span>{review.recommend}</span>
       <span>{review.response}</span>
-      <span>Rating Helpfulness Yes || No</span>
+      <span>Helpful? Yes ({review.helpfulness}) || No</span>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable prefer-const */
 /* eslint-disable max-len */
@@ -12,13 +13,14 @@ import SortRelevance from './SortRelevance.jsx';
 
 function ReviewList({ productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
+  const [relevant, setRelevant] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
   let [pageNumber, setPageNumber] = useState(0);
 
   function getReviewInfo() {
     const config = {
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort="newest"&product_id=${productId}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort="helpful"&product_id=${productId}`,
       headers: {
         Authorization: GH_TOKEN,
       },
@@ -43,7 +45,7 @@ function ReviewList({ productId }) {
   if (reviewInfo) {
     return (
       <div>
-        <SortRelevance reviewInfo={reviewInfo} />
+        <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
         {pageNumber >= reviewInfo.length ? null : <button onClick={incrementReviews} type="button"> More Reviews </button>}
       </div>
