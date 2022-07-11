@@ -1,8 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
 
-function PurchaseOptions({ styles, activeStyle }) {
+function PurchaseOptions({ styles, activeStyle }, ref) {
   const sizeDropdownRef = useRef();
   const [selectedSize, setSelectedSize] = useState('Select Size');
+
+  useImperativeHandle(ref, () => ({
+    resetSelectedSize: () => {
+      setSelectedSize('Select Size');
+      sizeDropdownRef.current.options.selectedIndex = 0;
+    },
+  }));
 
   function changeSelectedSize() {
     setSelectedSize(sizeDropdownRef.current.value);
@@ -20,20 +27,23 @@ function PurchaseOptions({ styles, activeStyle }) {
   }
 
   function quantitySelector() {
+    console.log(selectedSize)
     if (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size') {
       return;
     }
     const options = [];
-    if (styles[activeStyle].skus[selectedSize].quantity > 15) {
-      for (let i = 1; i <= 15; i++) {
-        options.push(<option>{i}</option>);
+    if (styles[activeStyle].skus[selectedSize]) {
+      if (styles[activeStyle].skus[selectedSize].quantity > 15) {
+        for (let i = 1; i <= 15; i++) {
+          options.push(<option>{i}</option>);
+        }
+      } else {
+        for (let i = 1; i <= styles[activeStyle].skus[selectedSize].quantity; i++) {
+          options.push(<option>{i}</option>);
+        }
       }
-    } else {
-      for (let i = 1; i <= styles[activeStyle].skus[selectedSize].quantity; i++) {
-        options.push(<option>{i}</option>);
-      }
+      return options.map((option) => option);
     }
-    return options.map((option) => option);
   }
 
   function completePurchase() {
@@ -62,4 +72,4 @@ function PurchaseOptions({ styles, activeStyle }) {
   );
 }
 
-export default PurchaseOptions;
+export default forwardRef(PurchaseOptions);

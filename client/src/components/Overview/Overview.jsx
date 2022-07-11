@@ -13,12 +13,14 @@ function Overview({ productId }) {
   const [activeStyle, setActiveStyle] = useState(0);
 
   const imageGalleryRef = useRef();
+  const purchaseOptionsRef = useRef();
 
   // changes actively shown style
   function changeActiveStyle(e) {
-    setActiveStyle(parseInt(e.target.id));
     // when new style is selected, change active big image to first in array
     imageGalleryRef.current.selectBigPicture(0);
+    purchaseOptionsRef.current.resetSelectedSize();
+    setActiveStyle(parseInt(e.target.id));
   }
 
   function getProductInfo() {
@@ -52,7 +54,7 @@ function Overview({ productId }) {
       <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
-      <PurchaseOptions styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <ProductDescription productInfo={productInfo} />
     </>
   );
