@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 import ImageGallery from './ImageGallery.jsx';
@@ -11,6 +11,14 @@ function Overview({ productId }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
+
+  const imageGalleryRef = useRef();
+
+  //when new style is selected, change active big image to first in array
+  function changeActiveStyle(e) {
+    setActiveStyle(e.target.id);
+    imageGalleryRef.current.selectBigPicture(0);
+  }
 
   function getProductInfo() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`, {
@@ -40,9 +48,9 @@ function Overview({ productId }) {
   return (
     <>
       <h2>Overview Widget</h2>
-      <ImageGallery styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <ProductDetails productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-      <StyleSelector styles={productStyleInfo.results} setActiveStyle={setActiveStyle} />
+      <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
       <PurchaseOptions />
       <ProductDescription productInfo={productInfo} />
     </>

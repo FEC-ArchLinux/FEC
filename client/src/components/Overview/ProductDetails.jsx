@@ -18,7 +18,7 @@ function ProductDetails({ productInfo, styles, activeStyle }) {
       </>
     );
   }
-  return <span>Loading...</span>;
+  return <p>Loading Product Details...</p>;
 }
 
 export default ProductDetails;
