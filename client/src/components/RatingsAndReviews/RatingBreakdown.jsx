@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 import AverageStar from './AverageStar.jsx';
+import PercentRecommend from './PercentRecommend.jsx';
 
 function RatingBreakdown({ productId }) {
   const [metaData, setMetaData] = useState([]);
@@ -32,6 +33,7 @@ function RatingBreakdown({ productId }) {
   return (
     <div>
       <AverageStar ratings={metaData.ratings} />
+      <PercentRecommend recommend={metaData.recommended} />
     </div>
   );
 }
