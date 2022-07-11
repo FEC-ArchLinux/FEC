@@ -9,7 +9,9 @@ import React from "react";
 function StarBreaDown({ star, setStar, ratings }) {
   function onStarClick(event) {
     const newStar = event.target.innerHTML.slice(0, 1);
-    setStar(star.concat([newStar]));
+    if (!star.includes(newStar)) {
+      setStar(star.concat([newStar]));
+    }
   }
   return (
     <div className="star-breakdown">
