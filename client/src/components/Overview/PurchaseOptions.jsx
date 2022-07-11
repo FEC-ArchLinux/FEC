@@ -4,6 +4,7 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   const sizeDropdownRef = useRef();
   const [selectedSize, setSelectedSize] = useState('Select Size');
 
+  // pass up function to reset selected size when another style is selected
   useImperativeHandle(ref, () => ({
     resetSelectedSize: () => {
       setSelectedSize('Select Size');
@@ -27,7 +28,6 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   }
 
   function quantitySelector() {
-    console.log(selectedSize)
     if (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size') {
       return;
     }

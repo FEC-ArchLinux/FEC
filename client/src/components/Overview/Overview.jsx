@@ -18,7 +18,8 @@ function Overview({ productId }) {
   // changes actively shown style
   function changeActiveStyle(e) {
     // when new style is selected, change active big image to first in array
-    imageGalleryRef.current.selectBigPicture(0);
+    imageGalleryRef.current.selectBigPicture();
+    // reset selected size option
     purchaseOptionsRef.current.resetSelectedSize();
     setActiveStyle(parseInt(e.target.id));
   }
