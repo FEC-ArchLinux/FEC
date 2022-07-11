@@ -6,7 +6,7 @@ function ImageGallery({ styles, activeStyle }, ref) {
   // pass up to overview function that resets the big image to the first after changing styles
   useImperativeHandle(ref, () => ({
     selectBigPicture: (index) => {
-      setActiveImage(parseInt(index));
+      setActiveImage(index);
     },
   }));
 

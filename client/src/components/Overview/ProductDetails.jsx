@@ -3,7 +3,7 @@ import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 
 function ProductDetails({ productInfo, styles, activeStyle, productId }) {
-  const [reviewData, setReviewData] = useState([]);
+  const [reviewData, setReviewData] = useState();
 
   function getProductReviewData() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${productId}`, {
@@ -44,7 +44,7 @@ function ProductDetails({ productInfo, styles, activeStyle, productId }) {
   return (
     <>
       <h3>Product Details</h3>
-      <p>{productInfo && styles && reviewData.length > 0 && Math.round(avgStarRating() * 100) / 100} stars based on {totalReviews} reviews.</p>
+      <p>{productInfo && styles && reviewData && Math.round(avgStarRating() * 100) / 100} stars based on {totalReviews} reviews.</p>
       <h4>{productInfo.name}</h4>
       <p>{productInfo.slogan}</p>
       {productInfo && styles && priceGenerator()}
