@@ -7,11 +7,12 @@ import RatingBreakdown from "./RatingBreakdown.jsx";
 import GH_TOKEN from '../../../../token.js';
 
 function RatingsAndReviews({ productId }) {
+  const [star, setStar] = useState([]);
   return (
     <div>
       <h3> Ratings and Reviews</h3>
-      <RatingBreakdown productId={productId} />
-      <ReviewList productId={productId} />
+      <RatingBreakdown setStar={setStar} star={star} productId={productId} />
+      <ReviewList starFilter={star} productId={productId} />
     </div>
   );
 }

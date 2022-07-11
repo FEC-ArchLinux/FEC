@@ -5,8 +5,9 @@ import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 import AverageStar from './AverageStar.jsx';
 import PercentRecommend from './PercentRecommend.jsx';
+import StarBreakDown from './StarBreakDown.jsx';
 
-function RatingBreakdown({ productId }) {
+function RatingBreakdown({ star, setStar, productId }) {
   const [metaData, setMetaData] = useState([]);
 
   function getMetaData() {
@@ -34,6 +35,7 @@ function RatingBreakdown({ productId }) {
     <div>
       <AverageStar ratings={metaData.ratings} />
       <PercentRecommend recommend={metaData.recommended} />
+      <StarBreakDown star={star} setStar={setStar} ratings={metaData.ratings} />
     </div>
   );
 }

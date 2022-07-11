@@ -11,7 +11,7 @@ import GH_TOKEN from '../../../../token.js';
 import SingleReviewTile from './SingleReviewTile.jsx';
 import SortRelevance from './SortRelevance.jsx';
 
-function ReviewList({ productId }) {
+function ReviewList({ starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [relevant, setRelevant] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
