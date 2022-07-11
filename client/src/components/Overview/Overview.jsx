@@ -50,7 +50,7 @@ function Overview({ productId }) {
     <>
       <h2>Overview Widget</h2>
       <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
-      <ProductDetails productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
       <PurchaseOptions styles={productStyleInfo.results} activeStyle={activeStyle} />
       <ProductDescription productInfo={productInfo} />

@@ -33,23 +33,20 @@ function ImageGallery({ styles, activeStyle }, ref) {
     }
   }
 
-  if (styles) {
-    let index = -1;
-    return (
-      <>
-        <h3>Selected Photo</h3>
-        <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
-        <img width="200px" src={styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
-        <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
-        <h3>Image Gallery</h3>
-        {styles[activeStyle].photos.map((photo) => {
-          index++
-          return <img onClick={selectBigPicture} width="100px" name={index} src={photo.url} alt="style-img" />;
-        })}
-      </>
-    );
-  }
-  return <p>Loading Image Gallery...</p>;
+  let index = -1;
+  return (
+    <>
+      <h3>Selected Photo</h3>
+      <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
+      <img width="30%" src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+      <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
+      <h3>Image Gallery</h3>
+      {styles && styles[activeStyle].photos.map((photo) => {
+        index++
+        return <img onClick={selectBigPicture} width="100px" name={index} src={photo.url} alt="style-img" />;
+      })}
+    </>
+  );
 }
 
 export default forwardRef(ImageGallery);
