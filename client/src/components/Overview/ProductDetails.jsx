@@ -6,7 +6,7 @@ function ProductDetails({ productInfo, styles, activeStyle }) {
     let onSale = false;
     if (styles[activeStyle].sale_price) {
       onSale = true;
-      price = <p>$<s>{styles[activeStyle].original_price}</s></p>;
+      price = <p>Original Price: $<s>{styles[activeStyle].original_price}</s></p>;
     }
     return (
       <>

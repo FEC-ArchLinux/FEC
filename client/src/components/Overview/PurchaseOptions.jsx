@@ -9,32 +9,32 @@ function PurchaseOptions({ styles, activeStyle }) {
   }
 
   if (styles) {
-    let sizes = [];
-    let skus = Object.keys(styles[activeStyle].skus);
-    for (let sku of skus) {
+    const sizes = [];
+    const skus = Object.keys(styles[activeStyle].skus);
+    for (const sku of skus) {
       if (styles[activeStyle].skus[sku].quantity > 0) {
         sizes.push(sku);
       }
     }
 
-    let quantitySelector = () => {
+    const quantitySelector = () => {
       if (selectedSize === 'Select Size') {
         return;
       }
-      let options = [];
+      const options = [];
       if (styles[activeStyle].skus[selectedSize].quantity > 15) {
-        for (let i = 0; i < 16; i++) {
+        for (let i = 1; i <= 15; i++) {
           options.push(<option>{i}</option>);
         }
       } else {
-        for (let i = 0; i < styles[activeStyle].skus[selectedSize].quantity; i++) {
+        for (let i = 1; i <= styles[activeStyle].skus[selectedSize].quantity; i++) {
           options.push(<option>{i}</option>);
         }
       }
       return (
         options.map((option) => option)
       );
-    }
+    };
 
     return (
       <>

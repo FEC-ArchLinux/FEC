@@ -14,10 +14,10 @@ function Overview({ productId }) {
 
   const imageGalleryRef = useRef();
 
-  //changes actively shown style
+  // changes actively shown style
   function changeActiveStyle(e) {
-    setActiveStyle(e.target.id);
-    //when new style is selected, change active big image to first in array
+    setActiveStyle(parseInt(e.target.id));
+    // when new style is selected, change active big image to first in array
     imageGalleryRef.current.selectBigPicture(0);
   }
 
