@@ -17,7 +17,7 @@ function ReviewList({ starFilter, productId }) {
   const [reviewCopy, setReviewCopy] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
   const [filterStopper, setFilterStopper] = useState([]);
-  const [pageNumber, setPageNumber] = useState(0);
+  let [pageNumber, setPageNumber] = useState(0);
 
   function getReviewInfo() {
     const config = {
