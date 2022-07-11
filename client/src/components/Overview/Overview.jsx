@@ -14,9 +14,10 @@ function Overview({ productId }) {
 
   const imageGalleryRef = useRef();
 
-  //when new style is selected, change active big image to first in array
+  //changes actively shown style
   function changeActiveStyle(e) {
     setActiveStyle(e.target.id);
+    //when new style is selected, change active big image to first in array
     imageGalleryRef.current.selectBigPicture(0);
   }
 
@@ -51,7 +52,7 @@ function Overview({ productId }) {
       <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <ProductDetails productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
       <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
-      <PurchaseOptions />
+      <PurchaseOptions styles={productStyleInfo.results} activeStyle={activeStyle} />
       <ProductDescription productInfo={productInfo} />
     </>
   );
