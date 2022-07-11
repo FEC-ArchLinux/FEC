@@ -38,12 +38,12 @@ function ImageGallery({ styles, activeStyle }, ref) {
     <>
       <h3>Selected Photo</h3>
       <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
-      <img width="30%" src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+      <img height="500px" src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
       <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
       <h3>Image Gallery</h3>
       {styles && styles[activeStyle].photos.map((photo) => {
         index++
-        return <img onClick={selectBigPicture} width="100px" name={index} src={photo.url} alt="style-img" />;
+        return <img onClick={selectBigPicture} height="150px" name={index} src={photo.url} alt="style-img" />;
       })}
     </>
   );

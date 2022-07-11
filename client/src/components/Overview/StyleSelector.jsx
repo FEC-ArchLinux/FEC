@@ -13,7 +13,7 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
       </p>
       {styles && styles.map((style) => {
         index++
-        return <img width="50px" alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} key={style.style_id} />;
+        return <img height="100px" alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} key={style.style_id} />;
       })}
     </>
   );
