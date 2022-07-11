@@ -10,11 +10,13 @@ import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 import SingleReviewTile from './SingleReviewTile.jsx';
 import SortRelevance from './SortRelevance.jsx';
+import StarFilter from "./StarFilter.jsx";
 
 function ReviewList({ starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
-  const [relevant, setRelevant] = useState([]);
+  const [reviewCopy, setReviewCopy] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
+  const [filterStopper, setFilterStopper] = useState([]);
   let [pageNumber, setPageNumber] = useState(0);
 
   function getReviewInfo() {
@@ -29,6 +31,7 @@ function ReviewList({ starFilter, productId }) {
       .then((response) => {
         setReviewInfo([...reviewInfo].concat(response.data.results));
         setCurrentTwo(response.data.results.slice(0, 2));
+        setReviewCopy(response.data.results);
       })
       .catch((error) => console.log(error));
   }
@@ -40,6 +43,14 @@ function ReviewList({ starFilter, productId }) {
   function incrementReviews() {
     setPageNumber(pageNumber += 2);
     setCurrentTwo(currentTwo.concat(reviewInfo.slice(pageNumber, pageNumber + 2)));
+  }
+
+  if (starFilter.length > filterStopper.length) {
+    let filteredStars = StarFilter(reviewCopy, starFilter);
+    setReviewInfo(filteredStars);
+    setFilterStopper(starFilter);
+    setCurrentTwo(filteredStars.slice(0, 2));
+    setPageNumber(0);
   }
 
   if (reviewInfo) {
