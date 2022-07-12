@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import RelatedItems from './Relateditems/relateditems.jsx';
 import axios from "axios";
 import GH_TOKEN from '../../../../token.js';
 import Outfit from './Outfit/outfit.jsx';
+import RelatedItems from './Relateditems/relateditems.jsx';
 
 function RelatedItemsAndComparison(props) {
   const [relatedItems, changeRelatedItems] = useState([]);
@@ -13,15 +16,14 @@ function RelatedItemsAndComparison(props) {
       headers: {
         authorization: GH_TOKEN,
       },
-    }).then(res => {
+    }).then((res) => {
       changeRelatedItems(res.data);
-    }).catch(err => console.log(err));
+    }).catch((err) => console.log(err));
   }
 
   useEffect(() => {
     getRelatedItems();
   }, []);
-
 
   return (
     <>
