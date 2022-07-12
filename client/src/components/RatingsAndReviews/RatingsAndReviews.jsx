@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
@@ -7,7 +8,7 @@ import RatingBreakdown from "./RatingBreakdown.jsx";
 import GH_TOKEN from '../../../../token.js';
 
 function RatingsAndReviews({ productId }) {
-  const [star, setStar] = useState([]);
+  let [star, setStar] = useState([]);
   return (
     <div>
       <h3> Ratings and Reviews</h3>

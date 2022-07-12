@@ -22,7 +22,7 @@ function ReviewList({ starFilter, productId }) {
   function getReviewInfo() {
     const config = {
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort="helpful"&product_id=${productId}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort=relevant&product_id=${productId}`,
       headers: {
         Authorization: GH_TOKEN,
       },
@@ -45,7 +45,7 @@ function ReviewList({ starFilter, productId }) {
     setCurrentTwo(currentTwo.concat(reviewInfo.slice(pageNumber, pageNumber + 2)));
   }
 
-  if (starFilter.length > filterStopper.length) {
+  if (starFilter.length > filterStopper.length || starFilter.length < filterStopper.length) {
     let filteredStars = StarFilter(reviewCopy, starFilter);
     setReviewInfo(filteredStars);
     setFilterStopper(starFilter);
