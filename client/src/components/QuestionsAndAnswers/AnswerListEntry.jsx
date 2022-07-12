@@ -1,5 +1,6 @@
 import React from "react";
 import AnswerInfo from "./AnswerInfo.jsx";
+import AnswerPictureListComponent from "./AnswerPictureListComponent.jsx";
 
 function AnswerListEntry() {
   return (
@@ -10,6 +11,7 @@ function AnswerListEntry() {
       </div>
       <span>
         <AnswerInfo />
+        <AnswerPictureListComponent />
       </span>
     </>
   );

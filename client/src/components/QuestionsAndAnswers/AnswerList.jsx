@@ -5,9 +5,9 @@ function AnswerList() {
   const answerListPlaceholder = [1, 2];
   return (
     <>
-      {answerListPlaceholder.map((answer) => (<AnswerListEntry />))}
+      {answerListPlaceholder.map((answer) => <AnswerListEntry />)}
     </>
-  );
+  )
 }
 
 export default AnswerList;

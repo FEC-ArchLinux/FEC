@@ -1,15 +1,13 @@
 import React from "react";
-import PictureList from "./PictureList.jsx";
-import AnswerInfo from "./AnswerInfo.jsx";
+import AnswerPictureListEntry from "./AnswerPictureListEntry.jsx";
 
-function AnswerPictureComponent() {
+function AnswerPictureList() {
+  const answerPictureListPlaceholder = [1, 2];
   return (
     <>
-      <p>Picture Description</p>
-      <PictureList />
-      <AnswerInfo />
+      {answerPictureListPlaceholder.map((picture) => (<AnswerPictureListEntry />))}
     </>
   );
 }
 
-export default AnswerPictureComponent;
+export default AnswerPictureList;

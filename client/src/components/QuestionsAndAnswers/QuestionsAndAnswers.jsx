@@ -7,12 +7,15 @@ import MoreAnsweredQuestions from "./MoreAnsweredQuestions.jsx";
 
 const inline = {
   display: "inline-flex",
-  height: '30px',
+  // width: "60vw",
+  // border: "solid",
+  // borderWidth: "1px",
+  // height: '60px',
 };
 
 function QuestionsAndAnswers() {
   return (
-    <>
+    <span>
       <h2>{"Questions & Answers"}</h2>
       <QuestionsSearch />
       <QuestionsList />
@@ -20,7 +23,7 @@ function QuestionsAndAnswers() {
         <MoreAnsweredQuestions />
         <AddAQuestion />
       </span>
-    </>
+    </span>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-function HelpfulAnswerButton() {
+function HelpfulButton() {
   const linkButton = {
     'background-color': 'transparent',
     border: 'none',
@@ -20,4 +20,4 @@ function HelpfulAnswerButton() {
   );
 }
 
-export default HelpfulAnswerButton;
+export default HelpfulButton;
