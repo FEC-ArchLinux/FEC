@@ -13,7 +13,7 @@ import SortRelevance from './SortRelevance.jsx';
 import StarFilter from "./StarFilter.jsx";
 import AddReview from "./AddReview.jsx";
 
-function ReviewList({ starFilter, productId }) {
+function ReviewList({ metaTransfer, starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [reviewCopy, setReviewCopy] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
@@ -62,7 +62,7 @@ function ReviewList({ starFilter, productId }) {
   if (newReview) {
     return (
       <div>
-        <AddReview />
+        <AddReview metaTransfer={metaTransfer} />
       </div>
     );
   }
