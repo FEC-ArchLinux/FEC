@@ -7,7 +7,7 @@
     "client-dev": "npx webpack --watch --config webpack.config.js",
     "server-dev": "npx nodemon --watch server server/index.js",
     "start": "npx live-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.2.0",
+    "react-star-ratings": "^2.3.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^3.1.1",
     "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "nodemon": "^2.0.19",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.49.9",

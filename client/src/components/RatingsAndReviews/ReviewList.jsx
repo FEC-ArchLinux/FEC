@@ -11,18 +11,20 @@ import GH_TOKEN from '../../../../token.js';
 import SingleReviewTile from './SingleReviewTile.jsx';
 import SortRelevance from './SortRelevance.jsx';
 import StarFilter from "./StarFilter.jsx";
+import AddReview from "./AddReview.jsx";
 
-function ReviewList({ starFilter, productId }) {
+function ReviewList({ metaTransfer, starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [reviewCopy, setReviewCopy] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
   const [filterStopper, setFilterStopper] = useState([]);
   let [pageNumber, setPageNumber] = useState(0);
+  let [newReview, setNewReview] = useState(false);
 
   function getReviewInfo() {
     const config = {
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort="helpful"&product_id=${productId}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort=relevant&product_id=${productId}`,
       headers: {
         Authorization: GH_TOKEN,
       },
@@ -45,20 +47,34 @@ function ReviewList({ starFilter, productId }) {
     setCurrentTwo(currentTwo.concat(reviewInfo.slice(pageNumber, pageNumber + 2)));
   }
 
-  if (starFilter.length > filterStopper.length) {
-    let filteredStars = StarFilter(reviewCopy, starFilter);
-    setReviewInfo(filteredStars);
-    setFilterStopper(starFilter);
-    setCurrentTwo(filteredStars.slice(0, 2));
-    setPageNumber(0);
+  if (starFilter) {
+    if (starFilter.length > filterStopper.length || starFilter.length < filterStopper.length) {
+      let filteredStars = StarFilter(reviewCopy, starFilter);
+      setReviewInfo(filteredStars);
+      setFilterStopper(starFilter);
+      setCurrentTwo(filteredStars.slice(0, 2));
+      setPageNumber(0);
+    }
   }
 
+  function addReviewHandler() {
+    setNewReview(true);
+  }
+
+  if (newReview) {
+    return (
+      <div>
+        <AddReview metaTransfer={metaTransfer} />
+      </div>
+    );
+  }
   if (reviewInfo) {
     return (
       <div>
         <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
         {pageNumber >= reviewInfo.length ? null : <button onClick={incrementReviews} type="button"> More Reviews </button>}
+        <button onClick={addReviewHandler} type="button">Add a Review</button>
       </div>
     );
   }

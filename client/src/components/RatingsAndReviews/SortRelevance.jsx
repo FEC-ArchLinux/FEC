@@ -21,7 +21,7 @@ function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo
       setCurrentTwo(reviewInfo.slice(0, 2));
       setPageNumber(0);
     } else if (selector === "Relevant") {
-      let relevant = reviewInfo.sort((a, b) => (a.date > b.date) ? -1 : ((a.date < b.date) ? 1 : 0) || (a.helpfulness > b.helpfulness) ? -1 : ((a.helpfulness < b.helpfulness) ? 1 : 0));
+      let relevant = reviewInfo.sort((a, b) => (a.date > b.date) ? -1 : ((a.date > b.date) ? 1 : 0) || (a.helpfulness > b.helpfulness) ? -1 : ((a.helpfulness > b.helpfulness) ? 1 : 0));
       setReviewInfo(relevant);
       setCurrentTwo(reviewInfo.slice(0, 2));
       setPageNumber(0);
