@@ -3,3 +3,5 @@
 // The following key-value pairs will be added to process.env
 
 const GH_TOKEN = "";
+
+export default GH_TOKEN;

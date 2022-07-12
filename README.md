@@ -55,21 +55,21 @@ July 24
 
 # Contributors
 ## Jared Shedrofsky
-Check out my [Github Page]() and find me on [linkdin]()
+Check out my [Github Page]() and find me on [Linkedin]()
 ### Roles
 - Ratings and Reviews Widget
 
 ## Rikki Zhang
-Check out my [Github Page]() and find me on [linkdin]()
+Check out my [Github Page]() and find me on [Linkedin]()
 ### Roles
 - Related Products Widget
 
-## Patrick O'shea
-Check out my [Github Page]() and find me on [linkdin]()
+## Patrick O'Shea
+Check out my [Github Page](https://github.com/PatMan817) and find me on [Linkedin](https://www.linkedin.com/in/patrick-o-shea-6b9bb3128/)
 ### Roles
 - Overview Widget
 
 ## Andy King
-Check out my [Github Page]() and find me on [linkdin]()
+Check out my [Github Page]() and find me on [Linkedin]()
 ### Roles
 - Questions And Answers Widget
