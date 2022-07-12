@@ -41,10 +41,10 @@ function ImageGallery({ styles, activeStyle }, ref) {
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
           return (
-            <div height="100px" width="100px">
+            <>
               <img style={{objectFit: "cover"}} onClick={selectBigPicture} height="100px" width="100px" name={index} src={photo.url} alt="style-img" />
               <br />
-            </div>
+            </>
           );
         })}
       </div>
