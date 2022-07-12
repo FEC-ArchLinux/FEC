@@ -27,18 +27,19 @@ function AddReview({ setNewReview, metaTransfer }) {
   let [recommend, setRecommend] = useState(true);
   let [summary, setSummary] = useState('');
   let [body, setBody] = useState('');
+  let [selectedImage, setSelectedImage] = useState([]);
 
   function starRater(numberStars) {
     if (numberStars === 1) {
-      return <p>1 star - Poor </p>;
+      return <p>1 stars - Poor </p>;
     } else if (numberStars === 2) {
-      return <p>2 star - Fair </p>;
+      return <p>2 stars - Fair </p>;
     } else if (numberStars === 3) {
-      return <p>3 star - Average </p>;
+      return <p>3 stars - Average </p>;
     } else if (numberStars === 4) {
-      return <p>4 star - Good </p>;
+      return <p>4 stars - Good </p>;
     } else if (numberStars === 5) {
-      return <p>5 star - Great </p>;
+      return <p>5 stars - Great </p>;
     }
     return null;
   }
@@ -63,6 +64,11 @@ function AddReview({ setNewReview, metaTransfer }) {
         <label htmlFor="body"><b>Review: </b></label>
         <textarea rows="4" cols="70" onChange={(event) => setBody(event.target.value)} size="100" maxLength="1000" name="body" placeholder="“Why did you like the product or not?”" />
         <aside>Minimum required characters left: { body.length < 50 ? 50 - body.length : 'Minimum Reached'}</aside>
+        <div>
+          <label htmlFor="myImage"><b>{selectedImage.length < 5 ? "Select Image:" : "Max Images Selected"} </b></label>
+          {selectedImage.length < 5 ? <input type="file" name="myImage" onChange={(event) => { setSelectedImage(selectedImage.concat([URL.createObjectURL(event.target.files[0])])); }} /> : null}
+          {selectedImage.length > 0 ? selectedImage.map((image) => <img alt="not fount" width="50px" height="50px" src={image} />) : null}
+        </div>
         <button type="button">Submit Review</button>
         <button onClick={(event) => setNewReview(false)} type="button">Exit</button>
       </form>
