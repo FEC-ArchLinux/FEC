@@ -14,11 +14,9 @@ function QuestionListEntry() {
       <span>
         <span style={inline}>
           <Question />
-          {/* <span> */}
-            <HelpfulQuestionButton />
-            <p>|</p>
-            <AddAnswer />
-          {/* </span> */}
+          <HelpfulQuestionButton />
+          <p>|</p>
+          <AddAnswer />
         </span>
         <AnswerList />
       </span>
