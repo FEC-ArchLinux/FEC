@@ -11,6 +11,7 @@ import GH_TOKEN from '../../../../token.js';
 import SingleReviewTile from './SingleReviewTile.jsx';
 import SortRelevance from './SortRelevance.jsx';
 import StarFilter from "./StarFilter.jsx";
+import AddReview from "./AddReview.jsx";
 
 function ReviewList({ starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
@@ -18,6 +19,7 @@ function ReviewList({ starFilter, productId }) {
   const [currentTwo, setCurrentTwo] = useState([]);
   const [filterStopper, setFilterStopper] = useState([]);
   let [pageNumber, setPageNumber] = useState(0);
+  let [newReview, setNewReview] = useState(false);
 
   function getReviewInfo() {
     const config = {
@@ -53,12 +55,24 @@ function ReviewList({ starFilter, productId }) {
     setPageNumber(0);
   }
 
+  function addReviewHandler() {
+    setNewReview(true);
+  }
+
+  if (newReview) {
+    return (
+      <div>
+        <AddReview />
+      </div>
+    );
+  }
   if (reviewInfo) {
     return (
       <div>
         <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
         {pageNumber >= reviewInfo.length ? null : <button onClick={incrementReviews} type="button"> More Reviews </button>}
+        <button onClick={addReviewHandler} type="button">Add a Review</button>
       </div>
     );
   }
