@@ -37,7 +37,7 @@ function ImageGallery({ styles, activeStyle }, ref) {
   return (
     <div style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
       <h3>Image Gallery</h3>
-      <div style={{ width: "300px" , marginRight: "10px"}}>
+      <div style={{marginRight: "10px"}}>
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
           return (
