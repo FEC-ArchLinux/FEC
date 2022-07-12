@@ -11,7 +11,9 @@ const boxButtonStyle = {
 
 function MoreAnsweredQuestions() {
   return (
-    <button style={boxButtonStyle}> MORE ANSWERED QUESTIONS </button>
+    <button style={boxButtonStyle}>
+      MORE ANSWERED QUESTIONS
+    </button>
   );
 }
 
