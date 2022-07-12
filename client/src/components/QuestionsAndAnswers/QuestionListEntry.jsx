@@ -6,6 +6,9 @@ import AddAnswer from "./AddAnswer.jsx";
 
 const inline = {
   display: "inline-flex",
+  margin: "auto",
+  padding: " 20px",
+  width: "60vw",
 };
 
 function QuestionListEntry() {
@@ -13,10 +16,10 @@ function QuestionListEntry() {
     <ul>
       <span>
         <span style={inline}>
-          <Question />
-          <HelpfulQuestionButton />
+          <Question style={inline} />
+          <HelpfulQuestionButton style={inline} />
           <p>|</p>
-          <AddAnswer />
+          <AddAnswer style={inline} />
         </span>
         <AnswerList />
       </span>
