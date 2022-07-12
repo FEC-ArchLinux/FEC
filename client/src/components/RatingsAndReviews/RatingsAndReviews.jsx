@@ -3,23 +3,16 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import ReviewList from "./ReviewList.jsx";
+import RatingBreakdown from "./RatingBreakdown.jsx";
 import GH_TOKEN from '../../../../token.js';
 
 function RatingsAndReviews({ productId }) {
-  const [productStyleInfo, setProductStyleInfo] = useState([]);
-
-  function getMetaData() {
-
-  }
-
-  useEffect(() => {
-    getMetaData();
-  }, []);
-
+  const [star, setStar] = useState([]);
   return (
     <div>
       <h3> Ratings and Reviews</h3>
-      <ReviewList productId={productId} />
+      <RatingBreakdown setStar={setStar} star={star} productId={productId} />
+      <ReviewList starFilter={star} productId={productId} />
     </div>
   );
 }
