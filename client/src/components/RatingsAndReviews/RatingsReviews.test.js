@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+/* eslint-disable no-undef */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-unused-vars */
 import React from 'react';
