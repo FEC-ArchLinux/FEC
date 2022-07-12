@@ -7,22 +7,35 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import styled from 'styled-components';
 import GH_TOKEN from '../../../../token.js';
 import SingleReviewTile from './SingleReviewTile.jsx';
 import SortRelevance from './SortRelevance.jsx';
 import StarFilter from "./StarFilter.jsx";
+import AddReview from "./AddReview.jsx";
 
-function ReviewList({ starFilter, productId }) {
+const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+`;
+
+function ReviewList({ metaTransfer, starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [reviewCopy, setReviewCopy] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
   const [filterStopper, setFilterStopper] = useState([]);
   let [pageNumber, setPageNumber] = useState(0);
+  let [newReview, setNewReview] = useState(false);
 
   function getReviewInfo() {
     const config = {
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort="helpful"&product_id=${productId}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=500&sort=relevant&product_id=${productId}`,
       headers: {
         Authorization: GH_TOKEN,
       },
@@ -45,20 +58,34 @@ function ReviewList({ starFilter, productId }) {
     setCurrentTwo(currentTwo.concat(reviewInfo.slice(pageNumber, pageNumber + 2)));
   }
 
-  if (starFilter.length > filterStopper.length) {
-    let filteredStars = StarFilter(reviewCopy, starFilter);
-    setReviewInfo(filteredStars);
-    setFilterStopper(starFilter);
-    setCurrentTwo(filteredStars.slice(0, 2));
-    setPageNumber(0);
+  if (starFilter) {
+    if (starFilter.length > filterStopper.length || starFilter.length < filterStopper.length) {
+      let filteredStars = StarFilter(reviewCopy, starFilter);
+      setReviewInfo(filteredStars);
+      setFilterStopper(starFilter);
+      setCurrentTwo(filteredStars.slice(0, 2));
+      setPageNumber(0);
+    }
   }
 
+  function addReviewHandler() {
+    setNewReview(true);
+  }
+
+  if (newReview) {
+    return (
+      <Overlay>
+        <AddReview setNewReview={setNewReview} metaTransfer={metaTransfer} />
+      </Overlay>
+    );
+  }
   if (reviewInfo) {
     return (
       <div>
         <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
         {pageNumber >= reviewInfo.length ? null : <button onClick={incrementReviews} type="button"> More Reviews </button>}
+        <button onClick={addReviewHandler} type="button">Add a Review</button>
       </div>
     );
   }

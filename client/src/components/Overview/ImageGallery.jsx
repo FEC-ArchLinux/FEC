@@ -33,25 +33,64 @@ function ImageGallery({ styles, activeStyle }, ref) {
     }
   }
 
+  const imageGalleryStyle = {
+    'object-fit': 'cover',
+    height: '80px',
+    width: '80px',
+    border: 'thin solid black',
+  };
+
+  const activeImageStyle = {
+    'object-fit': 'cover',
+    height: '80px',
+    width: '80px',
+    border: 'thick solid black',
+  };
+
+  const bigImageStyle = {
+    margin: '0 auto',
+    height: '700px',
+  };
+
+  const bigPictureDivStyle = {
+    display: 'flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+  };
+
+  const imageGalleryDivStyle = {
+    display: 'inline-flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+  };
+
   let index = -1;
   return (
-    <div style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      <h3>Image Gallery</h3>
-      <div style={{ width: "300px" , marginRight: "10px"}}>
+    <div style={imageGalleryDivStyle}>
+      <div>
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
+          if (index === activeImage) {
+            return (
+              <>
+                <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
+                <br />
+              </>
+            );
+          }
           return (
-            <div height="100px" width="100px">
-              <img style={{objectFit: "cover"}} onClick={selectBigPicture} height="100px" width="100px" name={index} src={photo.url} alt="style-img" />
+            <>
+              <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
               <br />
-            </div>
+            </>
           );
         })}
       </div>
-      <h3>Selected Photo</h3>
-      <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
-      <img style={{ marginRight: "10px", marginLeft: "10px" }} height="500px" src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
-      <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
+      <div style={bigPictureDivStyle}>
+        <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
+        <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+        <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
+      </div>
     </div>
   );
 }

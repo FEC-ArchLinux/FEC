@@ -15,6 +15,9 @@ function StarFilter(reviewInfo, starFilter) {
       newArray.push(review);
     }
   }
+  if (starFilter.length === 0) {
+    return reviewInfo;
+  }
   return newArray;
 }
 
