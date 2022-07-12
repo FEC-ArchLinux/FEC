@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
@@ -7,12 +9,13 @@ import RatingBreakdown from "./RatingBreakdown.jsx";
 import GH_TOKEN from '../../../../token.js';
 
 function RatingsAndReviews({ productId }) {
-  const [star, setStar] = useState([]);
+  let [star, setStar] = useState([]);
+  let [metaTransfer, setMetaTransfer] = useState([]);
   return (
     <div>
       <h3> Ratings and Reviews</h3>
-      <RatingBreakdown setStar={setStar} star={star} productId={productId} />
-      <ReviewList starFilter={star} productId={productId} />
+      <RatingBreakdown setMetaTransfer={setMetaTransfer} setStar={setStar} star={star} productId={productId} />
+      <ReviewList metaTransfer={metaTransfer} starFilter={star} productId={productId} />
     </div>
   );
 }
