@@ -47,11 +47,27 @@ function ImageGallery({ styles, activeStyle }, ref) {
     border: 'thick solid black',
   };
 
+  const bigImageStyle = {
+    margin: '0 auto',
+    height: '700px',
+  };
+
+  const bigPictureDivStyle = {
+    display: 'flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+  };
+
+  const imageGalleryDivStyle = {
+    display: 'inline-flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+  };
+
   let index = -1;
   return (
-    <div style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      <h3>Image Gallery</h3>
-      <div style={{marginRight: "10px"}}>
+    <div style={imageGalleryDivStyle}>
+      <div>
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
           if (index === activeImage) {
@@ -70,10 +86,11 @@ function ImageGallery({ styles, activeStyle }, ref) {
           );
         })}
       </div>
-      <h3>Selected Photo</h3>
-      <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
-      <img style={{ marginRight: "10px", marginLeft: "10px" }} height="500px" src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
-      <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
+      <div style={bigPictureDivStyle}>
+        <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
+        <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+        <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
+      </div>
     </div>
   );
 }
