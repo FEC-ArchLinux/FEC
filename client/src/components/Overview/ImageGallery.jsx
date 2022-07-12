@@ -33,6 +33,20 @@ function ImageGallery({ styles, activeStyle }, ref) {
     }
   }
 
+  const imageGalleryStyle = {
+    'object-fit': 'cover',
+    height: '80px',
+    width: '80px',
+    border: 'thin solid black',
+  };
+
+  const activeImageStyle = {
+    'object-fit': 'cover',
+    height: '80px',
+    width: '80px',
+    border: 'thick solid black',
+  };
+
   let index = -1;
   return (
     <div style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -40,9 +54,17 @@ function ImageGallery({ styles, activeStyle }, ref) {
       <div style={{marginRight: "10px"}}>
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
+          if (index === activeImage) {
+            return (
+              <>
+                <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
+                <br />
+              </>
+            );
+          }
           return (
             <>
-              <img style={{objectFit: "cover"}} onClick={selectBigPicture} height="100px" width="100px" name={index} src={photo.url} alt="style-img" />
+              <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
               <br />
             </>
           );

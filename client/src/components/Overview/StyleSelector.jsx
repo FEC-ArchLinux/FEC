@@ -2,6 +2,24 @@ import React from 'react';
 // import styled, { css } from 'styled-components';
 
 function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
+  const styleImgStyle = {
+    'object-fit': 'cover',
+    height: '60px',
+    width: '60px',
+    border: 'medium solid black',
+    'border-radius': '50%',
+    'margin-left': '10px',
+  };
+
+  const selectedStyleImg = {
+    'object-fit': 'cover',
+    height: '60px',
+    width: '60px',
+    border: 'thick solid black',
+    'border-radius': '50%',
+    'margin-left': '10px',
+  };
+
   let index = -1;
   return (
     <>
@@ -13,7 +31,10 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
       </p>
       {styles && styles.map((style) => {
         index++
-        return <img style={{marginLeft: "10px" }} height="100px" alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} key={style.style_id} />;
+        if (index === activeStyle) {
+          return <img style={selectedStyleImg} alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
+        }
+        return <img style={styleImgStyle} alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
       })}
     </>
   );
