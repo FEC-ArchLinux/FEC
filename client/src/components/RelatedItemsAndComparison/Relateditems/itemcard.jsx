@@ -10,8 +10,9 @@ function ItemCard(props) {
   const [product, changeProduct] = useState('');
   const [reviews, changeRev] = useState({});
   const [openModal, changeOpenModal] = useState(false);
+
   // GET styles
-  useEffect(() => {
+  function getStyles() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${props.item}/styles`, {
       headers: {
         authorization: GH_TOKEN,
@@ -21,9 +22,9 @@ function ItemCard(props) {
     }).catch((err) => {
       console.log(err);
     });
-  }, []);
+  }
   // GET product info
-  useEffect(() => {
+  function getProductInfo() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${props.item}`, {
       headers: {
         authorization: GH_TOKEN,
@@ -33,9 +34,9 @@ function ItemCard(props) {
     }).catch((err) => {
       console.log(err);
     });
-  }, []);
+  }
   // GET reviews
-  useEffect(() => {
+  function getReviews() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`, {
       headers: {
         authorization: GH_TOKEN,
@@ -48,7 +49,14 @@ function ItemCard(props) {
     }).catch((err) => {
       console.log(err);
     });
+  }
+
+  useEffect(() => {
+    getStyles();
+    getReviews();
+    getProductInfo();
   }, []);
+
 
   // reviews calculation
   function averageReviews(obj) {
@@ -65,10 +73,12 @@ function ItemCard(props) {
   // price toggle function
   let price;
   if (item.sale_price) {
-    price = <>
-      <span>${item.original_price}</span>;
-      <span>${item.sale_price}</span>;
-    </>
+    price = (
+      <>
+        <span>${item.original_price}</span>;
+        <span>${item.sale_price}</span>;
+      </>
+    )
   } else {
     price = <span>${item.original_price}</span>;
   }
@@ -76,13 +86,13 @@ function ItemCard(props) {
   if (item && product && reviews) {
     return (
       <span>
-        <img src={item.photos[0].thumbnail_url} alt="style" />
-        <button onClick={()=>{changeOpenModal(true)}} >star</button>
+        <img height="200px" width="150px" src={item.photos[0].thumbnail_url} alt="style" />
+        <button onClick={() => { changeOpenModal(true) }}>star</button>
         <span>{product.category}</span>
         <span>{item.name}</span>
         <span>{price}</span>
         <span>Average Review:{averageReviews(reviews)}</span>
-        {openModal && <RelatedModal closeModal={changeOpenModal} item={product} />}
+        {openModal && <RelatedModal closeModal={changeOpenModal} item={product} mainProduct={props.mainProduct} />}
         <br />
       </span>
     );
