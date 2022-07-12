@@ -68,14 +68,13 @@ function ItemCard(props) {
     }
     return Math.round((totalStarCount / totalCount) * 100) / 100;
   }
-  // comparison table function
 
   // price toggle function
   let price;
   if (item.sale_price) {
     price = (
       <>
-        <span>${item.original_price}</span>;
+        <span style={{'text-decoration': 'line-through', 'color': 'red'}} >${item.original_price}</span>;
         <span>${item.sale_price}</span>;
       </>
     )
