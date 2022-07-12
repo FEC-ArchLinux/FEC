@@ -7,11 +7,22 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import styled from 'styled-components';
 import GH_TOKEN from '../../../../token.js';
 import SingleReviewTile from './SingleReviewTile.jsx';
 import SortRelevance from './SortRelevance.jsx';
 import StarFilter from "./StarFilter.jsx";
 import AddReview from "./AddReview.jsx";
+
+const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+`;
 
 function ReviewList({ metaTransfer, starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
@@ -63,9 +74,9 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
 
   if (newReview) {
     return (
-      <div>
-        <AddReview metaTransfer={metaTransfer} />
-      </div>
+      <Overlay>
+        <AddReview setNewReview={setNewReview} metaTransfer={metaTransfer} />
+      </Overlay>
     );
   }
   if (reviewInfo) {
