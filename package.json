@@ -48,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^3.1.1",
     "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "nodemon": "^2.0.19",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.49.9",
