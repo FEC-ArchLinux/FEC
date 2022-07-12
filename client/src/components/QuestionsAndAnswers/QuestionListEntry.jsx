@@ -6,9 +6,7 @@ import AddAnswer from "./AddAnswer.jsx";
 
 const inline = {
   display: "inline-flex",
-  margin: "auto",
-  padding: " 20px",
-  width: "60vw",
+
 };
 
 function QuestionListEntry() {

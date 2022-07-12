@@ -7,7 +7,7 @@ function AnswerList() {
     <>
       {answerListPlaceholder.map((answer) => <AnswerListEntry />)}
     </>
-  )
+  );
 }
 
 export default AnswerList;

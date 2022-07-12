@@ -10,7 +10,7 @@ const inline = {
 function AnswerPictureInfo() {
   return (
     <span style={inline}>
-      <p>{`by ${'username'}`}</p>
+      <p>{`by ${'username, '}`}</p>
       <p>date</p>
       <p>|</p>
       <HelpfulButton />
