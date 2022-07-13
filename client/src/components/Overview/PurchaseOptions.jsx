@@ -1,4 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
+import styled from 'styled-components';
 
 function PurchaseOptions({ styles, activeStyle }, ref) {
   const sizeDropdownRef = useRef();
@@ -50,19 +51,40 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     event.preventDefault();
   }
 
+  const DropDown = styled.select`
+    font-size: large;
+    border-width: 5px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+    &:hover {
+      background-color: lightgray;
+    }`;
+
+  const AddButton = styled.button`
+    font-size: large;
+    border-width: 5px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+    &:hover {
+      background-color: lightgray;
+    }`;
+
   return (
     <div>
       <h3>Purchase Options</h3>
       <form onSubmit={completePurchase}>
-        <select required ref={sizeDropdownRef} onChange={changeSelectedSize}>
+        <DropDown required ref={sizeDropdownRef} onChange={changeSelectedSize}>
           <option value="">Select Size</option>
           {styles && optionGenerator()}
-        </select>
-        <select required>
+        </DropDown>
+        <DropDown required>
           {styles && quantitySelector()}
-        </select>
+        </DropDown>
         <br />
-        <button type="submit">Add to Cart</button>
+        <AddButton type="submit">Add to Cart</AddButton>
       </form>
     </div>
   );

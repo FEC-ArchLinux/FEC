@@ -71,9 +71,12 @@ function Overview({ productId }) {
 
   let bigPictureDivStyle = {
     display: 'flex',
+    'justify-content': 'center',
     'align-items': 'center',
     'flex-basis': '70%',
     height: '100%',
+    'background-color': 'whitesmoke',
+    position: 'relative',
   };
 
   if (isExpanded) {
@@ -83,9 +86,12 @@ function Overview({ productId }) {
 
     bigPictureDivStyle = {
       display: 'flex',
+      'justify-content': 'center',
       'align-items': 'center',
       'flex-basis': '100%',
       height: '100%',
+      'background-color': 'whitesmoke',
+      position: 'relative',
     };
   }
 
@@ -97,7 +103,7 @@ function Overview({ productId }) {
     <>
       <h2>Overview Widget</h2>
       <div style={imageGalleryDivStyle}>
-        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView}/>
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />

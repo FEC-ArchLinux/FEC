@@ -55,16 +55,6 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
     'max-width': '100%',
   };
 
-  const bigPictureinnerDivStyle = {
-    display: 'flex',
-    'justify-content': 'center',
-    'background-color': 'whitesmoke',
-    'flex-basis': '100%',
-    height: '100%',
-    'align-items': 'center',
-    position: 'relative',
-  };
-
   const imageGalleryDivStyle = {
     display: 'grid',
     'min-width': '110px',
@@ -83,13 +73,29 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
     border: none;
     &:hover {
       background-color: lightgray;
-    `;
+    }`;
 
-  const ArrowButton = styled.button`
+  const RightArrowButton = styled.button`
     background-color: whitesmoke;
     border: none;
     font-size: x-large;
-    `;
+    position: absolute;
+    right: 0;
+    opacity: 50%;
+    &:hover {
+      background-color: lightgray;
+    }`;
+
+  const LeftArrowButton = styled.button`
+    background-color: whitesmoke;
+    border: none;
+    font-size: x-large;
+    position: absolute;
+    left: 0;
+    opacity: 50%;
+    &:hover {
+      background-color: lightgray;
+    }`;
 
   let index = -1;
   return (
@@ -108,12 +114,10 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
         })}
       </div>
       <div style={bigPictureDivStyle}>
-        <ArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</ArrowButton>
-        <div style={bigPictureinnerDivStyle}>
-          <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
-          <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
-        </div>
-        <ArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</ArrowButton>
+        <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
+        <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+        <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
+        <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
       </div>
     </>
   );
