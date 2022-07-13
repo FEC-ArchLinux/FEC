@@ -48,8 +48,7 @@ function ImageGallery({ styles, activeStyle }, ref) {
   };
 
   const bigImageStyle = {
-    margin: '0 auto',
-    'max-height': '700px',
+    'max-height': '100%',
     'max-width': '92%',
   };
 
@@ -59,14 +58,8 @@ function ImageGallery({ styles, activeStyle }, ref) {
     'align-items': 'center',
     'flex-basis': '70%',
     'background-color': 'whitesmoke',
-    height: '700px',
+    height: '100%',
   };
-
-  //const imageGalleryDivStyle = {
-  //  display: 'inline-flex',
-  //  'justify-content': 'center',
-  //  'align-items': 'center',
-  //};
 
   let index = -1;
   return (
