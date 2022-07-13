@@ -12,6 +12,7 @@ import GH_TOKEN from '../../../../token.js';
 let MainFlex = styled.div`
   display: flex;
   justify-content: center;
+  gap: 20px;
 `;
 
 let MainHeader = styled.h3`
@@ -23,6 +24,9 @@ let TopContainer = styled.div`
   flex-direction: column;
 `;
 
+let StyledRatingBreakdown = styled(RatingBreakdown)`
+`;
+
 function RatingsAndReviews({ productId }) {
   let [star, setStar] = useState([]);
   let [metaTransfer, setMetaTransfer] = useState([]);
@@ -30,7 +34,7 @@ function RatingsAndReviews({ productId }) {
     <TopContainer>
       <MainHeader> Ratings and Reviews </MainHeader>
       <MainFlex>
-        <RatingBreakdown setMetaTransfer={setMetaTransfer} setStar={setStar} star={star} productId={productId} />
+        <StyledRatingBreakdown setMetaTransfer={setMetaTransfer} setStar={setStar} star={star} productId={productId} />
         <ReviewList metaTransfer={metaTransfer} starFilter={star} productId={productId} />
       </MainFlex>
     </TopContainer>
