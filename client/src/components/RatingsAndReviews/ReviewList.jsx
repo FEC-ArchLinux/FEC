@@ -58,7 +58,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
     setCurrentTwo(currentTwo.concat(reviewInfo.slice(pageNumber, pageNumber + 2)));
   }
 
-  if (starFilter.length >= 0) {
+  if (starFilter) {
     if (starFilter.length !== filterStopper.length) {
       let filteredStars = StarFilter(reviewCopy, starFilter);
       setReviewInfo(filteredStars);
