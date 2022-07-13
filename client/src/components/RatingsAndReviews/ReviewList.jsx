@@ -51,7 +51,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
 
   useEffect(() => {
     getReviewInfo();
-  }, []);
+  }, [productId]);
 
   function incrementReviews() {
     setPageNumber(pageNumber += 2);
@@ -75,7 +75,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
   if (newReview) {
     return (
       <Overlay>
-        <AddReview setNewReview={setNewReview} metaTransfer={metaTransfer} />
+        <AddReview productId={productId} setNewReview={setNewReview} metaTransfer={metaTransfer} />
       </Overlay>
     );
   }
