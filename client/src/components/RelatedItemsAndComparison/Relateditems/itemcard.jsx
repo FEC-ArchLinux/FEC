@@ -74,7 +74,7 @@ function ItemCard(props) {
   if (item.sale_price) {
     price = (
       <>
-        <span style={{'text-decoration': 'line-through', 'color': 'red'}} >${item.original_price}</span>;
+        <span style={{ 'text-decoration': 'line-through', 'color': 'red' }} >${item.original_price}</span>;
         <span>${item.sale_price}</span>;
       </>
     )
@@ -85,7 +85,7 @@ function ItemCard(props) {
   if (item && product && reviews) {
     return (
       <span>
-        <img height="200px" width="150px" src={item.photos[0].thumbnail_url} alt="style" />
+        <img height="200px" width="150px" src={item.photos[0].thumbnail_url} alt="style" onClick={() => { props.setProductId(props.item); }} />
         <button onClick={() => { changeOpenModal(true) }}>star</button>
         <span data-testid="productCategory">{product.category}</span>
         <span>{item.name}</span>

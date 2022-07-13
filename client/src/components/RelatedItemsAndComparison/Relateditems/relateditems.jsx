@@ -13,6 +13,7 @@ function RelatedItems({ relatedItems, mainProduct, setProductId }) {
         key={item}
         item={item}
         mainProduct={mainProduct}
+        setProductId={setProductId}
       />
   ));
   return (

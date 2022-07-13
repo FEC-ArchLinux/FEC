@@ -23,11 +23,11 @@ function RelatedItemsAndComparison(props) {
 
   useEffect(() => {
     getRelatedItems();
-  }, []);
+  }, [props]);
 
   return (
     <div>
-      <div>Related items</div>
+      <div>Related items {props.productId}</div>
       <RelatedItems relatedItems={relatedItems} mainProduct={props.productId} setProductId={props.setProductId} />
       <Outfit />
     </div>
