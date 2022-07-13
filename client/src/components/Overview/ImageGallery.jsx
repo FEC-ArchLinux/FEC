@@ -1,4 +1,5 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import styled from 'styled-components';
 
 function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedView }, ref) {
   const [activeImage, setActiveImage] = useState(0);
@@ -61,6 +62,7 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
     'flex-basis': '100%',
     height: '100%',
     'align-items': 'center',
+    position: 'relative',
   };
 
   const imageGalleryDivStyle = {
@@ -71,11 +73,23 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
     'justify-items': 'center',
   };
 
-  const expandButtonStyle = {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-  };
+  const ExpandButton = styled.button`
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: x-large;
+    opacity: 50%;
+    border: none;
+    &:hover {
+      background-color: lightgray;
+    `;
+
+  const ArrowButton = styled.button`
+    background-color: whitesmoke;
+    border: none;
+    font-size: x-large;
+    `;
 
   let index = -1;
   return (
@@ -94,12 +108,12 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
         })}
       </div>
       <div style={bigPictureDivStyle}>
-        <button type="button" id="decrement" onClick={changeBigPicture}>⇦</button>
+        <ArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</ArrowButton>
         <div style={bigPictureinnerDivStyle}>
           <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+          <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
         </div>
-        <button type="button" id="increment" onClick={changeBigPicture}>⇨</button>
-        <button style={expandButtonStyle} onClick={toggleExpandedView}>Expand</button>
+        <ArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</ArrowButton>
       </div>
     </>
   );

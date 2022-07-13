@@ -1,5 +1,4 @@
 import React from 'react';
-// import styled, { css } from 'styled-components';
 
 function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
   const styleImgStyle = {
@@ -20,6 +19,15 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
     margin: '5px',
   };
 
+  const styleContainerStyle = {
+    display: 'flex',
+    'flex-wrap': 'wrap',
+    'justify-content': 'flex-start',
+    'align-items': 'center',
+    overflow: 'auto',
+    'max-height': '250px',
+  }
+
   let index = -1;
   return (
     <div>
@@ -29,7 +37,7 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
         {" > "}
         {styles && styles[activeStyle].name}
       </p>
-      <div style={{ display: 'flex', 'flex-wrap': 'wrap', 'justify-content': 'flex-start', 'align-items': 'center' }}>
+      <div style={styleContainerStyle}>
         {styles && styles.map((style) => {
           index++
           if (index === activeStyle) {

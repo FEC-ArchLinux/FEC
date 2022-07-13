@@ -66,7 +66,6 @@ function Overview({ productId }) {
     width: '350px',
     'flex-direction': 'column',
     'max-height': '100%',
-    overflow: 'auto',
     'justify-content': 'center',
   };
 
@@ -75,7 +74,6 @@ function Overview({ productId }) {
     'align-items': 'center',
     'flex-basis': '70%',
     height: '100%',
-    position: 'relative',
   };
 
   if (isExpanded) {
@@ -88,7 +86,6 @@ function Overview({ productId }) {
       'align-items': 'center',
       'flex-basis': '100%',
       height: '100%',
-      position: 'relative',
     };
   }
 
