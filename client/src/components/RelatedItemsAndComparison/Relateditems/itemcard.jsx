@@ -87,7 +87,7 @@ function ItemCard(props) {
       <span>
         <img height="200px" width="150px" src={item.photos[0].thumbnail_url} alt="style" />
         <button onClick={() => { changeOpenModal(true) }}>star</button>
-        <span>{product.category}</span>
+        <span data-testid="productCategory">{product.category}</span>
         <span>{item.name}</span>
         <span>{price}</span>
         <span>Average Review:{averageReviews(reviews)}</span>
