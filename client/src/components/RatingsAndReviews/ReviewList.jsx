@@ -28,7 +28,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [reviewCopy, setReviewCopy] = useState([]);
   const [currentTwo, setCurrentTwo] = useState([]);
-  const [filterStopper, setFilterStopper] = useState([]);
+  let [filterStopper, setFilterStopper] = useState([]);
   let [pageNumber, setPageNumber] = useState(0);
   let [newReview, setNewReview] = useState(false);
 
@@ -58,13 +58,13 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
     setCurrentTwo(currentTwo.concat(reviewInfo.slice(pageNumber, pageNumber + 2)));
   }
 
-  if (starFilter) {
-    if (starFilter.length > filterStopper.length || starFilter.length < filterStopper.length) {
+  if (starFilter.length >= 0) {
+    if (starFilter.length !== filterStopper.length) {
       let filteredStars = StarFilter(reviewCopy, starFilter);
       setReviewInfo(filteredStars);
-      setFilterStopper(starFilter);
       setCurrentTwo(filteredStars.slice(0, 2));
       setPageNumber(0);
+      setFilterStopper(starFilter.concat([]));
     }
   }
 
