@@ -1,6 +1,6 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 
-function ImageGallery({ styles, activeStyle, bigPictureDivStyle }, ref) {
+function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedView }, ref) {
   const [activeImage, setActiveImage] = useState(0);
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -71,6 +71,12 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle }, ref) {
     'justify-items': 'center',
   };
 
+  const expandButtonStyle = {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  };
+
   let index = -1;
   return (
     <>
@@ -88,11 +94,12 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle }, ref) {
         })}
       </div>
       <div style={bigPictureDivStyle}>
-        <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
+        <button type="button" id="decrement" onClick={changeBigPicture}>⇦</button>
         <div style={bigPictureinnerDivStyle}>
           <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
         </div>
-        <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
+        <button type="button" id="increment" onClick={changeBigPicture}>⇨</button>
+        <button style={expandButtonStyle} onClick={toggleExpandedView}>Expand</button>
       </div>
     </>
   );

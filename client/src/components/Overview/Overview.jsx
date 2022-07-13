@@ -67,6 +67,7 @@ function Overview({ productId }) {
     'flex-direction': 'column',
     'max-height': '100%',
     overflow: 'auto',
+    'justify-content': 'center',
   };
 
   let bigPictureDivStyle = {
@@ -74,15 +75,12 @@ function Overview({ productId }) {
     'align-items': 'center',
     'flex-basis': '70%',
     height: '100%',
+    position: 'relative',
   };
 
   if (isExpanded) {
     productDetailsStyle = {
       display: 'none',
-      width: '350px',
-      'flex-direction': 'column',
-      'max-height': '100%',
-      overflow: 'auto',
     };
 
     bigPictureDivStyle = {
@@ -90,6 +88,7 @@ function Overview({ productId }) {
       'align-items': 'center',
       'flex-basis': '100%',
       height: '100%',
+      position: 'relative',
     };
   }
 
@@ -100,9 +99,8 @@ function Overview({ productId }) {
   return (
     <>
       <h2>Overview Widget</h2>
-      <button onClick={toggleExpandedView}>Expand</button>
       <div style={imageGalleryDivStyle}>
-        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle}/>
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView}/>
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
