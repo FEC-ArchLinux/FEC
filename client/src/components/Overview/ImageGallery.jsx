@@ -38,6 +38,7 @@ function ImageGallery({ styles, activeStyle }, ref) {
     height: '80px',
     width: '80px',
     border: 'thin solid black',
+    margin: '5px',
   };
 
   const activeImageStyle = {
@@ -45,6 +46,7 @@ function ImageGallery({ styles, activeStyle }, ref) {
     height: '80px',
     width: '80px',
     border: 'thick solid black',
+    margin: '5px',
   };
 
   const bigImageStyle = {
@@ -68,25 +70,24 @@ function ImageGallery({ styles, activeStyle }, ref) {
     'align-items': 'center',
   };
 
+  const imageGalleryDivStyle = {
+    display: 'grid',
+    'justify-items': 'center',
+  };
+
   let index = -1;
   return (
     <>
-      <div>
+      <div style={imageGalleryDivStyle}>
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
           if (index === activeImage) {
             return (
-              <>
-                <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
-                <br />
-              </>
+              <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
             );
           }
           return (
-            <>
-              <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
-              <br />
-            </>
+            <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
           );
         })}
       </div>

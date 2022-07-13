@@ -54,17 +54,13 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     <div>
       <h3>Purchase Options</h3>
       <form onSubmit={completePurchase}>
-        <label>Size:
-          <select required ref={sizeDropdownRef} onChange={changeSelectedSize}>
-            <option value="">Select Size</option>
-            {styles && optionGenerator()}
-          </select>
-        </label>
-        <label>Quantity:
-          <select required>
-            {styles && quantitySelector()}
-          </select>
-        </label>
+        <select required ref={sizeDropdownRef} onChange={changeSelectedSize}>
+          <option value="">Select Size</option>
+          {styles && optionGenerator()}
+        </select>
+        <select required>
+          {styles && quantitySelector()}
+        </select>
         <br />
         <button type="submit">Add to Cart</button>
       </form>

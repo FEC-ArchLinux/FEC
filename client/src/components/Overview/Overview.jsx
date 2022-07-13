@@ -62,7 +62,7 @@ function Overview({ productId }) {
       <h2>Overview Widget</h2>
       <div style={imageGalleryDivStyle}>
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
-        <div style={{ 'max-width': '350px', 'min-width': '250px' }}>
+        <div style={{ 'max-width': '350px' }}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
           <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
