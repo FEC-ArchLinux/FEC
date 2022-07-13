@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <h1>Hello World from App</h1>
+      <h1>Hello World from App {productId}</h1>
       <Overview productId={productId} />
       <RelatedItemsAndComparison productId={productId} setProductId={setProductId} />
       <QuestionsAndAnswers productId={productId} />
