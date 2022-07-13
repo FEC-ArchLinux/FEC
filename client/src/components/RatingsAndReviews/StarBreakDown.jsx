@@ -17,12 +17,12 @@ let StarParent = styled.div`
 
 let StyledSpan = styled.span`
   margin-right: 3px;
-  color: rgb(128,128,128);
+  color: rgb(105,105,105);
   margin-bottom: 10px;
 `;
 
 let StyledMeter = styled.meter`
-  width: 150px;
+  width: 185px;
   height: 17px;
 `;
 
