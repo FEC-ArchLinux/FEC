@@ -47,7 +47,7 @@ function Overview({ productId }) {
   useEffect(() => {
     getProductInfo();
     getProductStyleInfo();
-  }, []);
+  }, [productId]);
 
   const imageGalleryDivStyle = {
     display: 'flex',
