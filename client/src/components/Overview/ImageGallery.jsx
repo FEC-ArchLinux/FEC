@@ -49,16 +49,23 @@ function ImageGallery({ styles, activeStyle }, ref) {
 
   const bigImageStyle = {
     'max-height': '100%',
-    'max-width': '92%',
+    'max-width': '100%',
   };
 
   const bigPictureDivStyle = {
     display: 'flex',
-    'justify-content': 'space-between',
     'align-items': 'center',
     'flex-basis': '70%',
-    'background-color': 'whitesmoke',
     height: '100%',
+  };
+
+  const bigPictureinnerDivStyle = {
+    display: 'flex',
+    'justify-content': 'center',
+    'background-color': 'whitesmoke',
+    'flex-basis': '100%',
+    height: '100%',
+    'align-items': 'center',
   };
 
   let index = -1;
@@ -85,7 +92,9 @@ function ImageGallery({ styles, activeStyle }, ref) {
       </div>
       <div style={bigPictureDivStyle}>
         <button type="button" id="decrement" onClick={changeBigPicture}>⬅️</button>
-        <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+        <div style={bigPictureinnerDivStyle}>
+          <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+        </div>
         <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
       </div>
     </>
