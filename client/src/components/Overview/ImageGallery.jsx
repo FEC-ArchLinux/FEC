@@ -72,6 +72,9 @@ function ImageGallery({ styles, activeStyle }, ref) {
 
   const imageGalleryDivStyle = {
     display: 'grid',
+    'min-width': '110px',
+    overflow: 'clip auto',
+    'max-height': '100%',
     'justify-items': 'center',
   };
 

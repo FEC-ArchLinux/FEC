@@ -29,7 +29,7 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
         {" > "}
         {styles && styles[activeStyle].name}
       </p>
-      <div style={{ display: 'flex', 'flex-wrap': 'wrap', 'justify-content': 'flex-start' }}>
+      <div style={{ display: 'flex', 'flex-wrap': 'wrap', 'justify-content': 'flex-start', 'align-items': 'center' }}>
         {styles && styles.map((style) => {
           index++
           if (index === activeStyle) {

@@ -45,6 +45,9 @@ function Overview({ productId }) {
   }
 
   useEffect(() => {
+    imageGalleryRef.current.selectBigPicture();
+    purchaseOptionsRef.current.resetSelectedSize();
+    setActiveStyle(0);
     getProductInfo();
     getProductStyleInfo();
   }, [productId]);
@@ -52,8 +55,8 @@ function Overview({ productId }) {
   const imageGalleryDivStyle = {
     display: 'flex',
     'justify-content': 'space-between',
-    'align-items': 'center',
-    height: '700px',
+    'align-items': 'flex-start',
+    height: '600px',
     gap: '5%',
   };
 
@@ -62,7 +65,7 @@ function Overview({ productId }) {
       <h2>Overview Widget</h2>
       <div style={imageGalleryDivStyle}>
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
-        <div style={{ 'max-width': '350px' }}>
+        <div style={{ 'width': '350px' }}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
           <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
