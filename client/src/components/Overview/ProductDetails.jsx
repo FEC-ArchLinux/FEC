@@ -43,10 +43,9 @@ function ProductDetails({ productInfo, styles, activeStyle, productId }) {
   }
   return (
     <div>
-      <h3>Product Details</h3>
       <p>{productInfo && styles && reviewData && Math.round(avgStarRating() * 100) / 100} stars based on {totalReviews} reviews.</p>
       <p>{productInfo.category}</p>
-      <h4>{productInfo.name}</h4>
+      <h2>{productInfo.name}</h2>
       <div style={{height: '45px'}}>
         {productInfo && styles && priceGenerator()}
       </div>

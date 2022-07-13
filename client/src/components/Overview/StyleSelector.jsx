@@ -31,7 +31,7 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
   let index = -1;
   return (
     <div>
-      <h3>Style Selector</h3>
+      <h3>Styles:</h3>
       <p>
         Style
         {" > "}

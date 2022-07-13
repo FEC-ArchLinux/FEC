@@ -74,7 +74,6 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
 
   return (
     <div>
-      <h3>Purchase Options</h3>
       <form onSubmit={completePurchase}>
         <DropDown required ref={sizeDropdownRef} onChange={changeSelectedSize}>
           <option value="">Select Size</option>

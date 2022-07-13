@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProductDescription({ productInfo }) {
   return (
-    <>
+    <div>
       <h3>Product Description</h3>
       <h4>{productInfo.slogan}</h4>
       <p>{productInfo.description}</p>
@@ -10,7 +10,7 @@ function ProductDescription({ productInfo }) {
       <ul>
         {productInfo.features && productInfo.features.map((feature) => <li>{feature.feature}: {feature.value}</li>)}
       </ul>
-    </>
+    </div>
   );
 }
 
