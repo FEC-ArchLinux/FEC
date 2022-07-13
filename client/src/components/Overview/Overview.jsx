@@ -49,13 +49,24 @@ function Overview({ productId }) {
     getProductStyleInfo();
   }, []);
 
+  const imageGalleryDivStyle = {
+    display: 'flex',
+    'justify-content': 'space-between',
+    'align-items': 'center',
+    height: '700px',
+  };
+
   return (
     <>
       <h2>Overview Widget</h2>
-      <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
-      <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-      <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
-      <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <div style={imageGalleryDivStyle}>
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
+        <div style={{ 'max-width': '350px' }}>
+          <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
+          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
+          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
+        </div>
+      </div>
       <ProductDescription productInfo={productInfo} />
     </>
   );

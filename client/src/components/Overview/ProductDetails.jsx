@@ -42,13 +42,15 @@ function ProductDetails({ productInfo, styles, activeStyle, productId }) {
     return <p>Price: ${styles[activeStyle].original_price}</p>;
   }
   return (
-    <>
+    <div>
       <h3>Product Details</h3>
       <p>{productInfo && styles && reviewData && Math.round(avgStarRating() * 100) / 100} stars based on {totalReviews} reviews.</p>
       <p>{productInfo.category}</p>
       <h4>{productInfo.name}</h4>
-      {productInfo && styles && priceGenerator()}
-    </>
+      <div style={{height: '45px'}}>
+        {productInfo && styles && priceGenerator()}
+      </div>
+    </div>
   );
 }
 

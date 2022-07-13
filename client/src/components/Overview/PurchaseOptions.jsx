@@ -51,7 +51,7 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   }
 
   return (
-    <>
+    <div>
       <h3>Purchase Options</h3>
       <form onSubmit={completePurchase}>
         <label>Size:
@@ -68,7 +68,7 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
         <br />
         <button type="submit">Add to Cart</button>
       </form>
-    </>
+    </div>
   );
 }
 

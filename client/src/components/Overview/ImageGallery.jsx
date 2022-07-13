@@ -49,24 +49,28 @@ function ImageGallery({ styles, activeStyle }, ref) {
 
   const bigImageStyle = {
     margin: '0 auto',
-    height: '700px',
+    'max-height': '700px',
+    'max-width': '92%',
   };
 
   const bigPictureDivStyle = {
     display: 'flex',
-    'justify-content': 'center',
+    'justify-content': 'space-between',
     'align-items': 'center',
+    'flex-basis': '70%',
+    'background-color': 'whitesmoke',
+    height: '700px',
   };
 
-  const imageGalleryDivStyle = {
-    display: 'inline-flex',
-    'justify-content': 'center',
-    'align-items': 'center',
-  };
+  //const imageGalleryDivStyle = {
+  //  display: 'inline-flex',
+  //  'justify-content': 'center',
+  //  'align-items': 'center',
+  //};
 
   let index = -1;
   return (
-    <div style={imageGalleryDivStyle}>
+    <>
       <div>
         {styles && styles[activeStyle].photos.map((photo) => {
           index++
@@ -91,7 +95,7 @@ function ImageGallery({ styles, activeStyle }, ref) {
         <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
         <button type="button" id="increment" onClick={changeBigPicture}>➡️</button>
       </div>
-    </div>
+    </>
   );
 }
 
