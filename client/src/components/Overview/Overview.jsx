@@ -11,6 +11,7 @@ function Overview({ productId }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const imageGalleryRef = useRef();
   const purchaseOptionsRef = useRef();
@@ -60,12 +61,49 @@ function Overview({ productId }) {
     gap: '5%',
   };
 
+  let productDetailsStyle = {
+    display: 'flex',
+    width: '350px',
+    'flex-direction': 'column',
+    'max-height': '100%',
+    overflow: 'auto',
+  };
+
+  let bigPictureDivStyle = {
+    display: 'flex',
+    'align-items': 'center',
+    'flex-basis': '70%',
+    height: '100%',
+  };
+
+  if (isExpanded) {
+    productDetailsStyle = {
+      display: 'none',
+      width: '350px',
+      'flex-direction': 'column',
+      'max-height': '100%',
+      overflow: 'auto',
+    };
+
+    bigPictureDivStyle = {
+      display: 'flex',
+      'align-items': 'center',
+      'flex-basis': '100%',
+      height: '100%',
+    };
+  }
+
+  function toggleExpandedView() {
+    setIsExpanded(!isExpanded);
+  }
+
   return (
     <>
       <h2>Overview Widget</h2>
+      <button onClick={toggleExpandedView}>Expand</button>
       <div style={imageGalleryDivStyle}>
-        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
-        <div style={{ 'width': '350px' }}>
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle}/>
+        <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
           <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />

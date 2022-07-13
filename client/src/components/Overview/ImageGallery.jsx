@@ -1,6 +1,6 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 
-function ImageGallery({ styles, activeStyle }, ref) {
+function ImageGallery({ styles, activeStyle, bigPictureDivStyle }, ref) {
   const [activeImage, setActiveImage] = useState(0);
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -52,13 +52,6 @@ function ImageGallery({ styles, activeStyle }, ref) {
   const bigImageStyle = {
     'max-height': '100%',
     'max-width': '100%',
-  };
-
-  const bigPictureDivStyle = {
-    display: 'flex',
-    'align-items': 'center',
-    'flex-basis': '70%',
-    height: '100%',
   };
 
   const bigPictureinnerDivStyle = {
