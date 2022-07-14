@@ -1,6 +1,6 @@
 import React from 'react';
 
-function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
+function StyleSelector({ styles, changeActiveStyle, activeStyle, placeHolderImage }) {
   const styleImgStyle = {
     'object-fit': 'cover',
     height: "calc(2vh + 2vw)",
@@ -41,9 +41,9 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
         {styles && styles.map((style) => {
           index++
           if (index === activeStyle) {
-            return <img style={selectedStyleImg} alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
+            return <img style={selectedStyleImg} alt={style.name} src={style.photos[0].thumbnail_url === null ? placeHolderImage : style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
           }
-          return <img style={styleImgStyle} alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
+          return <img style={styleImgStyle} alt={style.name} src={style.photos[0].thumbnail_url === null ? placeHolderImage : style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
         })}
       </div>
     </div>

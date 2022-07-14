@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 
-function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedView }, ref) {
+function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedView, placeHolderImage }, ref) {
   const [activeImage, setActiveImage] = useState(0);
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -105,17 +105,17 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
           index++
           if (index === activeImage) {
             return (
-              <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
+              <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
             );
           }
           return (
-            <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url} alt="style-img" />
+            <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
           );
         })}
       </div>
       <div style={bigPictureDivStyle}>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
-        <img style={bigImageStyle} src={styles && styles[activeStyle].photos[activeImage].url} alt="enlarged-style" />
+        <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} alt="enlarged-style" />
         <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
       </div>

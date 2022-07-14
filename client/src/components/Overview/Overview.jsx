@@ -7,7 +7,7 @@ import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
 import ProductDescription from './ProductDescription.jsx';
 
-function Overview({ productId }) {
+function Overview({ productId, placeHolderImage }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
@@ -102,10 +102,10 @@ function Overview({ productId }) {
   return (
     <>
       <div style={imageGalleryDivStyle}>
-        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} />
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
+          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage}/>
           <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
         </div>
       </div>
