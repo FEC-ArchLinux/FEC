@@ -81,7 +81,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
   }
   if (reviewInfo) {
     return (
-      <div>
+      <div style={{ width: "750px", overflowY: 'auto', height: "500px" }}>
         <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
         {pageNumber >= reviewInfo.length ? null : <button onClick={incrementReviews} type="button"> More Reviews </button>}

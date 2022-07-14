@@ -28,8 +28,8 @@ function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo
     }
   }
   return (
-    <div>
-      <label htmlFor="sortBy">{reviewInfo.length} reviews, sorted by</label>
+    <div style={{ position: 'sticky', top: '0', zIndex: '10', backgroundColor: "white" }}>
+      <label htmlFor="sortBy"><b>{reviewInfo.length} reviews, sorted by</b></label>
       <select onChange={sortByChange} name="sortBy" id="reviewSort">
         <option value="Relevant">Relevant</option>
         <option value="Helpful">Helpful</option>

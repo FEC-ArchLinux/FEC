@@ -25,24 +25,28 @@ let Marker = styled.span`
 `;
 
 let Header = styled.span`
-  font-size: 13px
+  font-size: 13px;
+  color: rgb(105,105,105);
 `;
 let LeftFooter = styled.span`
   margin-top: -13px;
   position: absolute;
-  font-size: 11px
+  font-size: 11px;
+  color: rgb(105,105,105);
 `;
 let RightFooter = styled.span`
   margin-top: -13px;
   margin-left: 178px;
   position: absolute;
-  font-size: 11px
+  font-size: 11px;
+  color: rgb(105,105,105);
 `;
 let QualitySpan = styled.span`
-  margin-top: -13px;
+  margin-top: -14px;
   margin-left: 199px;
   position: absolute;
-  font-size: 11px
+  font-size: 11px;
+  color: rgb(105,105,105);
 `;
 let FlexContainer = styled.div`
   display: flex;
