@@ -24,7 +24,6 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle, placeHolderImag
     'flex-wrap': 'wrap',
     'justify-content': 'flex-start',
     'align-items': 'center',
-    overflow: 'auto',
     'max-height': '250px',
   };
 
