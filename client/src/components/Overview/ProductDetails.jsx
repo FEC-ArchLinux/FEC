@@ -57,7 +57,7 @@ function ProductDetails({ productInfo, styles, activeStyle, productId }) {
       <p style={{ margin: 0 }}>See all {starRating && totalReviews} reviews.</p>
       <p>{productInfo.category}</p>
       <h2>{productInfo.name}</h2>
-      <div style={{height: "calc(4vh + 2vw)"}}>
+      <div style={{height: "calc(3vh + 1.5vw)"}}>
         {productInfo && styles && priceGenerator()}
       </div>
     </div>

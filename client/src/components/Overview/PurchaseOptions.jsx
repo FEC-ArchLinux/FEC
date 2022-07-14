@@ -52,29 +52,29 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   }
 
   const DropDown = styled.select`
-    font-size: large;
-    border-width: 5px;
+    font-size: calc(.5vh + .5vw + 2pt);
+    border-width: calc(.2vh + .2vw + 2px);
     border-color: black;
-    padding: 5px;
-    margin: 5px;
+    padding: calc(.2vh + .2vw + 2px);
+    margin: calc(.2vh + .2vw + 2px);
     `;
 
   const AddButton = styled.button`
-    font-size: large;
-    border-width: 5px;
+    font-size: calc(.5vh + .5vw + 2pt);
+    border-width: calc(.2vh + .2vw + 2px);
     border-color: black;
-    padding: 5px;
-    margin: 5px;
+    padding: calc(.2vh + .2vw + 2px);
+    margin: calc(.2vh + .2vw + 2px);
     background-color: white;
     `;
 
   const selectStyle = {
-    'font-size': 'large',
-    'border-width': '5px',
+    'border-width': 'calc(.2vh + .2vw + 2px)',
     'border-color': 'black',
-    padding: '5px',
-    margin: '5px',
+    padding: "calc(.2vh + .2vw + 2px)",
+    margin: "calc(.2vh + .2vw + 2px)",
     'background-color': 'white',
+    'font-size': "calc(.5vh + .5vw + 2pt)",
   };
 
   return (
