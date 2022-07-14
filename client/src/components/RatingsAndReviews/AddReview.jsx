@@ -86,94 +86,95 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
   useEffect(() => {
     characteristicsSetters();
   }, []);
-  function validateSubmit() {
-    if (body.length < 50 || body === '') {
-      alert('Summary must be 50 characters');
-      return false;
-    }
-    if (starRating === 0) {
-      window.alert('Must select Overall Product Rating');
-      return false;
-    }
-    if (recommend === null) {
-      window.alert("Select Yes or No for Recommend this Produt");
-      return false;
-    }
-    if (fit === null || comfort === null || size === null || width === null || quality === null || length === null) {
-      window.alert('Please Fill Out All Characteristic Fields');
-      return false;
-    }
-    if (nickName === '') {
-      window.alert('Please fill out NickName field');
-      return false;
-    }
-    if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-      window.alert('Ensure email format is correct');
-      return false;
-    }
-    let imageChecker = selectedImage.some((current) => typeof current !== 'string');
-    if (imageChecker && selectedImage.length > 0) {
-      window.alert('Image is not correctly formatted to load, try again');
-      return false;
-    }
-    return true;
-  }
+  // function validateSubmit() {
+  //   if (body.length < 50 || body === '') {
+  //     alert('Summary must be 50 characters');
+  //     return false;
+  //   }
+  //   if (starRating === 0) {
+  //     window.alert('Must select Overall Product Rating');
+  //     return false;
+  //   }
+  //   if (recommend === null) {
+  //     window.alert("Select Yes or No for Recommend this Produt");
+  //     return false;
+  //   }
+  //   if (fit === null || comfort === null || size === null || width === null || quality === null || length === null) {
+  //     window.alert('Please Fill Out All Characteristic Fields');
+  //     return false;
+  //   }
+  //   if (nickName === '') {
+  //     window.alert('Please fill out NickName field');
+  //     return false;
+  //   }
+  //   if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+  //     window.alert('Ensure email format is correct');
+  //     return false;
+  //   }
+  //   let imageChecker = selectedImage.some((current) => typeof current !== 'string');
+  //   if (imageChecker && selectedImage.length > 0) {
+  //     window.alert('Image is not correctly formatted to load, try again');
+  //     return false;
+  //   }
+  //   return true;
+  // }
   function submitForm() {
     event.preventDefault();
-    let validate = validateSubmit();
+    // let validate = validateSubmit();
+    console.log('submit');
 
-    if (validate) {
-      let newData = JSON.stringify({
-        product_id: productId,
-        rating: starRating,
-        summary: summary,
-        body: body,
-        recommend: recommend,
-        name: nickName,
-        email: email,
-        photos: [''],
-        characteristics: {
-        },
-      });
+    // if (validate) {
+    // let newData = JSON.stringify({
+    //   product_id: productId,
+    //   rating: starRating,
+    //   summary: summary,
+    //   body: body,
+    //   recommend: recommend,
+    //   name: nickName,
+    //   email: email,
+    //   photos: [''],
+    //   characteristics: {
+    //   },
+    // });
 
-      let config = {
-        method: 'post',
-        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/',
-        headers: {
-          Authorization: GH_TOKEN,
-          'Content-Type': 'application/json',
-        },
-        data: newData,
-      };
+    // let config = {
+    //   method: 'post',
+    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/',
+    //   headers: {
+    //     Authorization: GH_TOKEN,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   data: newData,
+    // };
 
-      axios(config)
-        .then((response) => console.log(JSON.stringify(response.data)))
-        .catch((error) => console.log(error));
-    }
+    // axios(config)
+    //   .then((response) => console.log(JSON.stringify(response.data)))
+    //   .catch((error) => console.log(error));
+    // }
     setNewReview(false);
   }
 
   return (
     <Modal>
-      <form>
+      <form onSubmit={submitForm}>
         <h3>Write Your Review</h3>
         <p>About ** product name goes here ** </p>
         <p><b>Overall Product Rating :</b></p>
         <StarRatings rating={starRating} starRatedColor="blue" changeRating={setStarRating} numberOfStars={5} name="rating" starDimension="20px" />{starRater(starRating)}
         <div onChange={recommendSetter} className="radio-btn">
           <p><b>Do you recommend this product?</b></p>
-          <input type="radio" value="True" name="recommend" /> Yes
-          <input type="radio" value="False" name="recommend" /> No
+          <input type="radio" value="True" name="recommend" required /> Yes
+          <input type="radio" value="False" name="recommend" required /> No
         </div>
         <div>
           <p><b>Characteristics: </b></p>
           {metaTransfer.characteristics.Size ? <div onChange={(event) => setSize(event.target.value)}>
             <aside>Size</aside>
-            <input type="radio" value="1" name="size" /> A size too small
-            <input type="radio" value="2" name="size" /> ½ a size too small
-            <input type="radio" value="3" name="size" /> Perfect
-            <input type="radio" value="4" name="size" /> ½ a size too big
-            <input type="radio" value="5" name="size" /> A size too wide
+            <input type="radio" value="1" name="size" required /> A size too small
+            <input type="radio" value="2" name="size" required /> ½ a size too small
+            <input type="radio" value="3" name="size" required /> Perfect
+            <input type="radio" value="4" name="size" required /> ½ a size too big
+            <input type="radio" value="5" name="size" required /> A size too wide
           </div> : null}
           {metaTransfer.characteristics.Width ? <div onChange={(event) => setWidth(event.target.value)}>
             <aside>Width</aside>
@@ -236,7 +237,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
           <input onChange={(event) => setEmail(event.target.value)} size="60" maxLength="60" name="email" placeholder="Example: jackson11@email.com" /><br />
           <aside>For authentication reasons, you will not be emailed</aside>
         </div>
-        <button onClick={submitForm} type="button">Submit Review</button>
+        <button type="submit">Submit Review</button>
         <button onClick={(event) => setNewReview(false)} type="button">Exit</button>
       </form>
     </Modal>
