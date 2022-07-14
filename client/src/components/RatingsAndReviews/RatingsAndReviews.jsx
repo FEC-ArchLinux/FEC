@@ -12,11 +12,11 @@ import GH_TOKEN from '../../../../token.js';
 let MainFlex = styled.div`
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 50px;
 `;
 
 let MainHeader = styled.h3`
-  margin-left: 355px;
+  margin-left: 22%;
 `;
 
 let TopContainer = styled.div`

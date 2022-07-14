@@ -15,19 +15,20 @@ let StarParent = styled.div`
   margin-bottom: 20px;
 `;
 
-let StyledSpan = styled.span`
-  margin-right: 3px;
-  color: rgb(105,105,105);
-  margin-bottom: 10px;
-`;
-
 let StyledMeter = styled.meter`
   width: 185px;
   height: 17px;
 `;
 
+let StyledSpan = styled.span`
+  margin-right: 3px;
+  color: ${(props) => props.hover};
+  margin-bottom: 10px;
+`;
+
 function StarBreakDown({ star, setStar, ratings }) {
   let [totalRatings, setTotalRatings] = useState(0);
+  let [hover, setHover] = useState('rgb(105,105,105)');
 
   function onStarClick(event) {
     const newStar = event.target.innerHTML.slice(0, 1);
@@ -62,12 +63,12 @@ function StarBreakDown({ star, setStar, ratings }) {
   if (ratings) {
     return (
       <StarParent>
-        <StyledSpan onClick={onStarClick}><u>5 stars</u></StyledSpan><StyledMeter value={ratings['5']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
-        <StyledSpan onClick={onStarClick}><u>4 stars</u></StyledSpan><StyledMeter value={ratings['4']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
-        <StyledSpan onClick={onStarClick}><u>3 stars</u></StyledSpan><StyledMeter value={ratings['3']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
-        <StyledSpan onClick={onStarClick}><u>2 stars</u></StyledSpan><StyledMeter value={ratings['2']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
-        <StyledSpan onClick={onStarClick}><u>1 stars</u></StyledSpan><StyledMeter value={ratings['1']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
-        {star.length === 5 ? <span onClick={resetFilters}>All Filters Selected - Reset Filters</span> : null}
+        <StyledSpan onMouseLeave={() => setHover('rgb(105,105,105)')} onMouseEnter={() => setHover("blue")} hover={hover} onClick={onStarClick}><u>5 stars</u></StyledSpan><StyledMeter value={ratings['5']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
+        <StyledSpan onMouseLeave={() => setHover('rgb(105,105,105)')} onMouseEnter={() => setHover("blue")} hover={hover} onClick={onStarClick}><u>4 stars</u></StyledSpan><StyledMeter value={ratings['4']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
+        <StyledSpan onMouseLeave={() => setHover('rgb(105,105,105)')} onMouseEnter={() => setHover("blue")} hover={hover} onClick={onStarClick}><u>3 stars</u></StyledSpan><StyledMeter value={ratings['3']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
+        <StyledSpan onMouseLeave={() => setHover('rgb(105,105,105)')} onMouseEnter={() => setHover("blue")} hover={hover} onClick={onStarClick}><u>2 stars</u></StyledSpan><StyledMeter value={ratings['2']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
+        <StyledSpan onMouseLeave={() => setHover('rgb(105,105,105)')} onMouseEnter={() => setHover("blue")} hover={hover} onClick={onStarClick}><u>1 stars</u></StyledSpan><StyledMeter value={ratings['1']} min="0" max={totalRatings.toString()}>stars</StyledMeter><br />
+        {star.length === 5 ? <span style={{ fontSize: "12px", color: 'rgb(105,105,105)' }} onClick={resetFilters}>All Filters Selected - <u>Reset Filters</u></span> : null}
       </StarParent>
     );
   }
