@@ -57,9 +57,7 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     border-color: black;
     padding: 5px;
     margin: 5px;
-    &:hover {
-      background-color: lightgray;
-    }`;
+    `;
 
   const AddButton = styled.button`
     font-size: large;
@@ -68,17 +66,24 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     padding: 5px;
     margin: 5px;
     background-color: white;
-    &:hover {
-      background-color: lightgray;
-    }`;
+    `;
+
+  const selectStyle = {
+    'font-size': 'large',
+    'border-width': '5px',
+    'border-color': 'black',
+    padding: '5px',
+    margin: '5px',
+    'background-color': 'white',
+  };
 
   return (
     <div>
       <form onSubmit={completePurchase}>
-        <DropDown required ref={sizeDropdownRef} onChange={changeSelectedSize}>
+        <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
           <option value="">Select Size</option>
           {styles && optionGenerator()}
-        </DropDown>
+        </select>
         <DropDown required>
           {styles && quantitySelector()}
         </DropDown>

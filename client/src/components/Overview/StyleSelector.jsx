@@ -3,8 +3,8 @@ import React from 'react';
 function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
   const styleImgStyle = {
     'object-fit': 'cover',
-    height: '60px',
-    width: '60px',
+    height: '50px',
+    width: '50px',
     border: 'medium solid black',
     'border-radius': '50%',
     margin: '5px',
@@ -12,8 +12,8 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
 
   const selectedStyleImg = {
     'object-fit': 'cover',
-    height: '60px',
-    width: '60px',
+    height: '50px',
+    width: '50px',
     border: 'thick solid black',
     'border-radius': '50%',
     margin: '5px',
@@ -26,7 +26,7 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
     'align-items': 'center',
     overflow: 'auto',
     'max-height': '250px',
-  }
+  };
 
   let index = -1;
   return (

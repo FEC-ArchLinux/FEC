@@ -57,16 +57,15 @@ function Overview({ productId }) {
     display: 'flex',
     'justify-content': 'space-between',
     'align-items': 'flex-start',
-    height: '600px',
+    height: "60vh",
     gap: '5%',
   };
 
   let productDetailsStyle = {
     display: 'flex',
-    width: '350px',
+    width: '340px',
     'flex-direction': 'column',
     'max-height': '100%',
-    'justify-content': 'center',
   };
 
   let bigPictureDivStyle = {

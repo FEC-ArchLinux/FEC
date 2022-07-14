@@ -36,16 +36,16 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
 
   const imageGalleryStyle = {
     'object-fit': 'cover',
-    height: '80px',
-    width: '80px',
+    height: "calc(2vw + 2vh + 30px)",
+    width: "calc(2vw + 2vh + 30px)",
     border: 'thin solid black',
     margin: '5px',
   };
 
   const activeImageStyle = {
     'object-fit': 'cover',
-    height: '80px',
-    width: '80px',
+    height: "calc(2vw + 2vh + 30px)",
+    width: "calc(2vw + 2vh + 30px)",
     border: 'thick solid black',
     margin: '5px',
   };
