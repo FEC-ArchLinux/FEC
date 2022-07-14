@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { FaRegWindowClose } from 'react-icons/fa';
 import GH_TOKEN from '../../../../../token.js';
 
 
@@ -60,12 +61,11 @@ function RelatedModal(props) {
       }
       combinedFeatures.push(result);
     });
-
   }
   return (
     <ModalWrapper>
-      <tr>COMPARING</tr>
-      <span><button type="button" onClick={() => { props.closeModal(false); }}>x</button></span>
+      <ComparisonTitle>COMPARING</ComparisonTitle>
+      <CloseButton type="button" onClick={() => { props.closeModal(false); }}><FaRegWindowClose /></CloseButton>
       <tr>
         <th>Current Product Name</th>
         <th> </th>
@@ -74,9 +74,9 @@ function RelatedModal(props) {
       <TableWrapper>
         {combinedFeatures.map((item) => (
           <tr>
-            <td>{item[1]}</td>
-            <td>{item[0]}</td>
-            <td>{item[2]}</td>
+            <TableElement>{item[1]}</TableElement>
+            <TableElement>{item[0]}</TableElement>
+            <TableElement>{item[2]}</TableElement>
           </tr>
 
         ))}
@@ -87,24 +87,47 @@ function RelatedModal(props) {
 }
 
 const ModalWrapper = styled.div`
-background-color: rgba(0,0,0,0.2);
+background-color: white;
+border-style: solid;
+border_width: 5px;
 width: 20%;
-height: 60%;
+height: 40%;
 display: flex;
+overflow: scroll;
 position: fixed;
 left: 30%;
 top: 30%;
 display: block;
+z-index: 10;
+`;
+const ComparisonTitle = styled.div`
+text-align: center;
+font-size: 20px;
+font-weight: bold;
+color: grey;
+`;
+
+const CloseButton = styled.span`
+position: absolute;
+top: 5%;
+right: 5%;
+font: 40px;
+border: none;
+background: none;
+
 `;
 
 const TableWrapper = styled.div`
 color: black;
+font-size: 20px;
 padding: 10px;
 text-align: center;
 vertical-align: bottom;
-font-family: Arial, Helvetica, sans-serif;
-
-
 `;
+
+const TableElement = styled.td`
+padding: 15px;
+
+`
 
 export default RelatedModal;

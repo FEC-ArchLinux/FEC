@@ -2,14 +2,31 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import { FaRegStar } from 'react-icons/fa';
+import StarRatings from 'react-star-ratings';
 import GH_TOKEN from '../../../../../token.js';
 import RelatedModal from './relatedmodal.jsx';
+
 
 function ItemCard(props) {
   const [item, changeItem] = useState('');
   const [product, changeProduct] = useState('');
-  const [reviews, changeRev] = useState({});
+  const [reviews, changeRev] = useState();
   const [openModal, changeOpenModal] = useState(false);
+
+
+  // reviews calculation
+  function averageReviews(obj) {
+    let totalStarCount = 0;
+    let totalCount = 0;
+    for (var k in obj) {
+      totalStarCount += parseInt(obj[k]) * parseInt(k)
+      totalCount += parseInt(obj[k])
+    }
+    return Math.round((totalStarCount / totalCount) * 100) / 100;
+  }
+
 
   // GET styles
   function getStyles() {
@@ -45,7 +62,7 @@ function ItemCard(props) {
         product_id: props.item,
       },
     }).then((res) => {
-      changeRev(res.data.ratings);
+      changeRev(averageReviews(res.data.ratings));
     }).catch((err) => {
       console.log(err);
     });
@@ -58,44 +75,71 @@ function ItemCard(props) {
   }, []);
 
 
-  // reviews calculation
-  function averageReviews(obj) {
-    let totalStarCount = 0;
-    let totalCount = 0;
-    for (var k in obj) {
-      totalStarCount += parseInt(obj[k]) * parseInt(k)
-      totalCount += parseInt(obj[k])
-    }
-    return Math.round((totalStarCount / totalCount) * 100) / 100;
-  }
 
   // price toggle function
   let price;
   if (item.sale_price) {
     price = (
       <>
-        <span style={{ 'text-decoration': 'line-through', 'color': 'red' }} >${item.original_price}</span>;
-        <span>${item.sale_price}</span>;
+        <div style={{ 'text-decoration': 'line-through', 'color': 'red' }} >${item.original_price}</div>;
+        <div>${item.sale_price}</div>;
       </>
     )
   } else {
-    price = <span>${item.original_price}</span>;
+    price = <div>${item.original_price}</div>;
   }
 
-  if (item && product && reviews) {
+  if (product && item) {
     return (
-      <span>
-        <img height="200px" width="150px" src={item.photos[0].thumbnail_url} alt="style" onClick={() => { props.setProductId(props.item); }} />
-        <button onClick={() => { changeOpenModal(true) }}>star</button>
-        <span data-testid="productCategory">{product.category}</span>
-        <span>{item.name}</span>
-        <span>{price}</span>
-        <span>Average Review:{averageReviews(reviews)}</span>
+      <CardContainer>
+        <ImgWrapper>
+          {item.photos[0].thumbnail_url ? <img height="250px" width="200px" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src="https://www.vhv.rs/dpng/d/2-29520_spongebob-meme-face-png-transparent-png.png" height="250px" width="200px" onClick={() => { props.setProductId(props.item); }} />}
+          <CompareButton onClick={() => { changeOpenModal(true) }}><FaRegStar /></CompareButton>
+        </ImgWrapper>
+
+        <CardContent data-testid="productCategory">{product.category}</CardContent>
+        <CardContent>{item.name}</CardContent>
+        <CardContent>{price}</CardContent>
+        {reviews && <StarRatings rating={reviews} starDimension="15px" starSpacing="1px" />}
         {openModal && <RelatedModal closeModal={changeOpenModal} item={product} mainProduct={props.mainProduct} />}
-        <br />
-      </span>
+      </CardContainer>
     );
   }
   return <span>Loading...</span>;
 }
+
+const CardContainer = styled.div`
+height: 400px;
+width: 275px;
+position: relative;
+flex-shrink: 0;
+margin: 0px 10px;
+background: rgba(255,255,255,0.1);
+background: linear-gradient(180deg, hsl(190,70%,99%), hsl(240,60%,100%));
+&:hover {
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  bottom-border: 0px;
+  cursor: pointer;
+}
+`;
+const CardContent = styled.div`
+margin: 5px 15px;
+`;
+const ImgWrapper = styled.div`
+position: relative;
+`
+
+const CompareButton = styled.button`
+  postition: absolute;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 25px;
+  color: black;
+  z-index: 5;
+  &:hover {
+    color: gold;
+  }
+`;
+
 export default ItemCard;

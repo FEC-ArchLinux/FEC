@@ -27,7 +27,7 @@ function RelatedItemsAndComparison(props) {
 
   return (
     <div>
-      <div>Related items {props.productId}</div>
+      <h3>RELATED PRODUCTS</h3>
       <RelatedItems relatedItems={relatedItems} mainProduct={props.productId} setProductId={props.setProductId} />
       <Outfit />
     </div>
