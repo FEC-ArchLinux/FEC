@@ -101,7 +101,6 @@ function Overview({ productId }) {
 
   return (
     <>
-      <h2>Overview Widget</h2>
       <div style={imageGalleryDivStyle}>
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} />
         <div style={productDetailsStyle}>
