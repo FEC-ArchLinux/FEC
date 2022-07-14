@@ -7,6 +7,13 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 import React from "react";
+import styled from 'styled-components';
+
+let StyledPercent = styled.span`
+  color: rgb(128,128,128);
+  font-size: 14px;
+  margin-top: 10px;
+`;
 
 function PercentRecommend({ recommend }) {
   function determineTotalPercentage(recommendObj) {
@@ -24,7 +31,7 @@ function PercentRecommend({ recommend }) {
 
   return (
     <div className="percent-recommend">
-      <span>{recommend ? determineTotalPercentage(recommend) : null}% of reviews recommend this product</span>
+      <StyledPercent>{recommend ? determineTotalPercentage(recommend) : null}% of reviews recommend this product</StyledPercent>
     </div>
   );
 }

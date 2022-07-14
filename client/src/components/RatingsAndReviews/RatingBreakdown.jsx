@@ -32,7 +32,7 @@ function RatingBreakdown({ setMetaTransfer, star, setStar, productId }) {
 
   useEffect(() => {
     getMetaData();
-  }, []);
+  }, [productId]);
 
   return (
     <div>
