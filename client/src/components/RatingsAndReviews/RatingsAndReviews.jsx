@@ -16,7 +16,7 @@ let MainFlex = styled.div`
 `;
 
 let MainHeader = styled.h3`
-  margin-left: 413px;
+  margin-left: 22%;
 `;
 
 let TopContainer = styled.div`

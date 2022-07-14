@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable prefer-const */
@@ -84,8 +85,8 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
       <div style={{ width: "750px", overflowY: 'auto', height: "500px" }}>
         <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
-        {pageNumber >= reviewInfo.length ? null : <button onClick={incrementReviews} type="button"> More Reviews </button>}
-        <button onClick={addReviewHandler} type="button">Add a Review</button>
+        {pageNumber >= reviewInfo.length ? null : <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={incrementReviews} type="button"> More Reviews </button>}
+        <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={addReviewHandler} type="button">Add a Review</button>
       </div>
     );
   }

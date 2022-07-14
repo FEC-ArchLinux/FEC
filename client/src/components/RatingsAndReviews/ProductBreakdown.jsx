@@ -20,7 +20,7 @@ let Rectangle = styled.div`
 let Marker = styled.span`
   overflow: visible;
   position: absolute;
-  z-index: 1000;
+  z-index: 2;
   margin-top: -12px;
 `;
 
