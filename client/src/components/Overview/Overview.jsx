@@ -66,6 +66,7 @@ function Overview({ productId }) {
     width: '340px',
     'flex-direction': 'column',
     'max-height': '100%',
+    'font-size': "calc(.5vh + .5vw + 2pt)",
   };
 
   let bigPictureDivStyle = {
