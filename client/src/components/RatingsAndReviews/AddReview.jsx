@@ -43,7 +43,6 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
   let [quality, setQuality] = useState(0);
   let [length, setLength] = useState(0);
   let [fit, setFit] = useState(0);
-  let [characteristics, setCharacteristics] = useState(Object.keys(metaTransfer.characteristics));
 
   function starRater(numberStars) {
     if (numberStars === 1) {
@@ -62,96 +61,53 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
   function recommendSetter(event) {
     setRecommend(event.target.value === "True" ? true : false);
   }
-  function characteristicsSetters() {
-    let lowerChar = characteristics.map((item) => item.toLowerCase());
-    if (lowerChar.includes('size')) {
-      setSize(null);
+
+  function validateSubmit() {
+    if (starRating === 0) {
+      window.alert('Must select Overall Product Rating');
+      return false;
     }
-    if (lowerChar.includes('width')) {
-      setWidth(null);
+    let imageChecker = selectedImage.some((current) => typeof current !== 'string');
+    if (imageChecker && selectedImage.length > 0) {
+      window.alert('Image is not correctly formatted to load, try again');
+      return false;
     }
-    if (lowerChar.includes('comfort')) {
-      setComfort(null);
-    }
-    if (lowerChar.includes('quality')) {
-      setQuality(null);
-    }
-    if (lowerChar.includes('length')) {
-      setLength(null);
-    }
-    if (lowerChar.includes('fit')) {
-      setFit(null);
-    }
+    return true;
   }
-  useEffect(() => {
-    characteristicsSetters();
-  }, []);
-  // function validateSubmit() {
-  //   if (body.length < 50 || body === '') {
-  //     alert('Summary must be 50 characters');
-  //     return false;
-  //   }
-  //   if (starRating === 0) {
-  //     window.alert('Must select Overall Product Rating');
-  //     return false;
-  //   }
-  //   if (recommend === null) {
-  //     window.alert("Select Yes or No for Recommend this Produt");
-  //     return false;
-  //   }
-  //   if (fit === null || comfort === null || size === null || width === null || quality === null || length === null) {
-  //     window.alert('Please Fill Out All Characteristic Fields');
-  //     return false;
-  //   }
-  //   if (nickName === '') {
-  //     window.alert('Please fill out NickName field');
-  //     return false;
-  //   }
-  //   if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-  //     window.alert('Ensure email format is correct');
-  //     return false;
-  //   }
-  //   let imageChecker = selectedImage.some((current) => typeof current !== 'string');
-  //   if (imageChecker && selectedImage.length > 0) {
-  //     window.alert('Image is not correctly formatted to load, try again');
-  //     return false;
-  //   }
-  //   return true;
-  // }
   function submitForm() {
     event.preventDefault();
-    // let validate = validateSubmit();
-    console.log('submit');
+    let validate = validateSubmit();
 
-    // if (validate) {
-    // let newData = JSON.stringify({
-    //   product_id: productId,
-    //   rating: starRating,
-    //   summary: summary,
-    //   body: body,
-    //   recommend: recommend,
-    //   name: nickName,
-    //   email: email,
-    //   photos: [''],
-    //   characteristics: {
-    //   },
-    // });
+    if (validate) {
+      let newData = JSON.stringify({
+        product_id: productId,
+        rating: starRating,
+        summary: summary,
+        body: body,
+        recommend: recommend,
+        name: nickName,
+        email: email,
+        photos: [''],
+        characteristics: {
+        },
+      });
 
-    // let config = {
-    //   method: 'post',
-    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/',
-    //   headers: {
-    //     Authorization: GH_TOKEN,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   data: newData,
-    // };
+      let config = {
+        method: 'post',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/',
+        headers: {
+          Authorization: GH_TOKEN,
+          'Content-Type': 'application/json',
+        },
+        data: newData,
+      };
 
-    // axios(config)
-    //   .then((response) => console.log(JSON.stringify(response.data)))
-    //   .catch((error) => console.log(error));
-    // }
-    setNewReview(false);
+      axios(config)
+        .then((response) => console.log(JSON.stringify(response.data)))
+        .catch((error) => console.log(error));
+
+      setNewReview(false);
+    }
   }
 
   return (
@@ -178,15 +134,15 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
           </div> : null}
           {metaTransfer.characteristics.Width ? <div onChange={(event) => setWidth(event.target.value)}>
             <aside>Width</aside>
-            <input type="radio" value="1" name="width" /> Too narrow
-            <input type="radio" value="2" name="width" /> Slightly narrow
-            <input type="radio" value="3" name="width" /> Perfect
-            <input type="radio" value="4" name="width" /> Slightly wide
-            <input type="radio" value="5" name="width" /> Too wide
+            <input type="radio" value="1" name="width" required /> Too narrow
+            <input type="radio" value="2" name="width" required /> Slightly narrow
+            <input type="radio" value="3" name="width" required /> Perfect
+            <input type="radio" value="4" name="width" required /> Slightly wide
+            <input type="radio" value="5" name="width" required /> Too wide
           </div> : null}
           {metaTransfer.characteristics.Comfort ? <div onChange={(event) => setComfort(event.target.value)}>
             <aside>Comfort</aside>
-            <input type="radio" value="1" name="comfort" /> Uncomfortable
+            <input type="radio" value="1" name="comfort" required /> Uncomfortable
             <input type="radio" value="2" name="comfort" /> Slightly uncomfortable
             <input type="radio" value="3" name="comfort" /> Ok
             <input type="radio" value="4" name="comfort" /> Comfortable
@@ -194,7 +150,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
           </div> : null}
           {metaTransfer.characteristics.Quality ? <div onChange={(event) => setQuality(event.target.value)}>
             <aside>Quality</aside>
-            <input type="radio" value="1" name="quality" /> Poor
+            <input type="radio" value="1" name="quality" required /> Poor
             <input type="radio" value="2" name="quality" /> Below average
             <input type="radio" value="3" name="quality" /> What I expected
             <input type="radio" value="4" name="quality" /> Pretty great
@@ -202,7 +158,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
           </div> : null}
           {metaTransfer.characteristics.Length ? <div onChange={(event) => setLength(event.target.value)}>
             <aside>Length</aside>
-            <input type="radio" value="1" name="length" /> Runs Short
+            <input type="radio" value="1" name="length" required /> Runs Short
             <input type="radio" value="2" name="length" /> Runs slightly short
             <input type="radio" value="3" name="length" /> Perfect
             <input type="radio" value="4" name="length" /> Runs slightly long
@@ -210,7 +166,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
           </div> : null}
           {metaTransfer.characteristics.Fit ? <div onChange={(event) => setFit(event.target.value)}>
             <aside>Fit</aside>
-            <input type="radio" value="1" name="fit" /> Runs tight
+            <input type="radio" value="1" name="fit" required /> Runs tight
             <input type="radio" value="2" name="fit" /> Runs slightly tight
             <input type="radio" value="3" name="fit" /> Perfect
             <input type="radio" value="4" name="fit" /> Runs slightly tight
@@ -220,7 +176,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
         <label htmlFor="summary"><b>Summary: </b></label>
         <input onChange={(event) => setSummary(event.target.value)} size="60" maxLength="60" name="summary" placeholder="Example: Best Purchase Ever" /><br />
         <label htmlFor="body"><b>Review: </b></label>
-        <textarea rows="4" cols="70" onChange={(event) => setBody(event.target.value)} size="100" maxLength="1000" name="body" placeholder="“Why did you like the product or not?”" />
+        <textarea rows="4" cols="70" onChange={(event) => setBody(event.target.value)} size="100" maxLength="1000" name="body" placeholder="“Why did you like the product or not?”" minLength="50" required />
         <aside>Minimum required characters left: { body.length < 50 ? 50 - body.length : 'Minimum Reached'}</aside>
         <div>
           <label htmlFor="myImage"><b>{selectedImage.length < 5 ? "Select Image:" : "Max Images Selected"} </b></label>
@@ -229,12 +185,12 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
         </div>
         <div>
           <label htmlFor="nickname"><b>What is your nickname: </b></label>
-          <input onChange={(event) => setNickName(event.target.value)} size="60" maxLength="60" name="nickname" placeholder="Example: jackson11!" /><br />
+          <input onChange={(event) => setNickName(event.target.value)} size="60" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
           <aside>For privacy reasons, do not use your full name or email address</aside>
         </div>
         <div>
           <label htmlFor="email"><b>What is your email: </b></label>
-          <input onChange={(event) => setEmail(event.target.value)} size="60" maxLength="60" name="email" placeholder="Example: jackson11@email.com" /><br />
+          <input type="email" onChange={(event) => setEmail(event.target.value)} size="60" maxLength="60" name="email" placeholder="Example: jackson11@email.com" required /><br />
           <aside>For authentication reasons, you will not be emailed</aside>
         </div>
         <button type="submit">Submit Review</button>
