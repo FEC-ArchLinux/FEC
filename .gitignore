@@ -3,5 +3,3 @@ package-lock.json
 token.js
 *bundle.js
 *bundle.js.map
-.env
-token.js

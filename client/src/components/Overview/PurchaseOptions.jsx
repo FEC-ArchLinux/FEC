@@ -1,4 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
+import styled from 'styled-components';
 
 function PurchaseOptions({ styles, activeStyle }, ref) {
   const sizeDropdownRef = useRef();
@@ -50,25 +51,46 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     event.preventDefault();
   }
 
+  const DropDown = styled.select`
+    font-size: large;
+    border-width: 5px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+    `;
+
+  const AddButton = styled.button`
+    font-size: large;
+    border-width: 5px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+    `;
+
+  const selectStyle = {
+    'font-size': 'large',
+    'border-width': '5px',
+    'border-color': 'black',
+    padding: '5px',
+    margin: '5px',
+    'background-color': 'white',
+  };
+
   return (
-    <>
-      <h3>Purchase Options</h3>
+    <div>
       <form onSubmit={completePurchase}>
-        <label>Size:
-          <select required ref={sizeDropdownRef} onChange={changeSelectedSize}>
-            <option value="">Select Size</option>
-            {styles && optionGenerator()}
-          </select>
-        </label>
-        <label>Quantity:
-          <select required>
-            {styles && quantitySelector()}
-          </select>
-        </label>
+        <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
+          <option value="">Select Size</option>
+          {styles && optionGenerator()}
+        </select>
+        <DropDown required>
+          {styles && quantitySelector()}
+        </DropDown>
         <br />
-        <button type="submit">Add to Cart</button>
+        <AddButton type="submit">Add to Cart</AddButton>
       </form>
-    </>
+    </div>
   );
 }
 
