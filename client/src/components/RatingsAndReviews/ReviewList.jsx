@@ -43,7 +43,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
     };
     axios(config)
       .then((response) => {
-        setReviewInfo([...reviewInfo].concat(response.data.results));
+        setReviewInfo(response.data.results);
         setCurrentTwo(response.data.results.slice(0, 2));
         setReviewCopy(response.data.results);
       })
@@ -84,7 +84,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
     return (
       <div style={{ width: "750px", overflowY: 'auto', height: "500px" }}>
         <SortRelevance setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
-        {currentTwo.map((review, index) => <SingleReviewTile review={review} key={index} />)}
+        {currentTwo.map((review, index) => <SingleReviewTile review={review} key={review.review_id} />)}
         {pageNumber >= reviewInfo.length ? null : <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={incrementReviews} type="button"> More Reviews </button>}
         <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={addReviewHandler} type="button">Add a Review</button>
       </div>
