@@ -52,33 +52,36 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   }
 
   const DropDown = styled.select`
-    font-size: calc(.5vh + .5vw + 2pt);
-    border-width: calc(.2vh + .2vw + 2px);
+    font-size: calc(2vh + 1pt);
+    border-width: calc(.3vh + 2px);
     border-color: black;
-    padding: calc(.2vh + .2vw + 2px);
-    margin: calc(.2vh + .2vw + 2px);
+    padding: calc(.3vh + 2px);
+    margin: calc(.3vh + 2px);
     `;
 
   const AddButton = styled.button`
-    font-size: calc(.5vh + .5vw + 2pt);
-    border-width: calc(.2vh + .2vw + 2px);
+    font-size: calc(2vh + 1pt);
+    border-width: calc(.3vh + 2px);
     border-color: black;
-    padding: calc(.2vh + .2vw + 2px);
-    margin: calc(.2vh + .2vw + 2px);
+    padding: calc(.3vh + 2px);
+    margin: calc(.3vh + 2px);
     background-color: white;
+    :hover {
+      background-color: lightgrey;
+    }
     `;
 
   const selectStyle = {
-    'border-width': 'calc(.2vh + .2vw + 2px)',
+    'border-width': "calc(.3vh + 2px)",
     'border-color': 'black',
-    padding: "calc(.2vh + .2vw + 2px)",
-    margin: "calc(.2vh + .2vw + 2px)",
+    padding: "calc(.3vh + 2px)",
+    margin: "calc(.3vh + 2px)",
     'background-color': 'white',
-    'font-size': "calc(.5vh + .5vw + 2pt)",
+    'font-size': "calc(2vh + 1pt)",
   };
 
   return (
-    <div>
+    <div style={{'margin-top': '3vh' }}>
       <form onSubmit={completePurchase}>
         <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
           <option value="">Select Size</option>

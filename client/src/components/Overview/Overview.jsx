@@ -57,16 +57,16 @@ function Overview({ productId, placeHolderImage }) {
     display: 'flex',
     'justify-content': 'space-between',
     'align-items': 'flex-start',
-    height: "60vh",
+    height: "70vh",
     gap: '5%',
   };
 
   let productDetailsStyle = {
     display: 'flex',
-    width: '340px',
+    'max-width': '340px',
     'flex-direction': 'column',
     'max-height': '100%',
-    'font-size': "calc(.5vh + .5vw + 2pt)",
+    'font-size': "calc(1.5vh + 2pt)",
   };
 
   let bigPictureDivStyle = {

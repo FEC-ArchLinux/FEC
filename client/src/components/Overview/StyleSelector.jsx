@@ -3,8 +3,8 @@ import React from 'react';
 function StyleSelector({ styles, changeActiveStyle, activeStyle, placeHolderImage }) {
   const styleImgStyle = {
     'object-fit': 'cover',
-    height: "calc(2vh + 2vw)",
-    width: "calc(2vh + 2vw)",
+    height: "calc(2vh + 1.5vw + 1em)",
+    width: "calc(2vh + 1.5vw + 1em)",
     border: 'medium solid black',
     'border-radius': '50%',
     margin: '5px',
@@ -12,8 +12,8 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle, placeHolderImag
 
   const selectedStyleImg = {
     'object-fit': 'cover',
-    height: "calc(2vh + 2vw)",
-    width: "calc(2vh + 2vw)",
+    height: "calc(2vh + 1.5vw + 1em)",
+    width: "calc(2vh + 1.5vw + 1em)",
     border: 'thick solid black',
     'border-radius': '50%',
     margin: '5px',
