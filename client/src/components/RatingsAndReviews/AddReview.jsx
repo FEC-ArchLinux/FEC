@@ -241,5 +241,3 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
 }
 
 export default AddReview;
-
-// setSelectedImage(selectedImage.concat([URL.createObjectURL(event.target.files[0])]));
