@@ -20,6 +20,7 @@ const Modal = styled.div`
   text-align: center;
   background: white;
   border: 1px solid #ccc;
+  border-radius: 20px;
   position: fixed;
   z-index: 20;
   background: #fff;

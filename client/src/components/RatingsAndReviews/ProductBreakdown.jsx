@@ -12,7 +12,7 @@ let Rectangle = styled.div`
   width:73px;
   height:8px;
   border:1px;
-  display: inline-block;
+  display: inline-flex;
   margin-right: 2px;
   position: 'relative';
 `;
@@ -20,23 +20,37 @@ let Rectangle = styled.div`
 let Marker = styled.span`
   overflow: visible;
   position: absolute;
-  z-index: 1000;
-  margin-top: -7px;
+  z-index: 2;
+  margin-top: -12px;
 `;
 
 let Header = styled.span`
-  font-size: 13px
+  font-size: 13px;
+  color: rgb(105,105,105);
 `;
 let LeftFooter = styled.span`
-  margin-top: -5px;
+  margin-top: -13px;
   position: absolute;
-  font-size: 11px
+  font-size: 11px;
+  color: rgb(105,105,105);
 `;
 let RightFooter = styled.span`
-  margin-top: -5px;
+  margin-top: -13px;
   margin-left: 178px;
   position: absolute;
-  font-size: 11px
+  font-size: 11px;
+  color: rgb(105,105,105);
+`;
+let QualitySpan = styled.span`
+  margin-top: -14px;
+  margin-left: 199px;
+  position: absolute;
+  font-size: 11px;
+  color: rgb(105,105,105);
+`;
+let FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
 `;
 
 function ProductBreakdown({ breakdown }) {
@@ -54,12 +68,12 @@ function ProductBreakdown({ breakdown }) {
     let characteristics = pixelMarginDeterminer();
     return (
       <div className="product-breakdown">
-        {breakdown.Comfort ? <><Header>Comfort</Header><br /> <Marker style={{ marginLeft: `${characteristics.Comfort}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}
-        {breakdown.Fit ? <><span>Fit - {breakdown.Fit.value}</span><br /></> : null}
-        {breakdown.Length ? <><span>Length - {breakdown.Length.value}</span><br /></> : null}
-        {breakdown.Quality ? <><span>Quality - {breakdown.Quality.value}</span><br /></> : null}
-        {breakdown.Size ? <><span>Size - {breakdown.Size.value}</span><br /></> : null}
-        {breakdown.Width ? <><span>Width - {breakdown.Width.value}</span><br /></> : null}
+        {breakdown.Comfort ? <><Header>Comfort</Header><br /> <FlexContainer><Marker style={{ marginLeft: `${characteristics.Comfort}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Poor</LeftFooter><QualitySpan>Great</QualitySpan><br /></> : null}
+        {breakdown.Fit ? <><Header>Fit</Header><br /> <FlexContainer><Marker style={{ marginLeft: `${characteristics.Fit}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}
+        {breakdown.Length ? <><Header>Length</Header><br /> <FlexContainer><Marker style={{ marginLeft: `${characteristics.Length}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}
+        {breakdown.Quality ? <><Header>Quality</Header><br /> <FlexContainer><Marker style={{ marginLeft: `${characteristics.Quality}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Poor</LeftFooter><QualitySpan>Great</QualitySpan><br /></> : null}
+        {breakdown.Size ? <><Header>Size</Header><br /> <FlexContainer><Marker style={{ marginLeft: `${characteristics.Size}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}
+        {breakdown.Width ? <><Header>Width</Header><br /> <FlexContainer><Marker style={{ marginLeft: `${characteristics.Width}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}
       </div>
     );
   }

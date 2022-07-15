@@ -17,15 +17,14 @@ let StyleNumber = styled.span`
 
 function AverageStar({ ratings }) {
   let [starNumber, setStarNumber] = useState(0);
+
   function getAverageStars(ratingObj) {
     let totalReviews = 0;
-    let totalObjEntries = Object.values(ratingObj);
-    let indexStar = 1;
+    let totalObjEntries = Object.keys(ratingObj);
     let totalStarCount = 0;
     for (let num of totalObjEntries) {
-      totalReviews += Number(num);
-      totalStarCount += Number(num) * indexStar;
-      indexStar += 1;
+      totalReviews += Number(ratingObj[num]);
+      totalStarCount += Number(num) * ratingObj[num];
     }
 
     let average = totalStarCount / totalReviews;
