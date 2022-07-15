@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
-import styled from 'styled-components'
 import GH_TOKEN from '../../../../token.js';
 import ImageGallery from './ImageGallery.jsx';
 import ProductDetails from './ProductDetails.jsx';
@@ -23,7 +22,7 @@ function Overview({ productId, placeHolderImage }) {
     imageGalleryRef.current.selectBigPicture();
     // reset selected size option
     purchaseOptionsRef.current.resetSelectedSize();
-    setActiveStyle(parseInt(e.target.id));
+    setActiveStyle(Number(e.target.id));
   }
 
   function getProductInfo() {
