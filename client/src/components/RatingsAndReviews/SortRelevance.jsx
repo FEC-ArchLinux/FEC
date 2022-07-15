@@ -7,7 +7,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo }) {
+function SortRelevance({ reviewCopy, setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo }) {
   function sortByChange(event) {
     const selector = event.target.value;
     if (selector === 'Newest') {
@@ -21,7 +21,7 @@ function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo
       setCurrentTwo(reviewInfo.slice(0, 2));
       setPageNumber(0);
     } else if (selector === "Relevant") {
-      let relevant = reviewInfo.sort((a, b) => (a.date > b.date) ? -1 : ((a.date > b.date) ? 1 : 0) || (a.helpfulness > b.helpfulness) ? -1 : ((a.helpfulness > b.helpfulness) ? 1 : 0));
+      let relevant = reviewCopy.sort((a, b) => (a.date > b.date) ? -1 : ((a.date > b.date) ? 1 : 0) || (a.helpfulness > b.helpfulness) ? -1 : ((a.helpfulness > b.helpfulness) ? 1 : 0));
       setReviewInfo(relevant);
       setCurrentTwo(reviewInfo.slice(0, 2));
       setPageNumber(0);
@@ -30,7 +30,7 @@ function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo
   return (
     <div style={{ position: 'sticky', top: '0', zIndex: '10', backgroundColor: "white" }}>
       <label htmlFor="sortBy"><b>{reviewInfo.length} reviews, sorted by</b></label>
-      <select onChange={sortByChange} name="sortBy" id="reviewSort">
+      <select style={{ marginLeft: "3px", border: "none" }} onChange={sortByChange} name="sortBy" id="reviewSort">
         <option value="Relevant">Relevant</option>
         <option value="Helpful">Helpful</option>
         <option value="Newest">Newest</option>
