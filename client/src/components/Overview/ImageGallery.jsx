@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, placeHolderImage }, ref) {
   const [activeImage, setActiveImage] = useState(0);
   const [atTop, setAtTop] = useState(true);
+  const [isZoomed, setIsZoomed] = useState(false);
   const imageGalleryRef = useRef();
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -14,7 +15,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   }));
 
   function selectBigPicture(e) {
-    setActiveImage(parseInt(e.target.name));
+    setActiveImage(Number(e.target.name));
   }
 
   function changeBigPicture(e) {
@@ -33,6 +34,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
         setActiveImage(activeImage + 1);
         break;
       }
+      default:
+        console.log('Error with arrows: ', e.target.id);
     }
   }
 
@@ -80,7 +83,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     top: 0;
     right: 0;
     position: absolute;
-    visibility: ${isExpanded ? 'visible' : 'hidden'};
+    visibility: ${isExpanded ? (isZoomed ? 'hidden' : 'visible') : 'hidden'};
     `;
 
   const RightArrowButton = styled.button`
@@ -128,6 +131,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     }
   }
 
+  function toggleZoomView() {
+    setIsZoomed(!isZoomed);
+    console.log(isZoomed)
+  }
+
   let index = -1;
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
@@ -150,7 +158,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
       </div>
       <BigPictureDiv>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
-        <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} onClick={isExpanded ? null : toggleExpandedView} alt="enlarged-style" />
+        <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} onClick={isExpanded ? toggleZoomView : toggleExpandedView} alt="enlarged-style" />
         <ExpandButton onClick={toggleExpandedView}>✕</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
       </BigPictureDiv>
