@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, placeHolderImage }, ref) {
   const [activeImage, setActiveImage] = useState(0);
+  const [atTop, setAtTop] = useState(true);
   const imageGalleryRef = useRef();
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -85,17 +86,24 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     ${overviewButtonStyle}
     right: 0;
     position: absolute;
+    visibility: ${styles && activeImage === styles[activeStyle].photos.length - 1 ? 'hidden' : 'visible'};
     `;
 
   const LeftArrowButton = styled.button`
     ${overviewButtonStyle}
     left: 0;
     position: absolute;
+    visibility: ${activeImage === 0 ? 'hidden' : 'visible'};
     `;
 
-  const ScrollArrowButton = styled.button`
-    ${overviewButtonStyle}
-  `;
+  const UpArrowButton = styled.button`
+    ${overviewButtonStyle};
+    visibility: ${atTop ? 'hidden' : 'visible'};
+    `;
+
+  const DownArrowButton = styled.button`
+    ${overviewButtonStyle};
+    `;
 
   const BigPictureDiv = styled.div`
     display: flex;
@@ -109,13 +117,21 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   function scrollDown(offset) {
     imageGalleryRef.current.scrollTop += offset;
+    if (offset > 0) {
+      setAtTop(false);
+    }
+    if (offset < 0) {
+      if (imageGalleryRef.current.scrollTop + offset <= 0) {
+        setAtTop(true);
+      }
+    }
   }
 
   let index = -1;
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
       <div style={{ height: '70%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
-        <ScrollArrowButton onClick={() => scrollDown(-50)}>⇧</ScrollArrowButton>
+        <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && styles[activeStyle].photos.map((photo) => {
             index++
@@ -129,7 +145,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
             );
           })}
         </div>
-        <ScrollArrowButton onClick={() => scrollDown(50)}>⇩</ScrollArrowButton>
+        <DownArrowButton onClick={() => scrollDown(50)}>⇩</DownArrowButton>
       </div>
       <BigPictureDiv>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
