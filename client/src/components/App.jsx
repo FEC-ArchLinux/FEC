@@ -6,7 +6,7 @@ import RelatedItemsAndComparison from "./RelatedItemsAndComparison/RelatedItemsA
 import RatingsAndReviews from "./RatingsAndReviews/RatingsAndReviews.jsx";
 
 function App() {
-  const [productId, setProductId] = useState(37311);
+  const [productId, setProductId] = useState(37314);
 
   return (
     <>

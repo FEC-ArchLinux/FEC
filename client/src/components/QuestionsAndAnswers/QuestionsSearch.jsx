@@ -22,7 +22,7 @@ const inputStyle = {
   fontStyle: "bold",
   padding: "0vw 1vw",
   borderWidth: "0em",
-}
+};
 
 function QuestionsSearch() {
   return (

@@ -1,31 +1,32 @@
 import React from "react";
 
-function HelpfulQuestionButton() {
-  const inline = {
-    display: "inline-flex",
-    height: '30px',
-  };
-
+function HelpfulQuestionButton({ questionHelpfulness }) {
   const linkButton = {
     'background-color': 'transparent',
     border: 'none',
     cursor: 'pointer',
+    fontSize: '15px',
     'text-decoration': 'underline',
-    display: 'inline',
-    margin: '0',
-    padding: '0',
+    display: 'inline-flex',
+    // margin: '0',
+    padding: '0px 10px 0 10px',
+  };
+  const inline = {
+    display: "inline-flex",
+    padding: '0 10px 0',
+    // height: '30px',
   };
 
   return (
     <span style={inline}>
-      <p>Helpful?</p>
+      <span>Helpful?</span>
       <button
         type="button"
         style={linkButton}
       >
         Yes
       </button>
-      <p>(28)</p>
+      <span>{`(${questionHelpfulness})`}</span>
     </span>
   );
 }

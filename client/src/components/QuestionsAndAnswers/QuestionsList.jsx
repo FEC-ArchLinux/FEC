@@ -1,13 +1,16 @@
 import React from "react";
 import QuestionListEntry from "./QuestionListEntry.jsx";
 
-function QuestionsList() {
-  const qlist = [1, 2];
+function QuestionsList({ questionsData }) {
+  const limit = limit || 4;
   return (
     <>
-      {qlist.map(question => (
-        <QuestionListEntry />
-      ))}
+      {questionsData.map((question, index) => {
+        if (index <= limit) {
+          return <QuestionListEntry key={question.questions_id} question={question} />;
+        }
+        return <></>;
+      })}
     </>
   );
 }

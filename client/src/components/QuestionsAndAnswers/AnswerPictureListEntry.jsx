@@ -1,11 +1,7 @@
 import React from "react";
 
-function AnswerPictureListEntry() {
-  return (
-    <>
-      <img></img>
-    </>
-  );
+function AnswerPictureListEntry({ picture }) {
+  return <img src={picture} alt=''></img>;
 }
 
 export default AnswerPictureListEntry;
