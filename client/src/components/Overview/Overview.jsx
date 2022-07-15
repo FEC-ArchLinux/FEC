@@ -62,26 +62,13 @@ function Overview({ productId, placeHolderImage }) {
     gap: '5%',
   };
 
-  let productDetailsStyle = {
-    display: 'flex',
+  const productDetailsStyle = {
+    display: (isExpanded ? 'none' : 'flex'),
     'max-width': '340px',
     'flex-direction': 'column',
     'max-height': '100%',
     'font-size': "calc(1.5vh + 2pt)",
   };
-
-  const ProductDetailsDiv = styled.div`
-    display: ${isExpanded ? 'none' : 'flex'};
-    max-width: 340px;
-    flex-direction: column;
-    max-height: 100%;
-    font-size: calc(1.5vh + 2pt);`;
-
-  if (isExpanded) {
-    productDetailsStyle = {
-      display: 'none',
-    };
-  }
 
   function toggleExpandedView() {
     setIsExpanded(!isExpanded);

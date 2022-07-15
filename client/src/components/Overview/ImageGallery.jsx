@@ -104,7 +104,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     flex-basis: ${isExpanded ? '100%' : '70%'};
     height: 100%;
     background-color: whitesmoke;
-    position: relative;`;
+    position: relative;
+    `;
 
   let index = -1;
   return (
