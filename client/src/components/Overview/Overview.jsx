@@ -7,7 +7,7 @@ import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
 import ProductDescription from './ProductDescription.jsx';
 
-function Overview({ productId }) {
+function Overview({ productId, placeHolderImage }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
@@ -57,15 +57,16 @@ function Overview({ productId }) {
     display: 'flex',
     'justify-content': 'space-between',
     'align-items': 'flex-start',
-    height: "60vh",
+    height: "70vh",
     gap: '5%',
   };
 
   let productDetailsStyle = {
     display: 'flex',
-    width: '340px',
+    'max-width': '340px',
     'flex-direction': 'column',
     'max-height': '100%',
+    'font-size': "calc(1.5vh + 2pt)",
   };
 
   let bigPictureDivStyle = {
@@ -100,12 +101,11 @@ function Overview({ productId }) {
 
   return (
     <>
-      <h2>Overview Widget</h2>
       <div style={imageGalleryDivStyle}>
-        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} />
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
+          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage}/>
           <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
         </div>
       </div>
