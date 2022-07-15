@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable object-shorthand */
 /* eslint-disable react/jsx-wrap-multilines */
@@ -79,6 +80,20 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
     }
     return true;
   }
+
+  function characteristicCreater() {
+    let charArray = Object.keys(metaTransfer.characteristics).map((item) => item.toLowerCase());
+    let charChart = {
+      size: 125052, width: 125053, comfort: 125033, fit: 125031, length: 125032, quality: 125034,
+    };
+    let resultObj = {};
+    for (let char of charArray) {
+      if (charChart[char]) {
+        resultObj[charChart[char]] = Number(eval(char));
+      }
+    }
+    return resultObj;
+  }
   function submitForm() {
     event.preventDefault();
     let validate = validateSubmit();
@@ -93,8 +108,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
         name: nickName,
         email: email,
         photos: [''] || selectedImage,
-        characteristics: {
-        },
+        characteristics: characteristicCreater(),
       });
 
       let config = {
@@ -211,6 +225,3 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
 }
 
 export default AddReview;
-
-// 125052: size, 125053: width,
-// 125033: comfort, 125031: fit, 125032: length, 125034: quality,
