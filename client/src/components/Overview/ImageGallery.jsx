@@ -80,6 +80,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     top: 0;
     right: 0;
     position: absolute;
+    visibility: ${isExpanded ? 'visible' : 'hidden'};
     `;
 
   const RightArrowButton = styled.button`
@@ -149,8 +150,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
       </div>
       <BigPictureDiv>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
-        <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} alt="enlarged-style" />
-        <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
+        <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} onClick={isExpanded ? null : toggleExpandedView} alt="enlarged-style" />
+        <ExpandButton onClick={toggleExpandedView}>✕</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
       </BigPictureDiv>
     </div>
