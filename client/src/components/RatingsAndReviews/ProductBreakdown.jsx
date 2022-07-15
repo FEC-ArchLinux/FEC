@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 let Rectangle = styled.div`
   background-color: rgb(208,208,208);
-  width:73px;
+  width:82px;
   height:8px;
   border:1px;
   display: inline-flex;
@@ -25,25 +25,27 @@ let Marker = styled.span`
 `;
 
 let Header = styled.span`
-  font-size: 13px;
+  font-size: 14px;
   color: rgb(105,105,105);
+  margin-bottom: 4px;
+  display: inline-block;
 `;
 let LeftFooter = styled.span`
-  margin-top: -13px;
+  margin-top: -15px;
   position: absolute;
   font-size: 11px;
   color: rgb(105,105,105);
 `;
 let RightFooter = styled.span`
-  margin-top: -13px;
-  margin-left: 178px;
+  margin-top: -15px;
+  margin-left: 201px;
   position: absolute;
   font-size: 11px;
   color: rgb(105,105,105);
 `;
 let QualitySpan = styled.span`
-  margin-top: -14px;
-  margin-left: 199px;
+  margin-top: -15px;
+  margin-left: 222px;
   position: absolute;
   font-size: 11px;
   color: rgb(105,105,105);
@@ -58,7 +60,7 @@ function ProductBreakdown({ breakdown }) {
     let pixelMargins = {};
     for (let char in breakdown) {
       let current = Number(breakdown[char].value);
-      let value = (current * 220) / 5;
+      let value = (current * 238) / 5;
       pixelMargins[char] = value.toFixed().toString();
     }
     return pixelMargins;
