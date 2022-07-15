@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 
-function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedView, placeHolderImage }, ref) {
+function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, placeHolderImage }, ref) {
   const [activeImage, setActiveImage] = useState(0);
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -97,6 +97,15 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
       background-color: lightgray;
     }`;
 
+  const BigPictureDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: ${isExpanded ? '100%' : '70%'};
+    height: 100%;
+    background-color: whitesmoke;
+    position: relative;`;
+
   let index = -1;
   return (
     <>
@@ -113,12 +122,12 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
           );
         })}
       </div>
-      <div style={bigPictureDivStyle}>
+      <BigPictureDiv>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
         <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} alt="enlarged-style" />
         <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
-      </div>
+      </BigPictureDiv>
     </>
   );
 }
