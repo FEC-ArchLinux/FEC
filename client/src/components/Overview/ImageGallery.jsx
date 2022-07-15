@@ -68,8 +68,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   const overviewButtonStyle = css`
     border: none;
     font-size: x-large;
-    position: absolute;
     opacity: 50%;
+    background-color: whitesmoke;
     &:hover {
       background-color: lightgray;
     }`;
@@ -78,20 +78,24 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     ${overviewButtonStyle};
     top: 0;
     right: 0;
+    position: absolute;
     `;
 
   const RightArrowButton = styled.button`
     ${overviewButtonStyle}
     right: 0;
+    position: absolute;
     `;
 
   const LeftArrowButton = styled.button`
     ${overviewButtonStyle}
     left: 0;
+    position: absolute;
     `;
 
-  const UpArrowButton = styled.button`
-  `
+  const ScrollArrowButton = styled.button`
+    ${overviewButtonStyle}
+  `;
 
   const BigPictureDiv = styled.div`
     display: flex;
@@ -99,8 +103,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     align-items: center;
     flex-basis: ${isExpanded ? '100%' : '70%'};
     height: 100%;
-    background-color: whitesmoke;
     position: relative;
+    flex-basis: 100%;
     `;
 
   function scrollDown(offset) {
@@ -109,9 +113,9 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   let index = -1;
   return (
-    <>
+    <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
       <div style={{ height: '70%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
-        <button onClick={() => scrollDown(-50)}>⇧</button>
+        <ScrollArrowButton onClick={() => scrollDown(-50)}>⇧</ScrollArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && styles[activeStyle].photos.map((photo) => {
             index++
@@ -125,7 +129,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
             );
           })}
         </div>
-        <button onClick={() => scrollDown(50)}>⇩</button>
+        <ScrollArrowButton onClick={() => scrollDown(50)}>⇩</ScrollArrowButton>
       </div>
       <BigPictureDiv>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
@@ -133,7 +137,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
         <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
       </BigPictureDiv>
-    </>
+    </div>
   );
 }
 
