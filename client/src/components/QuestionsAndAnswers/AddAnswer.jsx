@@ -2,26 +2,16 @@ import React from "react";
 
 function AddAnswer() {
   const linkButton = {
-    'background-color': 'transparent',
+    backgroundColor: 'transparent',
     border: 'none',
     cursor: 'pointer',
-    fontSize: '15px',
-    'text-decoration': 'underline',
-    display: 'inline-flex',
-    align: "bottom",
-    // margin: '0',
-    padding: '17px 1vw 0 1vw',
-  };
-  const inline = {
-    display: "inline-flex",
-    padding: '0 10px 0',
-    // height: '30px',
+    fontSize: 'medium',
+    textDecoration: 'underline',
   };
 
   return (
     <button
       type="button"
-      style={inline}
       style={linkButton}
     >
       Add Answer

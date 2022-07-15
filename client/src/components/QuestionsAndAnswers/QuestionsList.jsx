@@ -9,7 +9,7 @@ function QuestionsList({ questionsData }) {
         if (index <= limit) {
           return <QuestionListEntry key={question.questions_id} question={question} />;
         }
-        return <></>;
+        return null;
       })}
     </>
   );

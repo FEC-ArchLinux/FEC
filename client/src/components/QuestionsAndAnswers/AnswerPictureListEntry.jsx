@@ -1,7 +1,18 @@
 import React from "react";
 
 function AnswerPictureListEntry({ picture }) {
-  return <img src={picture} alt=''></img>;
+  const answerImage = {
+    height: '90px',
+    width: '90px',
+    padding: '10px',
+  };
+  return (
+    <img
+      src={picture}
+      alt=""
+      style={answerImage}
+    />
+  );
 }
 
 export default AnswerPictureListEntry;

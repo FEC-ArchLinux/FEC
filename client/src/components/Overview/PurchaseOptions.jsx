@@ -1,4 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
+import styled from 'styled-components';
 
 function PurchaseOptions({ styles, activeStyle }, ref) {
   const sizeDropdownRef = useRef();
@@ -50,25 +51,49 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     event.preventDefault();
   }
 
+  const DropDown = styled.select`
+    font-size: calc(2vh + 1pt);
+    border-width: calc(.3vh + 2px);
+    border-color: black;
+    padding: calc(.3vh + 2px);
+    margin: calc(.3vh + 2px);
+    `;
+
+  const AddButton = styled.button`
+    font-size: calc(2vh + 1pt);
+    border-width: calc(.3vh + 2px);
+    border-color: black;
+    padding: calc(.3vh + 2px);
+    margin: calc(.3vh + 2px);
+    background-color: white;
+    :hover {
+      background-color: lightgrey;
+    }
+    `;
+
+  const selectStyle = {
+    'border-width': "calc(.3vh + 2px)",
+    'border-color': 'black',
+    padding: "calc(.3vh + 2px)",
+    margin: "calc(.3vh + 2px)",
+    'background-color': 'white',
+    'font-size': "calc(2vh + 1pt)",
+  };
+
   return (
-    <>
-      <h3>Purchase Options</h3>
+    <div style={{'margin-top': '3vh' }}>
       <form onSubmit={completePurchase}>
-        <label>Size:
-          <select required ref={sizeDropdownRef} onChange={changeSelectedSize}>
-            <option value="">Select Size</option>
-            {styles && optionGenerator()}
-          </select>
-        </label>
-        <label>Quantity:
-          <select required>
-            {styles && quantitySelector()}
-          </select>
-        </label>
+        <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
+          <option value="">Select Size</option>
+          {styles && optionGenerator()}
+        </select>
+        <DropDown required>
+          {styles && quantitySelector()}
+        </DropDown>
         <br />
-        <button type="submit">Add to Cart</button>
+        <AddButton type="submit">Add to Cart</AddButton>
       </form>
-    </>
+    </div>
   );
 }
 

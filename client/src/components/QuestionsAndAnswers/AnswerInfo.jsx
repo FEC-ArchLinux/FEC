@@ -4,18 +4,18 @@ import ReportAnswerButton from "./ReportAnswerButton.jsx";
 
 const inline = {
   display: "inline-flex",
-  padding: '0 40px 0',
-  fontSize: 'small',
+  padding: '0 10px 10px',
+  fontSize: '.7em',
 };
 
 function AnswerInfo({answerData}) {
   const userName = answerData.answerer_name;
   const date = new Date(answerData.date).toDateString();
-  const {helpfulness} = answerData;
+  const { helpfulness } = answerData;
   return (
     <span style={inline}>
       <span>
-        {`by ${userName}, ${date} |`}
+        {`by ${userName}, ${date} `}
         <HelpfulButton
           helpfulness={helpfulness}
         />

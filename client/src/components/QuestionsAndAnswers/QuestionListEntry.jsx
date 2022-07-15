@@ -4,11 +4,8 @@ import AnswerList from "./AnswerList.jsx";
 import HelpfulQuestionButton from "./HelpfulQuestionButton.jsx";
 import AddAnswer from "./AddAnswer.jsx";
 
-const inline = {
-  display: "inline-flex",
+const textPad = {
   padding: '0 10px 0',
-  margin: "0px",
-  height: "0em",
 };
 
 function QuestionListEntry({ question }) {
@@ -19,7 +16,7 @@ function QuestionListEntry({ question }) {
   return (
     <ul>
       <span>
-        <span style={inline}>
+        <span style={textPad}>
           <Question
             questionBody={questionBody}
           />
@@ -32,7 +29,7 @@ function QuestionListEntry({ question }) {
         </span>
         <AnswerList
           answerList={answerList}
-          style={inline}
+          style={textPad}
         />
       </span>
     </ul>

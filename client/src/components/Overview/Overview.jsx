@@ -7,10 +7,11 @@ import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
 import ProductDescription from './ProductDescription.jsx';
 
-function Overview({ productId }) {
+function Overview({ productId, placeHolderImage }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const imageGalleryRef = useRef();
   const purchaseOptionsRef = useRef();
@@ -45,17 +46,69 @@ function Overview({ productId }) {
   }
 
   useEffect(() => {
+    imageGalleryRef.current.selectBigPicture();
+    purchaseOptionsRef.current.resetSelectedSize();
+    setActiveStyle(0);
     getProductInfo();
     getProductStyleInfo();
-  }, []);
+  }, [productId]);
+
+  const imageGalleryDivStyle = {
+    display: 'flex',
+    'justify-content': 'space-between',
+    'align-items': 'flex-start',
+    height: "70vh",
+    gap: '5%',
+  };
+
+  let productDetailsStyle = {
+    display: 'flex',
+    'max-width': '340px',
+    'flex-direction': 'column',
+    'max-height': '100%',
+    'font-size': "calc(1.5vh + 2pt)",
+  };
+
+  let bigPictureDivStyle = {
+    display: 'flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+    'flex-basis': '70%',
+    height: '100%',
+    'background-color': 'whitesmoke',
+    position: 'relative',
+  };
+
+  if (isExpanded) {
+    productDetailsStyle = {
+      display: 'none',
+    };
+
+    bigPictureDivStyle = {
+      display: 'flex',
+      'justify-content': 'center',
+      'align-items': 'center',
+      'flex-basis': '100%',
+      height: '100%',
+      'background-color': 'whitesmoke',
+      position: 'relative',
+    };
+  }
+
+  function toggleExpandedView() {
+    setIsExpanded(!isExpanded);
+  }
 
   return (
     <>
-      <h2>Overview Widget</h2>
-      <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
-      <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-      <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} />
-      <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
+      <div style={imageGalleryDivStyle}>
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
+        <div style={productDetailsStyle}>
+          <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
+          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage}/>
+          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
+        </div>
+      </div>
       <ProductDescription productInfo={productInfo} />
     </>
   );

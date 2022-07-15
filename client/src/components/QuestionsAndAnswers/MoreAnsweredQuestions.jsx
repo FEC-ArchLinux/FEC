@@ -6,7 +6,9 @@ const boxButtonStyle = {
   fontStyle: "bold",
   border: "solid",
   borderWidth: "1px",
-  height: '60px',
+  height: '40px',
+  cursor: 'pointer',
+  backgroundColor: 'white',
 };
 
 function MoreAnsweredQuestions() {

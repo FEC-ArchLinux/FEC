@@ -5,18 +5,19 @@ import AnswerPictureListComponent from "./AnswerPictureListComponent.jsx";
 const inline = {
   display: "inline-flex",
   padding: '0 10px 0',
+  fontSize: '1em',
 };
 
 function AnswerListEntry({ answerData }) {
   const answerBody = answerData.body;
   return (
-    <ul>
+    <ul style={{ 'padding-inline-start': '0' }}>
       <div>
-        <b style={inline}>A: </b>
-        <span style={inline}>{answerBody}</span>
+        <b style={inline}>A:</b>
+        <span>{answerBody}</span>
       </div>
       <span>
-        <AnswerInfo answerData={answerData} />
+        {!answerData.photos.length ? <AnswerInfo answerData={answerData} /> : null}
         <AnswerPictureListComponent answerData={answerData} />
       </span>
     </ul>
