@@ -44,12 +44,12 @@ function ProductDetails({ productInfo, styles, activeStyle, productId }) {
     if (styles[activeStyle].sale_price) {
       return (
         <>
-          <p style={{ margin: 0 }}>Original Price: $<s>{styles[activeStyle].original_price}</s></p>
-          <p style={{ margin: 0 }}>Sale Price: ${styles[activeStyle].sale_price}</p>
+          <p style={{ margin: 0 }}>$<s>{styles[activeStyle].original_price}</s></p>
+          <p style={{ margin: 0, color: 'red' }}>${styles[activeStyle].sale_price}</p>
         </>
       );
     }
-    return <p style={{ margin: 0 }}>Price: ${styles[activeStyle].original_price}</p>;
+    return <p style={{ margin: 0 }}>${styles[activeStyle].original_price}</p>;
   }
   return (
     <div>
