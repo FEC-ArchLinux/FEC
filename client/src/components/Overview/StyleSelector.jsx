@@ -1,10 +1,10 @@
 import React from 'react';
 
-function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
+function StyleSelector({ styles, changeActiveStyle, activeStyle, placeHolderImage }) {
   const styleImgStyle = {
     'object-fit': 'cover',
-    height: '50px',
-    width: '50px',
+    height: "calc(2vh + 1.5vw + 1em)",
+    width: "calc(2vh + 1.5vw + 1em)",
     border: 'medium solid black',
     'border-radius': '50%',
     margin: '5px',
@@ -12,8 +12,8 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
 
   const selectedStyleImg = {
     'object-fit': 'cover',
-    height: '50px',
-    width: '50px',
+    height: "calc(2vh + 1.5vw + 1em)",
+    width: "calc(2vh + 1.5vw + 1em)",
     border: 'thick solid black',
     'border-radius': '50%',
     margin: '5px',
@@ -24,7 +24,6 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
     'flex-wrap': 'wrap',
     'justify-content': 'flex-start',
     'align-items': 'center',
-    overflow: 'auto',
     'max-height': '250px',
   };
 
@@ -41,9 +40,9 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle }) {
         {styles && styles.map((style) => {
           index++
           if (index === activeStyle) {
-            return <img style={selectedStyleImg} alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
+            return <img style={selectedStyleImg} alt={style.name} src={style.photos[0].thumbnail_url === null ? placeHolderImage : style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
           }
-          return <img style={styleImgStyle} alt={style.name} src={style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
+          return <img style={styleImgStyle} alt={style.name} src={style.photos[0].thumbnail_url === null ? placeHolderImage : style.photos[0].thumbnail_url} onClick={changeActiveStyle} id={index} name={style.style_id} key={style.style_id} />;
         })}
       </div>
     </div>
