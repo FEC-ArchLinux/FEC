@@ -107,7 +107,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
         recommend: recommend,
         name: nickName,
         email: email,
-        photos: [''] || selectedImage,
+        photos: selectedImage.length > 0 ? selectedImage : [''],
         characteristics: characteristicCreater(),
       });
 
@@ -127,6 +127,22 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
 
       setNewReview(false);
     }
+  }
+
+  function cloudinaryLoad(image) {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "pmrrp4z4");
+    data.append("cloud_name", "dm84tjpoq");
+    fetch("https://api.cloudinary.com/v1_1/dm84tjpoq/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((response) => {
+        setSelectedImage(selectedImage.concat([response.url]));
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -203,7 +219,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
           <aside style={{ fontSize: "12px", marginLeft: "379px", marginBottom: "15px" }}><i>Minimum required characters left:</i> { body.length < 50 ? 50 - body.length : 'Minimum Reached'}</aside>
           <div style={{ marginBottom: "15px" }}>
             <label htmlFor="myImage"><b>{selectedImage.length < 5 ? "Select Image:" : "Max Images Selected"} </b></label>
-            {selectedImage.length < 5 ? <input type="file" name="myImage" onChange={(event) => { setSelectedImage(selectedImage.concat([URL.createObjectURL(event.target.files[0])])); }} /> : null}
+            {selectedImage.length < 5 ? <input type="file" name="myImage" onChange={(event) => { cloudinaryLoad(event.target.files[0]); }} /> : null}
             {selectedImage.length > 0 ? selectedImage.map((image, index) => <img key={index} alt="not found" width="50px" height="50px" src={image} />) : null}
           </div>
           <div style={{ marginLeft: "44px" }}>
@@ -225,3 +241,5 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
 }
 
 export default AddReview;
+
+// setSelectedImage(selectedImage.concat([URL.createObjectURL(event.target.files[0])]));
