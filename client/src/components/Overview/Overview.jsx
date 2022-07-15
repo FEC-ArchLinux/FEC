@@ -22,7 +22,7 @@ function Overview({ productId, placeHolderImage }) {
     imageGalleryRef.current.selectBigPicture();
     // reset selected size option
     purchaseOptionsRef.current.resetSelectedSize();
-    setActiveStyle(parseInt(e.target.id));
+    setActiveStyle(Number(e.target.id));
   }
 
   function getProductInfo() {
@@ -61,39 +61,13 @@ function Overview({ productId, placeHolderImage }) {
     gap: '5%',
   };
 
-  let productDetailsStyle = {
-    display: 'flex',
+  const productDetailsStyle = {
+    display: (isExpanded ? 'none' : 'flex'),
     'max-width': '340px',
     'flex-direction': 'column',
     'max-height': '100%',
     'font-size': "calc(1.5vh + 2pt)",
   };
-
-  let bigPictureDivStyle = {
-    display: 'flex',
-    'justify-content': 'center',
-    'align-items': 'center',
-    'flex-basis': '70%',
-    height: '100%',
-    'background-color': 'whitesmoke',
-    position: 'relative',
-  };
-
-  if (isExpanded) {
-    productDetailsStyle = {
-      display: 'none',
-    };
-
-    bigPictureDivStyle = {
-      display: 'flex',
-      'justify-content': 'center',
-      'align-items': 'center',
-      'flex-basis': '100%',
-      height: '100%',
-      'background-color': 'whitesmoke',
-      position: 'relative',
-    };
-  }
 
   function toggleExpandedView() {
     setIsExpanded(!isExpanded);
@@ -102,7 +76,7 @@ function Overview({ productId, placeHolderImage }) {
   return (
     <>
       <div style={imageGalleryDivStyle}>
-        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} bigPictureDivStyle={bigPictureDivStyle} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
+        <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} isExpanded={isExpanded} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage}/>

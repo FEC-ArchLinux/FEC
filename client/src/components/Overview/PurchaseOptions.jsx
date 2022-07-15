@@ -4,6 +4,7 @@ import styled from 'styled-components';
 function PurchaseOptions({ styles, activeStyle }, ref) {
   const sizeDropdownRef = useRef();
   const [selectedSize, setSelectedSize] = useState('Select Size');
+  const [outOfStock, setOutOfStock] = useState(false);
 
   // pass up function to reset selected size when another style is selected
   useImperativeHandle(ref, () => ({
@@ -25,12 +26,17 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
         sizes.push(sku);
       }
     }
+    if (sizes.length === 0) {
+      setOutOfStock(true);
+      return;
+    }
     return skus.map((sku) => <option value={sku}>{styles[activeStyle].skus[sku].size}</option>);
   }
 
   function quantitySelector() {
-    if (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size') {
-      return;
+    if (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size'
+      || sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Out of Stock') {
+      return <option>-</option>;
     }
     const options = [];
     if (styles[activeStyle].skus[selectedSize]) {
@@ -68,6 +74,7 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
     background-color: white;
     :hover {
       background-color: lightgrey;
+      cursor: pointer;
     }
     `;
 
@@ -81,17 +88,26 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   };
 
   return (
-    <div style={{'margin-top': '3vh' }}>
+    <div style={{ 'margin-top': '3vh' }}>
       <form onSubmit={completePurchase}>
-        <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
-          <option value="">Select Size</option>
-          {styles && optionGenerator()}
-        </select>
-        <DropDown required>
-          {styles && quantitySelector()}
-        </DropDown>
+        {styles && outOfStock
+          ? <select style={selectStyle} required disabled id="sizeDropdown" ref={sizeDropdownRef}>
+            <option value="">Out of Stock</option>
+          </select>
+          : <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
+            <option value="">Select Size</option>
+            {styles && optionGenerator()}
+          </select>}
+        {styles && (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size'
+          || sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Out of Stock')
+          ? <DropDown required disabled>
+            {styles && quantitySelector()}
+          </DropDown>
+          : <DropDown required>
+            {styles && quantitySelector()}
+          </DropDown>}
         <br />
-        <AddButton type="submit">Add to Cart</AddButton>
+        {outOfStock ? null : <AddButton type="submit">Add to Cart</AddButton>}
       </form>
     </div>
   );
