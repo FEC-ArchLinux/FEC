@@ -81,9 +81,9 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     display: 'grid',
     'min-width': '110px',
     overflow: 'clip hidden',
-    'max-height': '100%',
     'justify-items': 'center',
     'scroll-behavior': 'smooth',
+    'max-height': "calc(((1vw + 1vh + 32.16px) * 8) + 13.16px)",
   };
 
   const overviewButtonStyle = css`
@@ -157,7 +157,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   let index = -1;
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
-      <div style={{ height: '85%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
+      <div style={{ 'max-height': '100%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
         <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && styles[activeStyle].photos.map((photo) => {

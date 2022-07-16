@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref) {
   const sizeDropdownRef = useRef();
+  const quantityDropdownRef = useRef();
   const [selectedSize, setSelectedSize] = useState('Select Size');
 
   // pass up function to reset selected size when another style is selected
@@ -72,6 +73,11 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
 
   function completePurchase() {
     event.preventDefault();
+    alert(`Added to Cart: { sku: ${sizeDropdownRef.current.value}, quantity: ${quantityDropdownRef.current.value} }`);
+  }
+
+  function share() {
+    console.log('Shared');
   }
 
   const DropDown = styled.select`
@@ -112,12 +118,13 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
           ? <DropDown required disabled>
             {styles && quantitySelector()}
           </DropDown>
-          : <DropDown required>
+          : <DropDown ref={quantityDropdownRef} required>
             {styles && quantitySelector()}
           </DropDown>)}
         <br />
         {outOfStock ? null : <AddButton type="submit">Add to Cart</AddButton>}
       </form>
+      <AddButton type="button" onClick={share} >Share</AddButton>
     </div>
   );
 }
