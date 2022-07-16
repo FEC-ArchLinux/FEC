@@ -16,7 +16,7 @@ describe('test', () => {
   });
 });
 
-describe('ReviewList - Add Reviews Button', () => {
+describe('Overview - Add to Cart Button', () => {
   it('should render button', () => {
     const overview = render(<Overview />);
 
