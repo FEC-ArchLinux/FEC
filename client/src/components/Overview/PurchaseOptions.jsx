@@ -25,7 +25,6 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
         sizes.push(sku);
       }
     }
-    console.log(sizes.length);
     if (sizes.length === 0) {
       setOutOfStock(true);
       return 0;

@@ -25,6 +25,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
           break;
         }
         setActiveImage(activeImage - 1);
+        scrollDown(-70);
         break;
       }
       case "increment": {
@@ -32,6 +33,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
           break;
         }
         setActiveImage(activeImage + 1);
+        scrollDown(70);
         break;
       }
       default:
@@ -41,8 +43,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const imageGalleryImgStyle = css`
     object-fit: cover;
-    height: calc(2vw + 2vh + 30px);
-    width: calc(2vw + 2vh + 30px);
+    height: calc(1vw + 1vh + 30px);
+    width: calc(1vw + 1vh + 30px);
     margin: 5px;
     :hover {
       cursor: pointer;
@@ -147,7 +149,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   let index = -1;
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
-      <div style={{ height: '70%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
+      <div style={{ height: '85%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
         <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && styles[activeStyle].photos.map((photo) => {
