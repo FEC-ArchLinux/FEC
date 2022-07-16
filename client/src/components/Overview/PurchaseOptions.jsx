@@ -1,16 +1,15 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 
-function PurchaseOptions({ styles, activeStyle }, ref) {
+function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref) {
   const sizeDropdownRef = useRef();
   const [selectedSize, setSelectedSize] = useState('Select Size');
-  const [outOfStock, setOutOfStock] = useState(false);
 
   // pass up function to reset selected size when another style is selected
   useImperativeHandle(ref, () => ({
     resetSelectedSize: () => {
       setSelectedSize('Select Size');
-      sizeDropdownRef.current.options.selectedIndex = 0;
+      sizeDropdownRef.current !== undefined ? sizeDropdownRef.current.options.selectedIndex = 0 : null;
     },
   }));
 
@@ -26,16 +25,16 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
         sizes.push(sku);
       }
     }
+    console.log(sizes.length);
     if (sizes.length === 0) {
       setOutOfStock(true);
-      return;
+      return 0;
     }
     return skus.map((sku) => <option value={sku}>{styles[activeStyle].skus[sku].size}</option>);
   }
 
   function quantitySelector() {
-    if (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size'
-      || sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Out of Stock') {
+    if (selectedSize === 'Select Size' || outOfStock) {
       return <option>-</option>;
     }
     const options = [];
@@ -51,6 +50,25 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
       }
       return options.map((option) => option);
     }
+  }
+
+  function sizeDropdown() {
+    const sizes = optionGenerator();
+    if (sizes === 0) {
+      setOutOfStock(true);
+      return (
+        <select style={selectStyle} required disabled id="sizeDropdown" ref={sizeDropdownRef}>
+          <option value="">Out of Stock</option>
+        </select>
+      );
+    }
+    setOutOfStock(false);
+    return (
+      <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
+        <option value="">Select Size</option>
+        {sizes}
+      </select>
+    );
   }
 
   function completePurchase() {
@@ -90,22 +108,14 @@ function PurchaseOptions({ styles, activeStyle }, ref) {
   return (
     <div style={{ 'margin-top': '3vh' }}>
       <form onSubmit={completePurchase}>
-        {styles && outOfStock
-          ? <select style={selectStyle} required disabled id="sizeDropdown" ref={sizeDropdownRef}>
-            <option value="">Out of Stock</option>
-          </select>
-          : <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
-            <option value="">Select Size</option>
-            {styles && optionGenerator()}
-          </select>}
-        {styles && (sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Select Size'
-          || sizeDropdownRef.current.options[sizeDropdownRef.current.options.selectedIndex].text === 'Out of Stock')
+        {styles && sizeDropdown()}
+        {styles && (selectedSize === 'Select Size' || outOfStock
           ? <DropDown required disabled>
             {styles && quantitySelector()}
           </DropDown>
           : <DropDown required>
             {styles && quantitySelector()}
-          </DropDown>}
+          </DropDown>)}
         <br />
         {outOfStock ? null : <AddButton type="submit">Add to Cart</AddButton>}
       </form>
