@@ -73,7 +73,7 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
 
   function completePurchase() {
     event.preventDefault();
-    alert(`Added to Cart: { sku: ${sizeDropdownRef.current.value}, quantity: ${quantityDropdownRef.current.value} }`);
+    alert(`Added to Cart: { sku_id: ${sizeDropdownRef.current.value}, count: ${quantityDropdownRef.current.value} }`);
   }
 
   function share() {

@@ -51,8 +51,8 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const imageGalleryImgStyle = css`
     object-fit: cover;
-    height: calc(1vw + 1vh + 30px);
-    width: calc(1vw + 1vh + 30px);
+    height: 60px;
+    aspect-ratio: 1/1;
     margin: 5px;
     :hover {
       cursor: pointer;
@@ -79,10 +79,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const imageGalleryDivStyle = {
     display: 'grid',
+    'flex-direction': 'column',
     overflow: 'clip hidden',
     'justify-items': 'center',
     'scroll-behavior': 'smooth',
-    'max-height': "calc(((1vw + 1vh + 32.16px) * 8) + 13.16px)",
+    'max-height': "80%",
   };
 
   const overviewButtonStyle = css`
