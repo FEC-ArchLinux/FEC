@@ -49,7 +49,7 @@ function QuestionsAndAnswers({ productId }) {
         <QuestionsList questionsData={questionsData} />
         <span style={inline}>
           <MoreAnsweredQuestions onClick={() => null}/>
-          <AddAQuestion/>
+          <AddAQuestion />
         </span>
       </MainFlex>
     </TopContainer>

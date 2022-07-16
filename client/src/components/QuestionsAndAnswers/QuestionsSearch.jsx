@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const questionSearchStyle = {
   border: "solid",
@@ -30,10 +30,13 @@ const inputStyle = {
 };
 
 function QuestionsSearch() {
+
+  const [questionSearchValue, setQuestionSearchValue] = useState('');
   return (
     <div style={questionSearchStyle}>
       <input
         style={inputStyle}
+        onChange={() => setQuestionSearchValue()}
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
       />
       <button
