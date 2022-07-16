@@ -25,7 +25,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
           break;
         }
         setActiveImage(activeImage - 1);
-        scrollDown(-70);
+        const imageHeight = document.getElementsByName(activeImage)[0].height;
+        if (((imageHeight + 7) * (activeImage) - (imageHeight + 7)) <= 0) {
+          setAtTop(true);
+        }
+        imageGalleryRef.current.scrollTo(0, ((imageHeight + 7) * activeImage - (imageHeight + 7)));
         break;
       }
       case "increment": {
@@ -33,7 +37,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
           break;
         }
         setActiveImage(activeImage + 1);
-        scrollDown(70);
+        const imageHeight = document.getElementsByName(activeImage)[0].height;
+        if (imageGalleryRef.current.scrollTop > 0) {
+          setAtTop(false);
+        }
+        imageGalleryRef.current.scrollTo(0, ((imageHeight + 7) * (activeImage + 1) - (imageHeight + 7)));
         break;
       }
       default:
