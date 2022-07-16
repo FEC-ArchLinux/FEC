@@ -39,21 +39,25 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     }
   }
 
-  const imageGalleryStyle = {
-    'object-fit': 'cover',
-    height: "calc(2vw + 2vh + 30px)",
-    width: "calc(2vw + 2vh + 30px)",
-    border: 'thin solid black',
-    margin: '5px',
-  };
+  const imageGalleryImgStyle = css`
+    object-fit: cover;
+    height: calc(2vw + 2vh + 30px);
+    width: calc(2vw + 2vh + 30px);
+    margin: 5px;
+    :hover {
+      cursor: pointer;
+    }
+    `;
 
-  const activeImageStyle = {
-    'object-fit': 'cover',
-    height: "calc(2vw + 2vh + 30px)",
-    width: "calc(2vw + 2vh + 30px)",
-    border: 'thick solid black',
-    margin: '5px',
-  };
+  const ImageGalleryImage = styled.img`
+    ${imageGalleryImgStyle};
+    border: thin solid black;
+  `;
+
+  const ActiveImageStyle = styled.img`
+    ${imageGalleryImgStyle};
+    border: thick solid black;
+  `;
 
   const BigImage = styled.img`
     max-height: 100%;
@@ -150,11 +154,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
             index++
             if (index === activeImage) {
               return (
-                <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+                <ActiveImageStyle onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
               );
             }
             return (
-              <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+              <ImageGalleryImage onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
             );
           })}
         </div>
