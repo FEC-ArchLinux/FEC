@@ -82,8 +82,8 @@ function Overview({ productId, placeHolderImage }) {
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} isExpanded={isExpanded} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage}/>
-          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} outOfStock={outOfStock} setOutOfStock={setOutOfStock}/>
+          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage} />
+          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} outOfStock={outOfStock} setOutOfStock={setOutOfStock} />
         </div>
       </div>
       <ProductDescription productInfo={productInfo} />
