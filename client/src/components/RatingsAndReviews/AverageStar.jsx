@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
 
 let StyleNumber = styled.span`
-  font-size: 40px;
+  font-size: 47px;
   margin-bottom: 10px;
   margin-right: 10px;
 `;
