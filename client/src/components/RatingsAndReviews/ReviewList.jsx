@@ -82,7 +82,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
   }
   if (reviewInfo) {
     return (
-      <div style={{ width: "750px", overflowY: 'auto', height: "500px" }}>
+      <div className="review-container" style={{ width: "750px", overflowY: 'auto', height: "500px" }}>
         <SortRelevance reviewCopy={reviewCopy} setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={review.review_id} />)}
         {pageNumber >= reviewInfo.length ? null : <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={incrementReviews} type="button"> More Reviews </button>}

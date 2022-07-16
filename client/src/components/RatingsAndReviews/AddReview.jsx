@@ -222,15 +222,15 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
             {selectedImage.length < 5 ? <input type="file" name="myImage" onChange={(event) => { cloudinaryLoad(event.target.files[0]); }} /> : null}
             {selectedImage.length > 0 ? selectedImage.map((image, index) => <img key={index} alt="not found" width="50px" height="50px" src={image} />) : null}
           </div>
-          <div style={{ marginLeft: "44px" }}>
+          <div style={{ marginLeft: "-171px" }}>
             <label htmlFor="nickname"><b>What is your nickname: </b></label>
-            <input onChange={(event) => setNickName(event.target.value)} size="60" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
-            <aside style={{ fontSize: "12px", marginLeft: "275px", marginBottom: "15px" }}><i>For privacy reasons, do not use your full name or email address</i></aside>
+            <input onChange={(event) => setNickName(event.target.value)} size="30" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
+            <aside style={{ fontSize: "12px", marginLeft: "69px", marginBottom: "15px" }}><i>For privacy reasons, do not use your full name or email address</i></aside>
           </div>
-          <div style={{ marginLeft: "12px" }}>
+          <div style={{ marginLeft: "-201px" }}>
             <label htmlFor="email"><b>What is your email: </b></label>
-            <input type="email" onChange={(event) => setEmail(event.target.value)} size="60" maxLength="60" name="email" placeholder="Example: jackson11@email.com" required /><br />
-            <aside style={{ fontSize: "12px", marginLeft: "310px", marginBottom: "15px" }}><i>For authentication reasons, you will not be emailed</i></aside>
+            <input type="email" onChange={(event) => setEmail(event.target.value)} size="30" maxLength="60" name="email" placeholder="Example: jackson11@email.com" required /><br />
+            <aside style={{ fontSize: "12px", marginLeft: "101px", marginBottom: "15px" }}><i>For authentication reasons, you will not be emailed</i></aside>
           </div>
           <button type="submit">Submit Review</button>
           <button onClick={(event) => setNewReview(false)} type="button">Exit</button>
