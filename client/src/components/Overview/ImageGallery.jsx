@@ -5,6 +5,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   const [activeImage, setActiveImage] = useState(0);
   const [atTop, setAtTop] = useState(true);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [bigImagePos, setBigImagePos] = useState(true);
   const imageGalleryRef = useRef();
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -69,12 +70,15 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     border: thick solid black;
   `;
 
-  const BigImage = styled.img`
-    max-height: 100%;
-    max-width: 100%;
-    :hover {
-      cursor: ${isExpanded ? (isZoomed ? 'zoom-out' : 'crosshair') : 'zoom-in'};;
-    }
+  const BigImage = styled.div`
+    position: ${isZoomed ? 'fixed' : null};
+    height: 100%;
+    width: 100%;
+    cursor: ${isExpanded ? (isZoomed ? 'zoom-out' : 'crosshair') : 'zoom-in'};
+    background-image: url(${styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)});
+    background-position: ${isZoomed ? bigImagePos : 'center'};
+    background-size: ${isZoomed ? '250%' : 'contain'};
+    background-repeat: no-repeat;
   `;
 
   const imageGalleryDivStyle = {
@@ -91,9 +95,9 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     font-size: x-large;
     opacity: 50%;
     background-color: whitesmoke;
+    cursor: pointer;
     :hover {
       background-color: lightgray;
-      cursor: pointer;
     }`;
 
   const ExpandButton = styled.button`
@@ -106,6 +110,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const RightArrowButton = styled.button`
     ${overviewButtonStyle}
+    display: ${isZoomed ? 'none' : 'visible'};
     right: 0;
     position: absolute;
     visibility: ${styles && activeImage === styles[activeStyle].photos.length - 1 ? 'hidden' : 'visible'};
@@ -113,6 +118,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const LeftArrowButton = styled.button`
     ${overviewButtonStyle}
+    display: ${isZoomed ? 'none' : 'visible'};
     left: 0;
     position: absolute;
     visibility: ${activeImage === 0 ? 'hidden' : 'visible'};
@@ -127,7 +133,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     ${overviewButtonStyle};
     `;
 
-  const BigPictureDiv = styled.div`
+  const BigPictureContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,7 +157,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   function toggleZoomView() {
     setIsZoomed(!isZoomed);
-    console.log(isZoomed);
+    document.body.style.overflow = (!isZoomed ? 'hidden' : "auto");
   }
 
   function galleryGenerator() {
@@ -180,7 +186,10 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     })
   }
 
-  //let index = -1;
+  function handleMouseZoom(e) {
+    setBigImagePos(`${(e.nativeEvent.offsetX / window.innerWidth) * 100}% ${(e.nativeEvent.offsetY / window.innerHeight) * 100}%`);
+  }
+
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
       <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center' }}>
@@ -190,12 +199,12 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
         </div>
         <DownArrowButton onClick={() => scrollDown(50)}>⇩</DownArrowButton>
       </div>
-      <BigPictureDiv>
+      <BigPictureContainer>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
-        <BigImage src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} onClick={isExpanded ? toggleZoomView : toggleExpandedView} alt="enlarged-style" />
+        <BigImage onClick={isExpanded ? toggleZoomView : toggleExpandedView} onMouseMove={isZoomed ? handleMouseZoom : null} alt="enlarged-style" />
         <ExpandButton onClick={toggleExpandedView}>✕</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
-      </BigPictureDiv>
+      </BigPictureContainer>
     </div>
   );
 }

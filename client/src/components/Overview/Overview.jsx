@@ -60,7 +60,7 @@ function Overview({ productId, placeHolderImage, clickTracker }) {
     display: 'flex',
     'justify-content': 'space-between',
     'align-items': 'flex-start',
-    height: "70vh",
+    height: "80vh",
     gap: '5%',
   };
 
