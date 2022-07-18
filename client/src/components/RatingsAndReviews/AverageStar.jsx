@@ -41,7 +41,7 @@ function AverageStar({ ratings }) {
     return (
       <div className="ratings-stars">
         <StyleNumber><b>{ratings ? getAverageStars(ratings) : null}</b></StyleNumber>
-        <StarRatings isSelectable="false" starRatedColor="black" numberOfStars={5} starSpacing="2px" starDimension="10px" rating={ratings ? starNumber : 1} />
+        <StarRatings isSelectable="false" starRatedColor="grey" numberOfStars={5} starSpacing="2px" starDimension="10px" rating={ratings ? starNumber : 1} />
       </div>
     );
   }

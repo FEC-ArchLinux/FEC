@@ -35,9 +35,7 @@ describe('ReviewList - Add Reviews Button', () => {
   it('should render button', () => {
     const reviewList = render(<ReviewList />);
 
-    const button = reviewList.getByText('Add a Review', {
-      selector: 'button',
-    });
+    const button = reviewList.getByText('Add a Review', { exact: false });
 
     expect(button).toBeDefined();
     cleanup();
@@ -45,13 +43,13 @@ describe('ReviewList - Add Reviews Button', () => {
 });
 
 describe('render page after axios request', () => {
-  it('more reviews button render', async () => {
+  it('more reviews button render once data loads', async () => {
     // jest.mock('./ReviewList.jsx');
     const test = 37311;
     const reviewlist = render(<ReviewList productId={test} />);
 
     await waitFor(() => {
-      const button = screen.getByText('More Reviews');
+      const button = screen.getByText('MORE REVIEWS');
       expect(button).toBeDefined();
     });
     cleanup();
@@ -66,7 +64,7 @@ describe('render page after axios request', () => {
     expect(initialCount.length).toBe(1);
 
     await waitFor(() => {
-      const button = screen.getByText('More Reviews');
+      const button = screen.getByText('MORE REVIEWS');
       fireEvent.click(button);
       fireEvent.click(button);
     });

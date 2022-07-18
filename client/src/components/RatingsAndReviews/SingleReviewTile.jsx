@@ -90,7 +90,7 @@ function SingleReviewTile({ review }) {
   }
   return (
     <ReviewContainer>
-      <StarRatings isSelectable="false" starRatedColor="black" numberOfStars={5} starSpacing="2px" starDimension="10px" rating={review.rating} />
+      <StarRatings isSelectable="false" starRatedColor="grey" numberOfStars={5} starSpacing="2px" starDimension="10px" rating={review.rating} />
       <span style={{ color: "rgb(105,105,105)", fontSize: "12px", marginLeft: "5px", float: "right" }}>{dateSetter()}</span>
       <span style={{ color: "rgb(105,105,105)", fontSize: "12px", float: "right" }}>{review.recommend ? `✔︎ ${review.reviewer_name}, ` : `${review.reviewer_name}, `}</span><br />
       <span style={{ display: "inline-block", margin: "15px 0px" }}><b>{review.summary}</b></span><br />

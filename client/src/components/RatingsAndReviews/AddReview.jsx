@@ -47,8 +47,7 @@ background-color: whitesmoke;
 
 const Button = styled.button`
 font-size: calc(2vh + 1pt);
-border-width: calc(.3vh + 2px);
-border-color: black;
+border: 1px solid;
 padding: calc(.3vh + 2px);
 margin: calc(.3vh + 2px);
 background-color: white;
