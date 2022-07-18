@@ -1,15 +1,23 @@
 import React from "react";
 import AnswerPictureList from "./AnswerPictureList.jsx";
-import AnswerPictureInfo from "./AnswerPictureInfo.jsx";
+import AnswerInfo from "./AnswerInfo.jsx";
 
-function AnswerPictureListComponent() {
-  return (
-    <>
-      <p>Picture Description</p>
-      <AnswerPictureList />
-      <AnswerPictureInfo />
-    </>
-  );
+function AnswerPictureListComponent({ answerData }) {
+  const answerPictureList = answerData.photos
+  if (answerPictureList.length) {
+    return (
+      <>
+        <div>
+          <AnswerPictureList
+            answerPictureList={answerPictureList}
+          />
+        </div>
+        <div>
+          <AnswerInfo answerData={answerData} />
+        </div>
+      </>
+    );
+  }
 }
 
 export default AnswerPictureListComponent;

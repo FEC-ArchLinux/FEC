@@ -1,16 +1,14 @@
 import React from "react";
 
-const linkButton = {
-  'background-color': 'transparent',
-  border: 'none',
-  cursor: 'pointer',
-  'text-decoration': 'underline',
-  display: 'inline',
-  margin: '0',
-  padding: '0',
-};
-
 function AddAnswer() {
+  const linkButton = {
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: 'medium',
+    textDecoration: 'underline',
+  };
+
   return (
     <button
       type="button"

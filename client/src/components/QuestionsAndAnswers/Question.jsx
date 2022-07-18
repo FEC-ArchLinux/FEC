@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-function Question() {
+function Question({ questionBody }) {
   return (
     <span>
-      <h3>{`Q: ${'question here'}`}</h3>
+      <b>{`Q:  ${questionBody}`}</b>
     </span>
   );
 }

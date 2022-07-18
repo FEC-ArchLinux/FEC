@@ -1,21 +1,28 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
-import HelpfulAnswerButton from "./HelpfulQuestionButton.jsx";
+import HelpfulButton from "./HelpfulButton.jsx";
 import ReportAnswerButton from "./ReportAnswerButton.jsx";
 
 const inline = {
   display: "inline-flex",
-  height: '30px',
+  padding: '0 10px 10px',
+  fontSize: '.7em',
 };
 
-function AnswerInfo() {
+function AnswerInfo({ answerData }) {
+  const userName = answerData.answerer_name;
+  const date = new Date(answerData.date).toDateString();
+  const { helpfulness } = answerData;
   return (
     <span style={inline}>
-      <p>username, </p>
-      <p>date</p>
-      <p>|</p>
-      <HelpfulAnswerButton />
-      <p>|</p>
-      <ReportAnswerButton />
+      <span>
+        {`by ${userName}, ${date} `}
+        <HelpfulButton
+          helpfulness={helpfulness}
+        />
+        <ReportAnswerButton />
+      </span>
     </span>
   );
 }
