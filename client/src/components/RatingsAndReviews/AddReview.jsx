@@ -168,7 +168,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
   }
 
   return (
-    <Modal>
+    <Modal style={{ color: "black" }}>
       <div style={{ height: "630px", overflowY: "auto" }}>
         <form onSubmit={submitForm}>
           <h3 style={{ marginLeft: "-529px" }}><i>Write Your Review</i></h3>

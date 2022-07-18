@@ -49,7 +49,9 @@ function StarBreakDown({ star, setStar, ratings }) {
     let ratingArray = Object.values(ratings);
     let total = 0;
     for (let num of ratingArray) {
-      total += Number(num);
+      if (Number(num) > total) {
+        total = Number(num);
+      }
     }
     setTotalRatings(total);
   }
