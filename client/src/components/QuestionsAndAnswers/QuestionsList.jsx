@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import QuestionListEntry from "./QuestionListEntry.jsx";
 
 function QuestionsList({ questionsData, moreAnsweredQuestions }) {
-  // console.log('qD', questionsData);
-  let limit = limit || 1;
-  // console.log('list', moreAnsweredQuestions);
+  const limit = limit || 4;
 
   const listOverflow = {
     maxHeight: "50vh",
     maxWdith: "860px",
-    "overflow-x": "hidden",
-    "overflow-y": "scroll",
+    overflowX: "hidden",
+    overflowY: "scroll",
   };
 
   return (
@@ -21,9 +19,13 @@ function QuestionsList({ questionsData, moreAnsweredQuestions }) {
       {questionsData
         .sort((b, a) => a.question_helpfulness - b.question_helpfulness)
         .map((question, index) => {
-          console.log('more Qs', moreAnsweredQuestions);
           if (index <= limit) {
-            return <QuestionListEntry key={question.questions_id} question={question} />;
+            return (
+              <QuestionListEntry
+                key={question.question_id}
+                question={question}
+              />
+            );
           }
           return null;
         })}

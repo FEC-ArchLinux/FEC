@@ -22,8 +22,6 @@ const TopContainer = styled.div`
   flex-direction: column;
 `;
 
-// const URL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${productId}`;
-
 function QuestionsAndAnswers({ productId }) {
   const [questionsData, setQuestionData] = useState([]);
   const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(1);

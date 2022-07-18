@@ -11,7 +11,7 @@ const inline = {
 function AnswerListEntry({ answerData }) {
   const answerBody = answerData.body;
   return (
-    <ul style={{ 'padding-inline-start': '0' }}>
+    <ul style={{ paddingInlineStart: '0' }}>
       <div>
         <b style={inline}>A:</b>
         {/* <span> */}

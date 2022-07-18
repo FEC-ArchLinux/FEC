@@ -37,7 +37,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal }) 
                 type="text"
                 id="quesitonNicknameInput"
                 name="nickname"
-                placeHolder="Example: jackson11!"
+                placeholder="Example: jackson11!"
                 maxLength="60"
               />
               <div>
