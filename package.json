@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/NaNdyKing/FEC#readme",
   "dependencies": {
+    "@cloudinary/react": "^1.4.1",
+    "@cloudinary/url-gen": "^1.8.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "express": "^4.18.1",

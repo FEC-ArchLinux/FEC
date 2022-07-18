@@ -1,8 +1,11 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
-import styled from 'styled-components';
+import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import styled, { css } from 'styled-components';
 
-function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedView, placeHolderImage }, ref) {
+function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, placeHolderImage }, ref) {
   const [activeImage, setActiveImage] = useState(0);
+  const [atTop, setAtTop] = useState(true);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const imageGalleryRef = useRef();
 
   // pass up to overview function that resets the big image to the first after changing styles
   useImperativeHandle(ref, () => ({
@@ -12,7 +15,7 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
   }));
 
   function selectBigPicture(e) {
-    setActiveImage(parseInt(e.target.name));
+    setActiveImage(Number(e.target.getAttribute('name')));
   }
 
   function changeBigPicture(e) {
@@ -22,6 +25,11 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
           break;
         }
         setActiveImage(activeImage - 1);
+        const imageHeight = document.getElementsByName(activeImage)[0].height;
+        if (((imageHeight + 7) * (activeImage) - (imageHeight + 7)) <= 0) {
+          setAtTop(true);
+        }
+        imageGalleryRef.current.scrollTo(0, ((imageHeight + 7) * activeImage - (imageHeight + 7)));
         break;
       }
       case "increment": {
@@ -29,97 +37,166 @@ function ImageGallery({ styles, activeStyle, bigPictureDivStyle, toggleExpandedV
           break;
         }
         setActiveImage(activeImage + 1);
+        const imageHeight = document.getElementsByName(activeImage)[0].height;
+        if (imageGalleryRef.current.scrollTop > 0) {
+          setAtTop(false);
+        }
+        imageGalleryRef.current.scrollTo(0, ((imageHeight + 7) * (activeImage + 1) - (imageHeight + 7)));
         break;
+      }
+      default:
+        console.log('Error with arrows: ', e.target.id);
+    }
+  }
+
+  const imageGalleryImgStyle = css`
+    object-fit: cover;
+    height: 60px;
+    aspect-ratio: 1/1;
+    margin: 5px;
+    :hover {
+      cursor: pointer;
+    }
+  `;
+
+  const ImageGalleryImage = styled.img`
+    ${imageGalleryImgStyle};
+    border: thin solid black;
+  `;
+
+  const ActiveImageStyle = styled.img`
+    ${imageGalleryImgStyle};
+    border: thick solid black;
+  `;
+
+  const BigImage = styled.img`
+    max-height: 100%;
+    max-width: 100%;
+    :hover {
+      cursor: ${isExpanded ? (isZoomed ? 'zoom-out' : 'crosshair') : 'zoom-in'};;
+    }
+  `;
+
+  const imageGalleryDivStyle = {
+    display: 'grid',
+    'flex-direction': 'column',
+    overflow: 'clip hidden',
+    'justify-items': 'center',
+    'scroll-behavior': 'smooth',
+    'max-height': "80%",
+  };
+
+  const overviewButtonStyle = css`
+    border: none;
+    font-size: x-large;
+    opacity: 50%;
+    background-color: whitesmoke;
+    :hover {
+      background-color: lightgray;
+      cursor: pointer;
+    }`;
+
+  const ExpandButton = styled.button`
+    ${overviewButtonStyle};
+    top: 0;
+    right: 0;
+    position: absolute;
+    visibility: ${isExpanded ? (isZoomed ? 'hidden' : 'visible') : 'hidden'};
+    `;
+
+  const RightArrowButton = styled.button`
+    ${overviewButtonStyle}
+    right: 0;
+    position: absolute;
+    visibility: ${styles && activeImage === styles[activeStyle].photos.length - 1 ? 'hidden' : 'visible'};
+    `;
+
+  const LeftArrowButton = styled.button`
+    ${overviewButtonStyle}
+    left: 0;
+    position: absolute;
+    visibility: ${activeImage === 0 ? 'hidden' : 'visible'};
+    `;
+
+  const UpArrowButton = styled.button`
+    ${overviewButtonStyle};
+    visibility: ${atTop ? 'hidden' : 'visible'};
+    `;
+
+  const DownArrowButton = styled.button`
+    ${overviewButtonStyle};
+    `;
+
+  const BigPictureDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: ${isExpanded ? '100%' : '70%'};
+    height: 100%;
+    position: relative;
+    flex-basis: 100%;
+    `;
+
+  function scrollDown(offset) {
+    imageGalleryRef.current.scrollTop += offset;
+    if (offset > 0) {
+      setAtTop(false);
+    }
+    if (offset < 0) {
+      if (imageGalleryRef.current.scrollTop + offset <= 0) {
+        setAtTop(true);
       }
     }
   }
 
-  const imageGalleryStyle = {
-    'object-fit': 'cover',
-    height: "calc(2vw + 2vh + 30px)",
-    width: "calc(2vw + 2vh + 30px)",
-    border: 'thin solid black',
-    margin: '5px',
-  };
+  function toggleZoomView() {
+    setIsZoomed(!isZoomed);
+    console.log(isZoomed);
+  }
 
-  const activeImageStyle = {
-    'object-fit': 'cover',
-    height: "calc(2vw + 2vh + 30px)",
-    width: "calc(2vw + 2vh + 30px)",
-    border: 'thick solid black',
-    margin: '5px',
-  };
-
-  const bigImageStyle = {
-    'max-height': '100%',
-    'max-width': '100%',
-  };
-
-  const imageGalleryDivStyle = {
-    display: 'grid',
-    'min-width': '110px',
-    overflow: 'clip auto',
-    'max-height': '100%',
-    'justify-items': 'center',
-  };
-
-  const ExpandButton = styled.button`
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: x-large;
-    opacity: 50%;
-    border: none;
-    &:hover {
-      background-color: lightgray;
-    }`;
-
-  const RightArrowButton = styled.button`
-    background-color: whitesmoke;
-    border: none;
-    font-size: x-large;
-    position: absolute;
-    right: 0;
-    opacity: 50%;
-    &:hover {
-      background-color: lightgray;
-    }`;
-
-  const LeftArrowButton = styled.button`
-    background-color: whitesmoke;
-    border: none;
-    font-size: x-large;
-    position: absolute;
-    left: 0;
-    opacity: 50%;
-    &:hover {
-      background-color: lightgray;
-    }`;
-
-  let index = -1;
-  return (
-    <>
-      <div style={imageGalleryDivStyle}>
-        {styles && styles[activeStyle].photos.map((photo) => {
-          index++
-          if (index === activeImage) {
-            return (
-              <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
-            );
-          }
+  function galleryGenerator() {
+    let index = -1;
+    return styles[activeStyle].photos.map((photo) => {
+      index++
+      if (isExpanded) {
+        if (index === activeImage) {
           return (
-            <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+            <p style={{ border: 'medium solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center' }} onClick={selectBigPicture} name={index}>🖼️</p>
           );
-        })}
+        }
+        return (
+          <p style={{ border: 'thin solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center' }} onClick={selectBigPicture} name={index}>🖼️</p>
+        );
+      } else {
+        if (index === activeImage) {
+          return (
+            <ActiveImageStyle onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+          );
+        }
+        return (
+          <ImageGalleryImage onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+        );
+      }
+    })
+  }
+
+  //let index = -1;
+  return (
+    <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
+      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center' }}>
+        <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
+        <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
+          {styles && galleryGenerator()}
+        </div>
+        <DownArrowButton onClick={() => scrollDown(50)}>⇩</DownArrowButton>
       </div>
-      <div style={bigPictureDivStyle}>
+      <BigPictureDiv>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
-        <img style={bigImageStyle} src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} alt="enlarged-style" />
-        <ExpandButton onClick={toggleExpandedView}>↔</ExpandButton>
+        <BigImage src={styles && (styles[activeStyle].photos[activeImage].url === null ? placeHolderImage : styles[activeStyle].photos[activeImage].url)} onClick={isExpanded ? toggleZoomView : toggleExpandedView} alt="enlarged-style" />
+        <ExpandButton onClick={toggleExpandedView}>✕</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
-      </div>
-    </>
+      </BigPictureDiv>
+    </div>
   );
 }
 

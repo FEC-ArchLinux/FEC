@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable object-shorthand */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/jsx-closing-tag-location */
@@ -18,16 +20,19 @@ import GH_TOKEN from '../../../../token.js';
 
 const Modal = styled.div`
   text-align: center;
-  background: white;
-  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border: 1px solid #979797;
   border-radius: 20px;
   position: fixed;
   z-index: 20;
-  background: #fff;
   width: 750px;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+`;
+const RadioText = styled.span`
+  font-size: 13px;
+  margin-right: 5px;
 `;
 
 function AddReview({ productId, setNewReview, metaTransfer }) {
@@ -75,6 +80,20 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
     }
     return true;
   }
+
+  function characteristicCreater() {
+    let charArray = Object.keys(metaTransfer.characteristics).map((item) => item.toLowerCase());
+    let charChart = {
+      size: 125052, width: 125053, comfort: 125033, fit: 125031, length: 125032, quality: 125034,
+    };
+    let resultObj = {};
+    for (let char of charArray) {
+      if (charChart[char]) {
+        resultObj[charChart[char]] = Number(eval(char));
+      }
+    }
+    return resultObj;
+  }
   function submitForm() {
     event.preventDefault();
     let validate = validateSubmit();
@@ -88,9 +107,8 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
         recommend: recommend,
         name: nickName,
         email: email,
-        photos: [''],
-        characteristics: {
-        },
+        photos: selectedImage.length > 0 ? selectedImage : [''],
+        characteristics: characteristicCreater(),
       });
 
       let config = {
@@ -111,97 +129,115 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
     }
   }
 
+  function cloudinaryLoad(image) {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "pmrrp4z4");
+    data.append("cloud_name", "dm84tjpoq");
+    fetch("https://api.cloudinary.com/v1_1/dm84tjpoq/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((response) => {
+        setSelectedImage(selectedImage.concat([response.url]));
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <Modal>
-      <form onSubmit={submitForm}>
-        <h3>Write Your Review</h3>
-        <p>About ** product name goes here ** </p>
-        <p><b>Overall Product Rating :</b></p>
-        <StarRatings rating={starRating} starRatedColor="blue" changeRating={setStarRating} numberOfStars={5} name="rating" starDimension="20px" />{starRater(starRating)}
-        <div onChange={recommendSetter} className="radio-btn">
-          <p><b>Do you recommend this product?</b></p>
-          <input type="radio" value="True" name="recommend" required /> Yes
-          <input type="radio" value="False" name="recommend" required /> No
-        </div>
-        <div>
-          <p><b>Characteristics: </b></p>
-          {metaTransfer.characteristics.Size ? <div onChange={(event) => setSize(event.target.value)}>
-            <aside>Size</aside>
-            <input type="radio" value="1" name="size" required /> A size too small
-            <input type="radio" value="2" name="size" required /> ½ a size too small
-            <input type="radio" value="3" name="size" required /> Perfect
-            <input type="radio" value="4" name="size" required /> ½ a size too big
-            <input type="radio" value="5" name="size" required /> A size too wide
-          </div> : null}
-          {metaTransfer.characteristics.Width ? <div onChange={(event) => setWidth(event.target.value)}>
-            <aside>Width</aside>
-            <input type="radio" value="1" name="width" required /> Too narrow
-            <input type="radio" value="2" name="width" required /> Slightly narrow
-            <input type="radio" value="3" name="width" required /> Perfect
-            <input type="radio" value="4" name="width" required /> Slightly wide
-            <input type="radio" value="5" name="width" required /> Too wide
-          </div> : null}
-          {metaTransfer.characteristics.Comfort ? <div onChange={(event) => setComfort(event.target.value)}>
-            <aside>Comfort</aside>
-            <input type="radio" value="1" name="comfort" required /> Uncomfortable
-            <input type="radio" value="2" name="comfort" /> Slightly uncomfortable
-            <input type="radio" value="3" name="comfort" /> Ok
-            <input type="radio" value="4" name="comfort" /> Comfortable
-            <input type="radio" value="5" name="comfort" /> Perfect
-          </div> : null}
-          {metaTransfer.characteristics.Quality ? <div onChange={(event) => setQuality(event.target.value)}>
-            <aside>Quality</aside>
-            <input type="radio" value="1" name="quality" required /> Poor
-            <input type="radio" value="2" name="quality" /> Below average
-            <input type="radio" value="3" name="quality" /> What I expected
-            <input type="radio" value="4" name="quality" /> Pretty great
-            <input type="radio" value="5" name="quality" /> Perfect
-          </div> : null}
-          {metaTransfer.characteristics.Length ? <div onChange={(event) => setLength(event.target.value)}>
-            <aside>Length</aside>
-            <input type="radio" value="1" name="length" required /> Runs Short
-            <input type="radio" value="2" name="length" /> Runs slightly short
-            <input type="radio" value="3" name="length" /> Perfect
-            <input type="radio" value="4" name="length" /> Runs slightly long
-            <input type="radio" value="5" name="length" /> Runs long
-          </div> : null}
-          {metaTransfer.characteristics.Fit ? <div onChange={(event) => setFit(event.target.value)}>
-            <aside>Fit</aside>
-            <input type="radio" value="1" name="fit" required /> Runs tight
-            <input type="radio" value="2" name="fit" /> Runs slightly tight
-            <input type="radio" value="3" name="fit" /> Perfect
-            <input type="radio" value="4" name="fit" /> Runs slightly tight
-            <input type="radio" value="5" name="fit" /> Runs tight
-          </div> : null}
-        </div>
-        <label htmlFor="summary"><b>Summary: </b></label>
-        <input onChange={(event) => setSummary(event.target.value)} size="60" maxLength="60" name="summary" placeholder="Example: Best Purchase Ever" /><br />
-        <label htmlFor="body"><b>Review: </b></label>
-        <textarea rows="4" cols="70" onChange={(event) => setBody(event.target.value)} size="100" maxLength="1000" name="body" placeholder="“Why did you like the product or not?”" minLength="50" required />
-        <aside>Minimum required characters left: { body.length < 50 ? 50 - body.length : 'Minimum Reached'}</aside>
-        <div>
-          <label htmlFor="myImage"><b>{selectedImage.length < 5 ? "Select Image:" : "Max Images Selected"} </b></label>
-          {selectedImage.length < 5 ? <input type="file" name="myImage" onChange={(event) => { setSelectedImage(selectedImage.concat([URL.createObjectURL(event.target.files[0])])); }} /> : null}
-          {selectedImage.length > 0 ? selectedImage.map((image) => <img alt="not fount" width="50px" height="50px" src={image} />) : null}
-        </div>
-        <div>
-          <label htmlFor="nickname"><b>What is your nickname: </b></label>
-          <input onChange={(event) => setNickName(event.target.value)} size="60" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
-          <aside>For privacy reasons, do not use your full name or email address</aside>
-        </div>
-        <div>
-          <label htmlFor="email"><b>What is your email: </b></label>
-          <input type="email" onChange={(event) => setEmail(event.target.value)} size="60" maxLength="60" name="email" placeholder="Example: jackson11@email.com" required /><br />
-          <aside>For authentication reasons, you will not be emailed</aside>
-        </div>
-        <button type="submit">Submit Review</button>
-        <button onClick={(event) => setNewReview(false)} type="button">Exit</button>
-      </form>
+      <div style={{ height: "630px", overflowY: "auto" }}>
+        <form onSubmit={submitForm}>
+          <h3 style={{ marginLeft: "-529px" }}><i>Write Your Review</i></h3>
+          <button style={{ marginTop: "-55px", float: "right" }} onClick={(event) => setNewReview(false)} type="button">x</button>
+          <p>About ** product name goes here ** </p>
+          <p><b>Overall Product Rating :</b></p>
+          <StarRatings rating={starRating} starRatedColor="blue" changeRating={setStarRating} numberOfStars={5} name="rating" starDimension="20px" />{starRater(starRating)}
+          <div onChange={recommendSetter}>
+            <p><b>Do you recommend this product?</b></p>
+            <input type="radio" value="True" name="recommend" required /> Yes
+            <input type="radio" value="False" name="recommend" required /> No
+          </div>
+          <div>
+            <p><b>Characteristics: </b></p>
+            {metaTransfer.characteristics.Size ? <div onChange={(event) => setSize(event.target.value)}>
+              <aside style={{ marginBottom: "6px" }}><i>Size</i></aside>
+              <input type="radio" value="1" name="size" required /><RadioText>A size too small</RadioText>
+              <input type="radio" value="2" name="size" required /><RadioText>½ a size too small</RadioText>
+              <input type="radio" value="3" name="size" required /><RadioText>Perfect</RadioText>
+              <input type="radio" value="4" name="size" required /><RadioText>½ a size too big</RadioText>
+              <input type="radio" value="5" name="size" required /><RadioText>A size too wide</RadioText>
+            </div> : null}
+            {metaTransfer.characteristics.Width ? <div onChange={(event) => setWidth(event.target.value)}>
+              <aside style={{ marginTop: "8px", marginBottom: "6px" }}><i>Width</i></aside>
+              <input type="radio" value="1" name="width" required /><RadioText>Too narrow</RadioText>
+              <input type="radio" value="2" name="width" required /><RadioText>Slightly narrow</RadioText>
+              <input type="radio" value="3" name="width" required /><RadioText>Perfect</RadioText>
+              <input type="radio" value="4" name="width" required /><RadioText>Slightly wide</RadioText>
+              <input type="radio" value="5" name="width" required /><RadioText>Too wide</RadioText>
+            </div> : null}
+            {metaTransfer.characteristics.Comfort ? <div onChange={(event) => setComfort(event.target.value)}>
+              <aside style={{ marginTop: "8px", marginBottom: "6px" }}><i>Comfort</i></aside>
+              <input type="radio" value="1" name="comfort" required /><RadioText>Uncomfortable</RadioText>
+              <input type="radio" value="2" name="comfort" /><RadioText>Slightly uncomfortable</RadioText>
+              <input type="radio" value="3" name="comfort" /><RadioText>Ok</RadioText>
+              <input type="radio" value="4" name="comfort" /><RadioText>Comfortable</RadioText>
+              <input type="radio" value="5" name="comfort" /><RadioText>Perfect</RadioText>
+            </div> : null}
+            {metaTransfer.characteristics.Quality ? <div onChange={(event) => setQuality(event.target.value)}>
+              <aside style={{ marginTop: "8px", marginBottom: "6px" }}><i>Quality</i></aside>
+              <input type="radio" value="1" name="quality" required /><RadioText>Poor</RadioText>
+              <input type="radio" value="2" name="quality" /><RadioText>Below average</RadioText>
+              <input type="radio" value="3" name="quality" /><RadioText>What I expected</RadioText>
+              <input type="radio" value="4" name="quality" /><RadioText>Pretty great</RadioText>
+              <input type="radio" value="5" name="quality" /><RadioText>Perfect</RadioText>
+            </div> : null}
+            {metaTransfer.characteristics.Length ? <div onChange={(event) => setLength(event.target.value)}>
+              <aside style={{ marginTop: "8px", marginBottom: "6px" }}><i>Length</i></aside>
+              <input type="radio" value="1" name="length" required /><RadioText>Runs Short</RadioText>
+              <input type="radio" value="2" name="length" /><RadioText>Runs slightly short</RadioText>
+              <input type="radio" value="3" name="length" /><RadioText>Perfect</RadioText>
+              <input type="radio" value="4" name="length" /><RadioText>Runs slightly long</RadioText>
+              <input type="radio" value="5" name="length" /><RadioText>Runs long</RadioText>
+            </div> : null}
+            {metaTransfer.characteristics.Fit ? <div onChange={(event) => setFit(event.target.value)}>
+              <aside style={{ marginTop: "8px", marginBottom: "6px" }}><i>Fit</i></aside>
+              <input type="radio" value="1" name="fit" required /><RadioText>Runs tight</RadioText>
+              <input type="radio" value="2" name="fit" /><RadioText>Runs slightly tight</RadioText>
+              <input type="radio" value="3" name="fit" /><RadioText>Perfect</RadioText>
+              <input type="radio" value="4" name="fit" /><RadioText>Runs slightly tight</RadioText>
+              <input type="radio" value="5" name="fit" /><RadioText>Runs tight</RadioText>
+            </div> : null}
+          </div>
+          <div style={{ marginTop: "35px", marginBottom: "15px", marginLeft: "-63px" }}>
+            <label htmlFor="summary"><b>Summary: </b></label>
+            <input onChange={(event) => setSummary(event.target.value)} size="60" maxLength="60" name="summary" placeholder="Example: Best Purchase Ever" /><br />
+          </div>
+          <label htmlFor="body"><b>Review: </b></label>
+          <textarea rows="4" cols="70" onChange={(event) => setBody(event.target.value)} size="100" maxLength="1000" name="body" placeholder="“Why did you like the product or not?”" minLength="50" required />
+          <aside style={{ fontSize: "12px", marginLeft: "379px", marginBottom: "15px" }}><i>Minimum required characters left:</i> { body.length < 50 ? 50 - body.length : 'Minimum Reached'}</aside>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="myImage"><b>{selectedImage.length < 5 ? "Select Image:" : "Max Images Selected"} </b></label>
+            {selectedImage.length < 5 ? <input type="file" name="myImage" onChange={(event) => { cloudinaryLoad(event.target.files[0]); }} /> : null}
+            {selectedImage.length > 0 ? selectedImage.map((image, index) => <img key={index} alt="not found" width="50px" height="50px" src={image} />) : null}
+          </div>
+          <div style={{ marginLeft: "-171px" }}>
+            <label htmlFor="nickname"><b>What is your nickname: </b></label>
+            <input onChange={(event) => setNickName(event.target.value)} size="30" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
+            <aside style={{ fontSize: "12px", marginLeft: "69px", marginBottom: "15px" }}><i>For privacy reasons, do not use your full name or email address</i></aside>
+          </div>
+          <div style={{ marginLeft: "-201px" }}>
+            <label htmlFor="email"><b>What is your email: </b></label>
+            <input type="email" onChange={(event) => setEmail(event.target.value)} size="30" maxLength="60" name="email" placeholder="Example: jackson11@email.com" required /><br />
+            <aside style={{ fontSize: "12px", marginLeft: "101px", marginBottom: "15px" }}><i>For authentication reasons, you will not be emailed</i></aside>
+          </div>
+          <button type="submit">Submit Review</button>
+          <button onClick={(event) => setNewReview(false)} type="button">Exit</button>
+        </form>
+      </div>
     </Modal>
   );
 }
 
 export default AddReview;
-
-// 125052: size, 125053: width,
-// 125033: comfort, 125031: fit, 125032: length, 125034: quality,

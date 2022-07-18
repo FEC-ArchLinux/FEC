@@ -9,7 +9,7 @@ import RelatedItems from './Relateditems/relateditems.jsx';
 
 function RelatedItemsAndComparison(props) {
   const [relatedItems, changeRelatedItems] = useState([]);
-  const [outfitList, changeOutfitList] = useState([]);
+  // const [outfitList, setOutfitList] = useState([]);
 
   function getRelatedItems() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${props.productId}/related`, {
@@ -28,8 +28,15 @@ function RelatedItemsAndComparison(props) {
   return (
     <div>
       <h3>RELATED PRODUCTS</h3>
-      <RelatedItems relatedItems={relatedItems} mainProduct={props.productId} setProductId={props.setProductId} />
-      <Outfit />
+      <RelatedItems relatedItems={relatedItems} mainProduct={props.productId} setProductId={props.setProductId} placeHolderImage={props.placeHolderImage} />
+      <h3>YOUR OUTFIT</h3>
+      <Outfit
+        mainProduct={props.productId}
+        placeHolderImage={props.placeHolderImage}
+        // outfitList={outfitList}
+        // handleAddOutfit={handleAddOutfit}
+        // handleRemove={handleRemove}
+         />
     </div>
   );
 }

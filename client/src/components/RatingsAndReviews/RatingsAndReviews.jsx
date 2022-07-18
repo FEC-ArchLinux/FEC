@@ -31,7 +31,7 @@ function RatingsAndReviews({ productId }) {
   let [star, setStar] = useState([]);
   let [metaTransfer, setMetaTransfer] = useState([]);
   return (
-    <TopContainer>
+    <TopContainer id="review-section">
       <MainHeader> Ratings and Reviews </MainHeader>
       <MainFlex>
         <StyledRatingBreakdown setMetaTransfer={setMetaTransfer} setStar={setStar} star={star} productId={productId} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
+import styled from 'styled-components';
 import GH_TOKEN from '../../../../token.js';
 
 function ProductDetails({ productInfo, styles, activeStyle, productId }) {
@@ -44,20 +45,29 @@ function ProductDetails({ productInfo, styles, activeStyle, productId }) {
     if (styles[activeStyle].sale_price) {
       return (
         <>
-          <p style={{ margin: 0 }}>Original Price: $<s>{styles[activeStyle].original_price}</s></p>
-          <p style={{ margin: 0 }}>Sale Price: ${styles[activeStyle].sale_price}</p>
+          <p style={{ margin: 0 }}>$<s>{styles[activeStyle].original_price}</s></p>
+          <p style={{ margin: 0, color: 'red' }}>${styles[activeStyle].sale_price}</p>
         </>
       );
     }
-    return <p style={{ margin: 0 }}>Price: ${styles[activeStyle].original_price}</p>;
+    return <p style={{ margin: 0 }}>${styles[activeStyle].original_price}</p>;
   }
+
+  const ReviewSpan = styled.span`
+    text-decoration: underline;
+    :hover {
+      cursor: pointer;
+    }
+  `;
+
   return (
     <div>
       <StarRatings isSelectable="false" starRatedColor="black" numberOfStars={5} starSpacing="2px" starDimension="calc(.3vw + .3vh + 7px)" rating={starRating ? Math.round(starRating * 100) / 100 : 0} />
-      <p style={{ margin: 0 }}>See all {starRating && totalReviews} reviews.</p>
+      <br />
+      <ReviewSpan onClick={() => document.getElementById("review-section").scrollIntoView({ behavior: 'smooth' })}>See all {starRating && totalReviews} reviews</ReviewSpan>
       <p style={{ 'margin-bottom': 0 }}>{productInfo.category}</p>
-      <h2 style={{ 'margin-top': 0 , 'margin-bottom': '2px'}}>{productInfo.name}</h2>
-      <div style={{height: "calc(2vh + 1vw)"}}>
+      <h2 style={{ 'margin-top': 0, 'margin-bottom': '2px' }}>{productInfo.name}</h2>
+      <div style={{ height: "calc(2vh + 1vw)" }}>
         {productInfo && styles && priceGenerator()}
       </div>
     </div>

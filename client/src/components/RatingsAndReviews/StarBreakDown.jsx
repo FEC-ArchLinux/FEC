@@ -16,7 +16,7 @@ let StarParent = styled.div`
 `;
 
 let StyledMeter = styled.meter`
-  width: 185px;
+  width: 198px;
   height: 17px;
 `;
 

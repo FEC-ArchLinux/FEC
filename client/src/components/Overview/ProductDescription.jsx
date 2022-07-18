@@ -14,9 +14,9 @@ function ProductDescription({ productInfo }) {
         <h3>{productInfo.slogan}</h3>
         <p>{productInfo.description}</p>
       </div>
-        <ul style={{ 'border-left': '2px solid', 'padding-left': '15px', 'list-style-type': 'none' }}>
-          {productInfo.features && productInfo.features.map((feature) => <li>✓ {feature.feature}: {feature.value}</li>)}
-        </ul>
+      <ul style={{ 'border-left': '2px solid', 'padding-left': '15px', 'list-style-type': 'none' }}>
+        {productInfo.features && productInfo.features.map((feature) => <li>✓ {feature.feature}: {feature.value}</li>)}
+      </ul>
     </div>
   );
 }
