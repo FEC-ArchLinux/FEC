@@ -14,9 +14,7 @@ function AnswerListEntry({ answerData }) {
     <ul style={{ paddingInlineStart: '0' }}>
       <div>
         <b style={inline}>A:</b>
-        {/* <span> */}
           {answerBody}
-        {/* </span> */}
       </div>
       <span>
         {!answerData.photos.length ? <AnswerInfo answerData={answerData} /> : null}
