@@ -7,7 +7,7 @@ import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
 import ProductDescription from './ProductDescription.jsx';
 
-function Overview({ productId, placeHolderImage }) {
+function Overview({ productId, placeHolderImage, clickTracker }) {
   const [productInfo, setProductInfo] = useState([]);
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
@@ -56,6 +56,10 @@ function Overview({ productId, placeHolderImage }) {
     getProductStyleInfo();
   }, [productId]);
 
+  function getClicked(e) {
+    clickTracker(e, 'Overview');
+  }
+
   const imageGalleryDivStyle = {
     display: 'flex',
     'justify-content': 'space-between',
@@ -78,7 +82,7 @@ function Overview({ productId, placeHolderImage }) {
   }
 
   return (
-    <>
+    <div onClick={getClicked}>
       <div style={imageGalleryDivStyle}>
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} isExpanded={isExpanded} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
@@ -88,7 +92,7 @@ function Overview({ productId, placeHolderImage }) {
         </div>
       </div>
       <ProductDescription productInfo={productInfo} />
-    </>
+    </div>
   );
 }
 
