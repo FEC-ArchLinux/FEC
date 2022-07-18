@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Question from "./Question.jsx";
 import AnswerList from "./AnswerList.jsx";
@@ -9,7 +11,7 @@ const textPad = {
 };
 
 function QuestionListEntry({ question }) {
-  const answerList = question.answers
+  const answerList = question.answers;
   const questionHelpfulness = question.question_helpfulness;
   const questionBody = question.question_body;
 

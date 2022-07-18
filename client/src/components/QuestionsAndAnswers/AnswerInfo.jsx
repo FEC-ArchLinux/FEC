@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import HelpfulButton from "./HelpfulButton.jsx";
 import ReportAnswerButton from "./ReportAnswerButton.jsx";
@@ -8,7 +10,7 @@ const inline = {
   fontSize: '.7em',
 };
 
-function AnswerInfo({answerData}) {
+function AnswerInfo({ answerData }) {
   const userName = answerData.answerer_name;
   const date = new Date(answerData.date).toDateString();
   const { helpfulness } = answerData;

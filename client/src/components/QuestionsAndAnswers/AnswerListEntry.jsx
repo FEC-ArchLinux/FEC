@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import AnswerInfo from "./AnswerInfo.jsx";
 import AnswerPictureListComponent from "./AnswerPictureListComponent.jsx";
@@ -14,7 +16,7 @@ function AnswerListEntry({ answerData }) {
     <ul style={{ paddingInlineStart: '0' }}>
       <div>
         <b style={inline}>A:</b>
-          {answerBody}
+        {answerBody}
       </div>
       <span>
         {!answerData.photos.length ? <AnswerInfo answerData={answerData} /> : null}

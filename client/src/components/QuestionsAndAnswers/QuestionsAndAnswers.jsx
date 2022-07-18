@@ -1,5 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import QuestionsSearch from "./QuestionsSearch.jsx";
