@@ -101,14 +101,16 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
     Promise.all(promiseArray.map(promise => promise()
       .catch(err => console.error(err))))
 
-      .then(() => {alert(`${quantityDropdownRef.current.value} of item ${sizeDropdownRef.current.value} added to your cart.`)
-                  setSelectedSize('Select Size');
-                  sizeDropdownRef.current !== undefined ? sizeDropdownRef.current.options.selectedIndex = 0 : null;})
+      .then(() => {
+        alert(`${quantityDropdownRef.current.value} of item ${sizeDropdownRef.current.value} added to your cart.`)
+        setSelectedSize('Select Size');
+        sizeDropdownRef.current.options.selectedIndex = 0;
+      })
       .catch(err => console.error(err));
   }
 
   function share() {
-    console.log('Shared');
+    console.log('Share clicked');
   }
 
   const DropDown = styled.select`
