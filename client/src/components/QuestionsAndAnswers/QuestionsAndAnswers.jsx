@@ -25,7 +25,7 @@ function QuestionsAndAnswers({ productId }) {
   const [questionsData, setQuestionData] = useState([]);
   const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(1);
 
-  function getQuestionsAndAnswers() {
+  function getQuestionsAndAnswers(productId) {
     axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${productId}`,
       {
@@ -38,8 +38,8 @@ function QuestionsAndAnswers({ productId }) {
       .catch((err) => console.error(err));
   }
   useEffect(() => {
-    getQuestionsAndAnswers();
-  }, []);
+    getQuestionsAndAnswers(productId);
+  }, [productId]);
 
   return (
     <TopContainer>
