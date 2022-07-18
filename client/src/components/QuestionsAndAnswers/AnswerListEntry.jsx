@@ -3,9 +3,9 @@ import AnswerInfo from "./AnswerInfo.jsx";
 import AnswerPictureListComponent from "./AnswerPictureListComponent.jsx";
 
 const inline = {
-  display: "inline-flex",
+  // display: "inline-flex",
   padding: '0 10px 0',
-  fontSize: '1em',
+  // fontSize: '1em',
 };
 
 function AnswerListEntry({ answerData }) {
@@ -14,7 +14,9 @@ function AnswerListEntry({ answerData }) {
     <ul style={{ 'padding-inline-start': '0' }}>
       <div>
         <b style={inline}>A:</b>
-        <span>{answerBody}</span>
+        {/* <span> */}
+          {answerBody}
+        {/* </span> */}
       </div>
       <span>
         {!answerData.photos.length ? <AnswerInfo answerData={answerData} /> : null}

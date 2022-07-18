@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddAQuestionModal from "./AddAQuestionModal.jsx";
 
 const boxButtonStyle = {
   margin: "0 1vw 1vw 0",
@@ -13,12 +14,22 @@ const boxButtonStyle = {
 
 function AddAQuestion() {
   const [showAddAQuestionModal, setShowAddAQuestionModal] = useState(false);
+  if (showAddAQuestionModal) {
+    return (
+      <AddAQuestionModal
+        AddAQuestionModal={AddAQuestionModal}
+        setShowAddAQuestionModal={setShowAddAQuestionModal}
+      />
+    );
+  }
   return (
     <button
       type="button"
       style={boxButtonStyle}
-      onClick={() => setShowAddAQuestionModal(!showAddAQuestionModal)}
-    >ADD A QUESTION ➕</button>
+      onClick={() => setShowAddAQuestionModal(true)}
+    >
+      ADD A QUESTION ➕
+    </button>
   );
 }
 

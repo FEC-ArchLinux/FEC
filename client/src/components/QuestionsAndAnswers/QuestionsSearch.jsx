@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const questionSearchStyle = {
   border: "solid",
+  maxWidth: "860px",
   borderWidth: "thin",
   width: "60vw",
   height: "40px",
@@ -22,6 +23,7 @@ const buttonStyle = {
 
 const inputStyle = {
   width: "55vw",
+  maxWidth: "860px",
   height: "40px",
   fontSize: "large",
   fontStyle: "bold",
@@ -30,7 +32,6 @@ const inputStyle = {
 };
 
 function QuestionsSearch() {
-
   const [questionSearchValue, setQuestionSearchValue] = useState('');
   return (
     <div style={questionSearchStyle}>

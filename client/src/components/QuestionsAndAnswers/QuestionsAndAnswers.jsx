@@ -14,6 +14,7 @@ const inline = {
 
 const MainFlex = styled.div`
   margin: auto;
+  justifyContent: center
 `;
 
 const TopContainer = styled.div`
@@ -25,6 +26,7 @@ const TopContainer = styled.div`
 
 function QuestionsAndAnswers({ productId }) {
   const [questionsData, setQuestionData] = useState([]);
+  const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(1);
 
   function getQuestionsAndAnswers() {
     axios.get(
@@ -41,14 +43,22 @@ function QuestionsAndAnswers({ productId }) {
   useEffect(() => {
     getQuestionsAndAnswers();
   }, []);
+
   return (
     <TopContainer>
       <MainFlex>
         <h3>{`QUESTIONS ${'&'} ANSWERS`}</h3>
         <QuestionsSearch productId={productId} />
-        <QuestionsList questionsData={questionsData} />
+        <QuestionsList
+          questionsData={questionsData}
+          moreAnsweredQuestions={moreAnsweredQuestions}
+        />
         <span style={inline}>
-          <MoreAnsweredQuestions onClick={() => null}/>
+          <MoreAnsweredQuestions
+            setMoreAnsweredQuestions={setMoreAnsweredQuestions}
+            moreAnsweredQuestions={moreAnsweredQuestions}
+            questionsData={questionsData}
+          />
           <AddAQuestion />
         </span>
       </MainFlex>
