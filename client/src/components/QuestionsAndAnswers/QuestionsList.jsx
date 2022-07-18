@@ -4,7 +4,7 @@
 import React, { useEffect } from "react";
 import QuestionListEntry from "./QuestionListEntry.jsx";
 
-function QuestionsList({ questionsData, moreAnsweredQuestions }) {
+function QuestionsList({ questionsData = {}, moreAnsweredQuestions }) {
   const limit = limit || 4;
 
   const listOverflow = {
@@ -19,7 +19,7 @@ function QuestionsList({ questionsData, moreAnsweredQuestions }) {
       id="QuestionList"
       style={listOverflow}
     >
-      {questionsData
+      {questionsData && questionsData
         .sort((b, a) => a.question_helpfulness - b.question_helpfulness)
         .map((question, index) => {
           if (index <= limit) {

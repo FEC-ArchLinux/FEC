@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useState, useRef } from "react";
 
 const questionSearchStyle = {
   border: "solid",
@@ -30,7 +32,7 @@ const inputStyle = {
   padding: "0vw 1vw",
   borderWidth: "0em",
 };
-
+// useRef hook
 function QuestionsSearch() {
   const [questionSearchValue, setQuestionSearchValue] = useState('');
   return (

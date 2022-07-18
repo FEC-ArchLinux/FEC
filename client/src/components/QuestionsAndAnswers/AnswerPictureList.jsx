@@ -5,14 +5,14 @@ import AnswerPictureListEntry from "./AnswerPictureListEntry.jsx";
 
 function AnswerPictureList({ answerPictureList }) {
   return (
-    <>
-      {answerPictureList.map((picture, index) => (
+    <div>
+      {answerPictureList && answerPictureList.map((picture, index) => (
         <AnswerPictureListEntry
           key={picture}
           picture={picture}
         />
       ))}
-    </>
+    </div>
   );
 }
 

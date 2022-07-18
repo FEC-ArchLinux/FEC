@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from "react";
 
 const questionModal = {
@@ -61,7 +59,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal }) 
               />
               <div>
                 <small>
-                  For for authentication reasons, you will not be emailed
+                  For authentication reasons, you will not be emailed
                 </small>
               </div>
             </label>
