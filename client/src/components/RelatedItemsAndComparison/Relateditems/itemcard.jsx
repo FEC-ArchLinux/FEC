@@ -93,7 +93,7 @@ function ItemCard(props) {
     return (
       <CardContainer>
         <ImgWrapper>
-          {item.photos[0].thumbnail_url ? <img height="250vh" width="100%" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src={props.placeholderImage} height="250vh" width="100%" onClick={() => { props.setProductId(props.item); }} />}
+          {item.photos[0].thumbnail_url ? <img height="300rem" width="100%" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src={props.placeholderImage} height="300rem" width="100%" onClick={() => { props.setProductId(props.item); }} />}
           <CompareButton onClick={() => { changeOpenModal(true) }}><FaRegStar /></CompareButton>
         </ImgWrapper>
         <CardContent data-testid="productCategory">{product.category}</CardContent>
@@ -110,7 +110,7 @@ function ItemCard(props) {
 const CardContainer = styled.div`
 position: relative;
 height: 100%;
-width: 10vw;
+width: 20rem;
 flex-shrink: 0;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);

@@ -48,7 +48,7 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
         <ButtonContainer>
           <AiOutlinePlus />
         </ButtonContainer></ButtonWrapper>
-      {outfitList.map((item) => {
+      {outfitList && outfitList.map((item) => {
         return (
           <div>
             <OutfitCard
@@ -67,7 +67,7 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
 const ButtonWrapper = styled.span`
 position: relative;
 height: 100%;
-width: 10vw;
+width: 20rem;
 flex-shrink: 0;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);

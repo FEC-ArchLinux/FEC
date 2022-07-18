@@ -44,7 +44,7 @@ function Outfit({ mainProduct, placeHolderImage, outfitList, handleAddOutfit, ha
 const OutWrapper = styled.div`
 display: flex;
 flex-direction: row;
-height: 40vh;
+height: 23rem;
 width: 100%;
 position: relative;
 `;
@@ -61,7 +61,7 @@ scroll-behavior: smooth;
 
 const LeftButton = styled.button`
 position: sticky;
-font-size: 40px;
+font-size: 3rem;
 background: none;
 border: none;
 color: grey;
@@ -75,7 +75,7 @@ z-index: 10;
 `
 const RightButton = styled.button`
 position: sticky;
-font-size: 40px;
+font-size: 3rem;
 background: none;
 border: none;
 color: grey;
