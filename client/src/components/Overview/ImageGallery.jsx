@@ -15,7 +15,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   }));
 
   function selectBigPicture(e) {
-    setActiveImage(Number(e.target.name));
+    setActiveImage(Number(e.target.getAttribute('name')));
   }
 
   function changeBigPicture(e) {
@@ -25,6 +25,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
           break;
         }
         setActiveImage(activeImage - 1);
+        const imageHeight = document.getElementsByName(activeImage)[0].height;
+        if (((imageHeight + 7) * (activeImage) - (imageHeight + 7)) <= 0) {
+          setAtTop(true);
+        }
+        imageGalleryRef.current.scrollTo(0, ((imageHeight + 7) * activeImage - (imageHeight + 7)));
         break;
       }
       case "increment": {
@@ -32,6 +37,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
           break;
         }
         setActiveImage(activeImage + 1);
+        const imageHeight = document.getElementsByName(activeImage)[0].height;
+        if (imageGalleryRef.current.scrollTop > 0) {
+          setAtTop(false);
+        }
+        imageGalleryRef.current.scrollTo(0, ((imageHeight + 7) * (activeImage + 1) - (imageHeight + 7)));
         break;
       }
       default:
@@ -39,21 +49,25 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     }
   }
 
-  const imageGalleryStyle = {
-    'object-fit': 'cover',
-    height: "calc(2vw + 2vh + 30px)",
-    width: "calc(2vw + 2vh + 30px)",
-    border: 'thin solid black',
-    margin: '5px',
-  };
+  const imageGalleryImgStyle = css`
+    object-fit: cover;
+    height: 60px;
+    aspect-ratio: 1/1;
+    margin: 5px;
+    :hover {
+      cursor: pointer;
+    }
+  `;
 
-  const activeImageStyle = {
-    'object-fit': 'cover',
-    height: "calc(2vw + 2vh + 30px)",
-    width: "calc(2vw + 2vh + 30px)",
-    border: 'thick solid black',
-    margin: '5px',
-  };
+  const ImageGalleryImage = styled.img`
+    ${imageGalleryImgStyle};
+    border: thin solid black;
+  `;
+
+  const ActiveImageStyle = styled.img`
+    ${imageGalleryImgStyle};
+    border: thick solid black;
+  `;
 
   const BigImage = styled.img`
     max-height: 100%;
@@ -65,11 +79,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const imageGalleryDivStyle = {
     display: 'grid',
-    'min-width': '110px',
+    'flex-direction': 'column',
     overflow: 'clip hidden',
-    'max-height': '100%',
     'justify-items': 'center',
     'scroll-behavior': 'smooth',
+    'max-height': "80%",
   };
 
   const overviewButtonStyle = css`
@@ -140,23 +154,39 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     console.log(isZoomed);
   }
 
-  let index = -1;
+  function galleryGenerator() {
+    let index = -1;
+    return styles[activeStyle].photos.map((photo) => {
+      index++
+      if (isExpanded) {
+        if (index === activeImage) {
+          return (
+            <p style={{ border: 'medium solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center' }} onClick={selectBigPicture} name={index}>🖼️</p>
+          );
+        }
+        return (
+          <p style={{ border: 'thin solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center' }} onClick={selectBigPicture} name={index}>🖼️</p>
+        );
+      } else {
+        if (index === activeImage) {
+          return (
+            <ActiveImageStyle onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+          );
+        }
+        return (
+          <ImageGalleryImage onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+        );
+      }
+    })
+  }
+
+  //let index = -1;
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
-      <div style={{ height: '70%', display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
+      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center' }}>
         <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
-          {styles && styles[activeStyle].photos.map((photo) => {
-            index++
-            if (index === activeImage) {
-              return (
-                <img style={activeImageStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
-              );
-            }
-            return (
-              <img style={imageGalleryStyle} onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
-            );
-          })}
+          {styles && galleryGenerator()}
         </div>
         <DownArrowButton onClick={() => scrollDown(50)}>⇩</DownArrowButton>
       </div>

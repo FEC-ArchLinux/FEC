@@ -12,6 +12,7 @@ function Overview({ productId, placeHolderImage }) {
   const [productStyleInfo, setProductStyleInfo] = useState([]);
   const [activeStyle, setActiveStyle] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [outOfStock, setOutOfStock] = useState(false);
 
   const imageGalleryRef = useRef();
   const purchaseOptionsRef = useRef();
@@ -23,6 +24,7 @@ function Overview({ productId, placeHolderImage }) {
     // reset selected size option
     purchaseOptionsRef.current.resetSelectedSize();
     setActiveStyle(Number(e.target.id));
+    //setOutOfStock(false);
   }
 
   function getProductInfo() {
@@ -49,6 +51,7 @@ function Overview({ productId, placeHolderImage }) {
     imageGalleryRef.current.selectBigPicture();
     purchaseOptionsRef.current.resetSelectedSize();
     setActiveStyle(0);
+    //setOutOfStock(false);
     getProductInfo();
     getProductStyleInfo();
   }, [productId]);
@@ -64,6 +67,7 @@ function Overview({ productId, placeHolderImage }) {
   const productDetailsStyle = {
     display: (isExpanded ? 'none' : 'flex'),
     'max-width': '340px',
+    width: '30%',
     'flex-direction': 'column',
     'max-height': '100%',
     'font-size': "calc(1.5vh + 2pt)",
@@ -79,8 +83,8 @@ function Overview({ productId, placeHolderImage }) {
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} isExpanded={isExpanded} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
-          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage}/>
-          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} />
+          <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage} />
+          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} outOfStock={outOfStock} setOutOfStock={setOutOfStock} />
         </div>
       </div>
       <ProductDescription productInfo={productInfo} />
