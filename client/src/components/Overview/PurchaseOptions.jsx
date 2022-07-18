@@ -86,6 +86,7 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
     border-color: black;
     padding: calc(.3vh + 2px);
     margin: calc(.3vh + 2px);
+    cursor: pointer;
     `;
 
   const AddButton = styled.button`
@@ -95,9 +96,9 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
     padding: calc(.3vh + 2px);
     margin: calc(.3vh + 2px);
     background-color: white;
+    cursor: pointer;
     :hover {
       background-color: lightgrey;
-      cursor: pointer;
     }
     `;
 
@@ -108,6 +109,7 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
     margin: "calc(.3vh + 2px)",
     'background-color': 'white',
     'font-size': "calc(2vh + 1pt)",
+    cursor: 'pointer',
   };
 
   return (
