@@ -1,10 +1,17 @@
 import React from "react";
 
-function AnswerPictureListEntry() {
+function AnswerPictureListEntry({ picture }) {
+  const answerImage = {
+    height: '90px',
+    width: '90px',
+    padding: '10px',
+  };
   return (
-    <>
-      <img></img>
-    </>
+    <img
+      src={picture}
+      alt=""
+      style={answerImage}
+    />
   );
 }
 

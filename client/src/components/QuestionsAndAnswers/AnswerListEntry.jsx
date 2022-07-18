@@ -1,19 +1,28 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import AnswerInfo from "./AnswerInfo.jsx";
 import AnswerPictureListComponent from "./AnswerPictureListComponent.jsx";
 
-function AnswerListEntry() {
+const inline = {
+  // display: "inline-flex",
+  padding: '0 10px 0',
+  // fontSize: '1em',
+};
+
+function AnswerListEntry({ answerData }) {
+  const answerBody = answerData.body;
   return (
-    <>
+    <ul style={{ paddingInlineStart: '0' }}>
       <div>
-        <b>A: </b>
-        Answer here
+        <b style={inline}>A:</b>
+        {answerBody}
       </div>
       <span>
-        <AnswerInfo />
-        <AnswerPictureListComponent />
+        {!answerData.photos.length ? <AnswerInfo answerData={answerData} /> : null}
+        <AnswerPictureListComponent answerData={answerData} />
       </span>
-    </>
+    </ul>
   );
 }
 
