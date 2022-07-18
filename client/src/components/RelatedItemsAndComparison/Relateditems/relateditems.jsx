@@ -5,51 +5,56 @@ import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import ItemCard from "./itemcard.jsx";
 
 
-function RelatedItems({ relatedItems, mainProduct, setProductId }) {
+function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImage }) {
 
-    const [imagesToLeft, setImagesToLeft] = useState(false);
+  const [imagesToLeft, setImagesToLeft] = useState(false);
+  const [imagesToRight, setImagesToRight] = useState(true);
 
-    const slideLeft = () => {
-      const slider = document.getElementById("slider");
-      slider.scrollLeft -= 350;
-      if (slider.scrollLeft <= 350) {
-        setImagesToLeft(false);
-      }
+  const slideLeft = () => {
+    const slider = document.getElementById("slider");
+    slider.scrollLeft -= 350;
+    if (slider.scrollLeft <= 350) {
+      setImagesToLeft(false);
     }
-    const slideRight = () => {
-      setImagesToLeft(true);
-      const slider = document.getElementById("slider");
-      slider.scrollLeft += 350;
-    }
-    const relatedList = relatedItems.map((item) => (
-      <ItemCard
-        key={item}
-        item={item}
-        mainProduct={mainProduct}
-        setProductId={setProductId}
-      />
-
-
-    ));
-    return (
-      <div width="100%">
-        <ListWrapper>
-          <LeftButtonWrapper>
-            {imagesToLeft ? <LeftButton onClick={slideLeft}><FaChevronLeft /></LeftButton> : null}
-          </LeftButtonWrapper>
-          <ListContainer id="slider">
-            {relatedList}
-            {relatedList}
-          </ListContainer>
-          <RightButtonWrapper>
-            <RightButton onClick={slideRight}><FaChevronRight /></RightButton>
-          </RightButtonWrapper>
-        </ListWrapper>
-      </div>
-
-
-    );
   }
+  const slideRight = () => {
+    setImagesToLeft(true);
+    const slider = document.getElementById("slider");
+    slider.scrollLeft += 350;
+    if (slider.clientWidth - slider.scrollLeft <= 350) {
+      setImagesToRight(false);
+    }
+  }
+  const relatedList = relatedItems.map((item) => (
+    <ItemCard
+      key={item}
+      item={item}
+      mainProduct={mainProduct}
+      setProductId={setProductId}
+      placeholderImage={placeHolderImage}
+    />
+
+
+  ));
+  return (
+    <div width="100%">
+      <ListWrapper>
+        <LeftButtonWrapper>
+          {imagesToLeft ? <LeftButton onClick={slideLeft}><FaChevronLeft /></LeftButton> : null}
+        </LeftButtonWrapper>
+        <ListContainer id="slider">
+          {relatedList}
+          {relatedList}
+        </ListContainer>
+        <RightButtonWrapper>
+          {imagesToRight ? <RightButton onClick={slideRight}><FaChevronRight /></RightButton> : null}
+        </RightButtonWrapper>
+      </ListWrapper>
+    </div>
+
+
+  );
+}
 
 const ListWrapper = styled.div`
 display: flex;
