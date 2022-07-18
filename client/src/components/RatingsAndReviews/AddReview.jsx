@@ -20,7 +20,7 @@ import GH_TOKEN from '../../../../token.js';
 
 const Modal = styled.div`
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: whitesmoke;
   border: 1px solid #979797;
   border-radius: 20px;
   position: fixed;
@@ -33,6 +33,29 @@ const Modal = styled.div`
 const RadioText = styled.span`
   font-size: 13px;
   margin-right: 5px;
+`;
+
+const OverviewButtonStyle = styled.button`
+border: none;
+font-size: x-large;
+opacity: 50%;
+background-color: whitesmoke;
+:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}`;
+
+const Button = styled.button`
+font-size: calc(2vh + 1pt);
+border-width: calc(.3vh + 2px);
+border-color: black;
+padding: calc(.3vh + 2px);
+margin: calc(.3vh + 2px);
+background-color: white;
+:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
 `;
 
 function AddReview({ productId, setNewReview, metaTransfer }) {
@@ -150,7 +173,7 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
       <div style={{ height: "630px", overflowY: "auto" }}>
         <form onSubmit={submitForm}>
           <h3 style={{ marginLeft: "-529px" }}><i>Write Your Review</i></h3>
-          <button style={{ marginTop: "-55px", float: "right" }} onClick={(event) => setNewReview(false)} type="button">x</button>
+          <OverviewButtonStyle style={{ marginTop: "-55px", float: "right" }} onClick={(event) => setNewReview(false)} type="button">x</OverviewButtonStyle>
           <p>About ** product name goes here ** </p>
           <p><b>Overall Product Rating :</b></p>
           <StarRatings rating={starRating} starRatedColor="blue" changeRating={setStarRating} numberOfStars={5} name="rating" starDimension="20px" />{starRater(starRating)}
@@ -232,8 +255,8 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
             <input type="email" onChange={(event) => setEmail(event.target.value)} size="30" maxLength="60" name="email" placeholder="Example: jackson11@email.com" required /><br />
             <aside style={{ fontSize: "12px", marginLeft: "101px", marginBottom: "15px" }}><i>For authentication reasons, you will not be emailed</i></aside>
           </div>
-          <button type="submit">Submit Review</button>
-          <button onClick={(event) => setNewReview(false)} type="button">Exit</button>
+          <Button type="submit">Submit Review</Button>
+          <Button onClick={(event) => setNewReview(false)} type="button">Exit</Button>
         </form>
       </div>
     </Modal>

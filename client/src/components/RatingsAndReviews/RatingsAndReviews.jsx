@@ -16,12 +16,13 @@ let MainFlex = styled.div`
 `;
 
 let MainHeader = styled.h3`
-  margin-left: 22%;
+  margin-left: 21%;
 `;
 
 let TopContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 let StyledRatingBreakdown = styled(RatingBreakdown)`
