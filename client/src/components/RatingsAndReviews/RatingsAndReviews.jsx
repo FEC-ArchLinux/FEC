@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
@@ -28,17 +30,24 @@ let TopContainer = styled.div`
 let StyledRatingBreakdown = styled(RatingBreakdown)`
 `;
 
-function RatingsAndReviews({ productId }) {
+function RatingsAndReviews({ productId, clickTracker }) {
   let [star, setStar] = useState([]);
   let [metaTransfer, setMetaTransfer] = useState([]);
+
+  function trackClick(event) {
+    clickTracker(event, 'Ratings and Reviews');
+  }
+
   return (
-    <TopContainer id="review-section">
-      <MainHeader> Ratings and Reviews </MainHeader>
-      <MainFlex>
-        <StyledRatingBreakdown setMetaTransfer={setMetaTransfer} setStar={setStar} star={star} productId={productId} />
-        <ReviewList metaTransfer={metaTransfer} starFilter={star} productId={productId} />
-      </MainFlex>
-    </TopContainer>
+    <div onClick={trackClick}>
+      <TopContainer id="review-section">
+        <MainHeader> Ratings and Reviews </MainHeader>
+        <MainFlex>
+          <StyledRatingBreakdown setMetaTransfer={setMetaTransfer} setStar={setStar} star={star} productId={productId} />
+          <ReviewList metaTransfer={metaTransfer} starFilter={star} productId={productId} />
+        </MainFlex>
+      </TopContainer>
+    </div>
   );
 }
 
