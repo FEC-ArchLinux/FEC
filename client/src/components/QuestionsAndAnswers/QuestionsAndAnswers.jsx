@@ -10,17 +10,15 @@ import MoreAnsweredQuestions from "./MoreAnsweredQuestions.jsx";
 import GH_TOKEN from '../../../../token.js';
 
 const inline = {
-  display: "inline-flex",
+  // display: "inline-flex",
 };
 
 const MainFlex = styled.div`
   margin: auto;
-  justifyContent: center
 `;
 
 const TopContainer = styled.div`
   display: flex;
-  flex-direction: column;
 `;
 
 function QuestionsAndAnswers({ productId }) {
