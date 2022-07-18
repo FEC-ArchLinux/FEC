@@ -3,17 +3,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { FaRegStar } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import StarRatings from 'react-star-ratings';
 import GH_TOKEN from '../../../../../token.js';
-import RelatedModal from './relatedmodal.jsx';
 
 
-function ItemCard(props) {
+function OutfitCard(props) {
   const [item, changeItem] = useState('');
   const [product, changeProduct] = useState('');
   const [reviews, changeRev] = useState();
-  const [openModal, changeOpenModal] = useState(false);
+  // const [openModal, changeOpenModal] = useState(false);
 
 
   // reviews calculation
@@ -72,9 +71,11 @@ function ItemCard(props) {
     getStyles();
     getReviews();
     getProductInfo();
-  }, []);
+  }, [props]);
 
+  const handleRemove = () => {
 
+  }
 
   // price toggle function
   let price;
@@ -93,14 +94,14 @@ function ItemCard(props) {
     return (
       <CardContainer>
         <ImgWrapper>
-          {item.photos[0].thumbnail_url ? <img height="250vh" width="100%" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src={props.placeholderImage} height="250vh" width="100%" onClick={() => { props.setProductId(props.item); }} />}
-          <CompareButton onClick={() => { changeOpenModal(true) }}><FaRegStar /></CompareButton>
+          {item.photos[0].thumbnail_url ? <img height="250vh" width="100%" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src={props.placeHolderImage} height="250vh" width="200vw" />}
+          <RemoveButton onClick={()=>(props.handleRemove(props.item))}><FaTimes /></RemoveButton>
         </ImgWrapper>
-        <CardContent data-testid="productCategory">{product.category}</CardContent>
+        <CardContent>{product.category}</CardContent>
         <CardContent style={{ "font-weight": "bold" }}>{product.name}</CardContent>
         <CardContent>{price}</CardContent>
         {reviews && <StarRatings rating={reviews} starDimension="15px" starSpacing="1px" />}
-        {openModal && <RelatedModal closeModal={changeOpenModal} item={product} mainProduct={props.mainProduct} />}
+        {/* {openModal && <RelatedModal closeModal={changeOpenModal} item={product} mainProduct={props.mainProduct} />} */}
       </CardContainer>
     );
   }
@@ -114,7 +115,6 @@ width: 10vw;
 flex-shrink: 0;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);
-background: linear-gradient(180deg, hsl(190,70%,99%), hsl(240,60%,100%));
 &:hover {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   bottom-border: 0px;
@@ -128,18 +128,20 @@ const ImgWrapper = styled.div`
 position: relative;
 `;
 
-const CompareButton = styled.button`
+const RemoveButton = styled.button`
   position: absolute;
-  right:2%;
+  right:3%;
+  top: 3%;
   cursor: pointer;
   border: none;
   background: none;
   font-size: 25px;
-  color: black;
+  color: white;
   z-index: 5;
   &:hover {
-    color: gold;
+    color: black;
   }
+
 `;
 
-export default ItemCard;
+export default OutfitCard;

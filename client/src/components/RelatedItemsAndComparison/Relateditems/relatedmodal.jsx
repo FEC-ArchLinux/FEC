@@ -4,12 +4,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { FaRegWindowClose } from 'react-icons/fa';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 import GH_TOKEN from '../../../../../token.js';
 
 
 function RelatedModal(props) {
-  const [mainfeature, changeMain] = useState();
+  const [mainProduct, changeMainProduct] = useState({});
 
   // GET main product information
   useEffect(() => {
@@ -18,27 +18,27 @@ function RelatedModal(props) {
         authorization: GH_TOKEN,
       },
     }).then((res) => {
-      changeMain(res.data.features);
+      changeMainProduct(res.data);
     }).catch((err) => {
       console.log(err);
     });
   }, []);
 
   // combine two tables into a comparison table
-  let combinedFeatures = [];
-  if (mainfeature) {
-    let mainfeatureMap = new Map();
-    mainfeature.forEach((item) => {
+  const combinedFeatures = [];
+  if (mainProduct.features) {
+    const mainfeatureMap = new Map();
+    mainProduct.features.forEach((item) => {
       mainfeatureMap.set(item.feature, item.value);
     });
-    let secondFeatureMap = new Map();
+    const secondFeatureMap = new Map();
     props.item.features.forEach((item) => {
       secondFeatureMap.set(item.feature, item.value);
     });
-    let unionKeys = new Set([...mainfeatureMap.keys(), ...secondFeatureMap.keys()]);
+    const unionKeys = new Set([...mainfeatureMap.keys(), ...secondFeatureMap.keys()]);
 
     unionKeys.forEach((key) => {
-      let result = [];
+      const result = [];
       result.push(key);
       if (mainfeatureMap.has(key)) {
         if (mainfeatureMap.get(key) === true) {
@@ -65,13 +65,13 @@ function RelatedModal(props) {
   return (
     <ModalWrapper>
       <ComparisonTitle>COMPARING</ComparisonTitle>
-      <CloseButton type="button" onClick={() => { props.closeModal(false); }}><FaRegWindowClose /></CloseButton>
-      <tr>
-        <th>Current Product Name</th>
-        <th> </th>
-        <th>Compared Product Name</th>
-      </tr>
+      <CloseButton type="button" onClick={() => { props.closeModal(false); }}><AiOutlineCloseCircle /></CloseButton>
       <TableWrapper>
+      <tr>
+        <th>{mainProduct.name}</th>
+        <th> </th>
+        <th>{props.item.name}</th>
+      </tr>
         {combinedFeatures.map((item) => (
           <tr>
             <TableElement>{item[1]}</TableElement>
@@ -81,7 +81,6 @@ function RelatedModal(props) {
 
         ))}
       </TableWrapper>
-
     </ModalWrapper>
   );
 }
@@ -99,19 +98,20 @@ left: 30%;
 top: 30%;
 display: block;
 z-index: 10;
+font-size: calc(1.5vh + 2pt);
 `;
 const ComparisonTitle = styled.div`
-text-align: center;
-font-size: 20px;
-font-weight: bold;
+text-align: left;
+fontWeight: bold;
 color: grey;
+margin: 15px;
 `;
 
 const CloseButton = styled.span`
 position: absolute;
-top: 5%;
-right: 5%;
-font: 40px;
+top: 0%;
+right: 0%;
+font-size: x-large;
 border: none;
 background: none;
 
@@ -119,7 +119,6 @@ background: none;
 
 const TableWrapper = styled.div`
 color: black;
-font-size: 20px;
 padding: 10px;
 text-align: center;
 vertical-align: bottom;
@@ -127,7 +126,6 @@ vertical-align: bottom;
 
 const TableElement = styled.td`
 padding: 15px;
-
 `
 
 export default RelatedModal;
