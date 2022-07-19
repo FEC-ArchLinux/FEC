@@ -6,6 +6,7 @@ import ProductDetails from './ProductDetails.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import PurchaseOptions from './PurchaseOptions.jsx';
 import ProductDescription from './ProductDescription.jsx';
+import withClickTracker from '../withClickTracker.jsx';
 
 function Overview({ productId, placeHolderImage, clickTracker }) {
   const [productInfo, setProductInfo] = useState([]);
@@ -92,4 +93,4 @@ function Overview({ productId, placeHolderImage, clickTracker }) {
   );
 }
 
-export default Overview;
+export default withClickTracker(Overview);
