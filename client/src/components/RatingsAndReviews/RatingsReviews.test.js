@@ -11,6 +11,7 @@ import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-libra
 // import Enzyme, { shallow } from 'enzyme';
 import ReviewList from './ReviewList.jsx';
 import App from '../App.jsx';
+import PercentRecommend from './PercentRecommend.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -71,6 +72,18 @@ describe('render page after axios request', () => {
 
     const reviewContainer = await screen.getAllByText("Helpful", { exact: false });
     expect(reviewContainer.length).toBe(7);
+    cleanup();
+  });
+});
+
+describe('render percent recommend module', () => {
+  it('should render percentage of reviews', async () => {
+    const reviewlist = render(<PercentRecommend />);
+
+    await waitFor(() => {
+      const span = screen.getByText('%', { exact: false });
+      expect(span.innerHTML).toBe("% of reviews recommend this product");
+    });
     cleanup();
   });
 });

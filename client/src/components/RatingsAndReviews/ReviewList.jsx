@@ -64,7 +64,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
 
   useEffect(() => {
     getReviewInfo();
-  }, [productId]);
+  }, [productId, newReview]);
 
   function incrementReviews() {
     setPageNumber(pageNumber += 2);
