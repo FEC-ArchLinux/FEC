@@ -48,6 +48,7 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
         <ButtonContainer>
           <AiOutlinePlus />
         </ButtonContainer></ButtonWrapper>
+
       {outfitList && outfitList.map((item) => {
         return (
           <div>
@@ -64,28 +65,28 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
   );
 }
 
-const ButtonWrapper = styled.span`
+const ButtonWrapper = styled.div`
 position: relative;
 height: 100%;
-width: 20rem;
+width: 15vw;
 flex-shrink: 0;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);
-background: linear-gradient(180deg, hsl(190,70%,99%), hsl(240,60%,100%));
 &:hover {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   bottom-border: 0px;
   cursor: pointer;
 }
 `
-const ButtonContainer = styled.span`
+const ButtonContainer = styled.div`
 position: relative;
 font-size: 26px;
-top: 50%;
-left: 50%;
+top: 48%;
+left: 48%;
 flex-shrink: 0;
 &:hover {
   color: gold;
 }
-`
+`;
+
 export default AddOutfit;

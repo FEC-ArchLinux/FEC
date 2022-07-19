@@ -11,6 +11,7 @@ function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImag
   const [imagesToRight, setImagesToRight] = useState(true);
 
   const slideLeft = () => {
+    setImagesToRight(true);
     const slider = document.getElementById("slider");
     slider.scrollLeft -= 350;
     if (slider.scrollLeft <= 350) {
@@ -21,7 +22,7 @@ function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImag
     setImagesToLeft(true);
     const slider = document.getElementById("slider");
     slider.scrollLeft += 350;
-    if (slider.clientWidth - slider.scrollLeft <= 350) {
+    if (slider.scrollWidth - slider.clientWidth - slider.scrollLeft - 350 <= 0) {
       setImagesToRight(false);
     }
   }
@@ -44,7 +45,6 @@ function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImag
         </LeftButtonWrapper>
         <ListContainer id="slider">
           {relatedList}
-          {relatedList}
         </ListContainer>
         <RightButtonWrapper>
           {imagesToRight ? <RightButton onClick={slideRight}><FaChevronRight /></RightButton> : null}
@@ -59,7 +59,7 @@ function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImag
 const ListWrapper = styled.div`
 display: flex;
 flex-direction: row;
-height: 400px;
+justify-content: center;
 width: 100%;
 position: relative;
 
@@ -78,7 +78,7 @@ scroll-behavior: smooth;
 
 const LeftButton = styled.button`
 position: sticky;
-font-size: 40px;
+font-size: 3rem;
 background: none;
 border: none;
 color: grey;
@@ -92,7 +92,7 @@ z-index: 1;
 `
 const RightButton = styled.button`
 position: sticky;
-font-size: 40px;
+font-size: 3rem;
 background: none;
 border: none;
 color: grey;
