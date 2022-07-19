@@ -56,22 +56,18 @@ function Overview({ productId, placeHolderImage, clickTracker }) {
     getProductStyleInfo();
   }, [productId]);
 
-  function getClicked(e) {
-    clickTracker(e, 'Overview');
-  }
-
   const imageGalleryDivStyle = {
     display: 'flex',
     'justify-content': 'space-between',
     'align-items': 'flex-start',
-    height: "70vh",
+    height: "80vh",
     gap: '5%',
   };
 
   const productDetailsStyle = {
     display: (isExpanded ? 'none' : 'flex'),
     'max-width': '340px',
-    width: '30%',
+    width: "calc(5% + 25vh)",
     'flex-direction': 'column',
     'max-height': '100%',
     'font-size': "calc(1.5vh + 2pt)",
@@ -82,13 +78,13 @@ function Overview({ productId, placeHolderImage, clickTracker }) {
   }
 
   return (
-    <div onClick={getClicked}>
+    <div onClick={e => clickTracker(e, 'Overview')}>
       <div style={imageGalleryDivStyle}>
         <ImageGallery ref={imageGalleryRef} styles={productStyleInfo.results} activeStyle={activeStyle} isExpanded={isExpanded} toggleExpandedView={toggleExpandedView} placeHolderImage={placeHolderImage} />
         <div style={productDetailsStyle}>
           <ProductDetails productId={productId} productInfo={productInfo} styles={productStyleInfo.results} activeStyle={activeStyle} />
           <StyleSelector styles={productStyleInfo.results} changeActiveStyle={changeActiveStyle} activeStyle={activeStyle} placeHolderImage={placeHolderImage} />
-          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} outOfStock={outOfStock} setOutOfStock={setOutOfStock} />
+          <PurchaseOptions ref={purchaseOptionsRef} styles={productStyleInfo.results} activeStyle={activeStyle} outOfStock={outOfStock} setOutOfStock={setOutOfStock} GH_TOKEN={GH_TOKEN} />
         </div>
       </div>
       <ProductDescription productInfo={productInfo} />
