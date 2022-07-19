@@ -67,7 +67,7 @@ function Overview({ productId, placeHolderImage, clickTracker }) {
   const productDetailsStyle = {
     display: (isExpanded ? 'none' : 'flex'),
     'max-width': '340px',
-    width: '30%',
+    width: "calc(5% + 25vh)",
     'flex-direction': 'column',
     'max-height': '100%',
     'font-size': "calc(1.5vh + 2pt)",

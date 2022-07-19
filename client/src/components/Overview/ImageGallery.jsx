@@ -5,7 +5,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   const [activeImage, setActiveImage] = useState(0);
   const [atTop, setAtTop] = useState(true);
   const [isZoomed, setIsZoomed] = useState(false);
-  const [bigImagePos, setBigImagePos] = useState(true);
+  const [bigImagePos, setBigImagePos] = useState('center');
   const imageGalleryRef = useRef();
 
   // pass up to overview function that resets the big image to the first after changing styles
@@ -127,6 +127,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   const UpArrowButton = styled.button`
     ${overviewButtonStyle};
     visibility: ${atTop ? 'hidden' : 'visible'};
+    cursor: url(https://cdn.custom-cursor.com/db/6777/32/among-us-impostor-of-the-vent-pointer.png), pointer;
     `;
 
   const DownArrowButton = styled.button`
@@ -201,7 +202,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
       </div>
       <BigPictureContainer>
         <LeftArrowButton type="button" id="decrement" onClick={changeBigPicture}>⇦</LeftArrowButton>
-        <BigImage onClick={isExpanded ? toggleZoomView : toggleExpandedView} onMouseMove={isZoomed ? handleMouseZoom : null} alt="enlarged-style" />
+        <BigImage onClick={isExpanded ? toggleZoomView : toggleExpandedView} onMouseMove={isZoomed ? handleMouseZoom : null} />
         <ExpandButton onClick={toggleExpandedView}>✕</ExpandButton>
         <RightArrowButton type="button" id="increment" onClick={changeBigPicture}>⇨</RightArrowButton>
       </BigPictureContainer>

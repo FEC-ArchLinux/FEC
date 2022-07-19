@@ -1,6 +1,14 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import {
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  PinterestIcon,
+} from "react-share";
 
 function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TOKEN }, ref) {
   const sizeDropdownRef = useRef();
@@ -109,10 +117,6 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
       .catch(err => console.error(err));
   }
 
-  function share() {
-    console.log('Share clicked');
-  }
-
   const DropDown = styled.select`
     font-size: calc(2vh + 1pt);
     border-width: calc(.3vh + 2px);
@@ -159,7 +163,22 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
         <br />
         {outOfStock ? null : <AddButton type="submit">Add to Cart</AddButton>}
       </form>
-      <AddButton type="button" onClick={share} >Share</AddButton>
+      <p style={{ 'font-size': "calc(2vh + 1pt)", 'margin-bottom': 0 }}>Share:</p>
+      <FacebookShareButton
+        url="https://github.com/FEC-ArchLinux/FEC"
+      >
+        <FacebookIcon size={window.innerWidth / 45} round />
+      </FacebookShareButton>
+      <TwitterShareButton
+        url="https://github.com/FEC-ArchLinux/FEC"
+      >
+        <TwitterIcon size={window.innerWidth / 45} round />
+      </TwitterShareButton>
+      <PinterestShareButton
+        url="https://github.com/FEC-ArchLinux/FEC"
+      >
+        <PinterestIcon size={window.innerWidth / 45} round />
+      </PinterestShareButton>
     </div>
   );
 }
