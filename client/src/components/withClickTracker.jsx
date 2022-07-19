@@ -4,7 +4,6 @@ import GH_TOKEN from '../../../token.js';
 
 function withClickTracker(OriginalComponent) {
   function clickTracker(e, module) {
-    console.log(e.target, module);
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions',
       {
         element: e.target.outerHTML,
