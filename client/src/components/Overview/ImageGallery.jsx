@@ -52,12 +52,10 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const imageGalleryImgStyle = css`
     object-fit: cover;
-    height: 60px;
+    height: 85%;
     aspect-ratio: 1/1;
     margin: 5px;
-    :hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   `;
 
   const ImageGalleryImage = styled.img`
@@ -68,6 +66,14 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   const ActiveImageStyle = styled.img`
     ${imageGalleryImgStyle};
     border: thick solid black;
+  `;
+
+  const ImageGalleryImgContainer = styled.div`
+    position: relative;
+    height: 14%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `;
 
   const BigImage = styled.div`
@@ -82,12 +88,13 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
   `;
 
   const imageGalleryDivStyle = {
-    display: 'grid',
+    display: 'flex',
     'flex-direction': 'column',
     overflow: 'clip hidden',
     'justify-items': 'center',
     'scroll-behavior': 'smooth',
     'max-height': "80%",
+    gap: '0.4%',
   };
 
   const overviewButtonStyle = css`
@@ -126,12 +133,14 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   const UpArrowButton = styled.button`
     ${overviewButtonStyle};
-    visibility: ${atTop ? 'hidden' : 'visible'};
     cursor: url(https://cdn.custom-cursor.com/db/6777/32/among-us-impostor-of-the-vent-pointer.png), pointer;
+    display: ${styles && styles[activeStyle].photos.length <= 7 ? 'none' : 'flex'};
+    visibility: ${atTop ? 'hidden' : 'visible'}
     `;
 
   const DownArrowButton = styled.button`
     ${overviewButtonStyle};
+    display: ${styles && styles[activeStyle].photos.length <= 7 ? 'none' : 'flex'};
     `;
 
   const BigPictureContainer = styled.div`
@@ -177,11 +186,15 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
       } else {
         if (index === activeImage) {
           return (
-            <ActiveImageStyle onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+            <ImageGalleryImgContainer>
+              <ActiveImageStyle onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+            </ImageGalleryImgContainer>
           );
         }
         return (
-          <ImageGalleryImage onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+          <ImageGalleryImgContainer>
+            <ImageGalleryImage onClick={selectBigPicture} name={index} src={photo.url === null ? placeHolderImage : photo.url} alt="style-img" />
+          </ImageGalleryImgContainer>
         );
       }
     })
@@ -193,7 +206,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
-      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center' }}>
+      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center' , 'max-width': '140px', width: '15%'}}>
         <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && galleryGenerator()}
