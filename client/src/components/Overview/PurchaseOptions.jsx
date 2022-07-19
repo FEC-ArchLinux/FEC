@@ -1,7 +1,16 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import {
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  PinterestIcon,
+} from "react-share";
 
-function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref) {
+function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TOKEN }, ref) {
   const sizeDropdownRef = useRef();
   const quantityDropdownRef = useRef();
   const [selectedSize, setSelectedSize] = useState('Select Size');
@@ -73,11 +82,39 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
 
   function completePurchase() {
     event.preventDefault();
-    alert(`Added to Cart: { sku_id: ${sizeDropdownRef.current.value}, count: ${quantityDropdownRef.current.value} }`);
-  }
+    // for (let i = 0; i < Number(quantityDropdownRef.current.value); i++) {
+    //   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
+    //     sku_id: Number(sizeDropdownRef.current.value),
+    //   }, {
+    //     headers: {
+    //       authorization: GH_TOKEN,
+    //     },
+    //   })
+    //     .then(res => console.log(res.data))
+    //     .catch(err => console.error(err));
+    // }
 
-  function share() {
-    console.log('Shared');
+    const postPromise = () => (
+      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
+        sku_id: Number(sizeDropdownRef.current.value),
+      }, {
+        headers: {
+          authorization: GH_TOKEN,
+        },
+      })
+    );
+
+    const promiseArray = Array(Number(quantityDropdownRef.current.value));
+    promiseArray.fill(postPromise);
+    Promise.all(promiseArray.map(promise => promise()
+      .catch(err => console.error(err))))
+
+      .then(() => {
+        alert(`${quantityDropdownRef.current.value} of item ${sizeDropdownRef.current.value} added to your cart.`)
+        setSelectedSize('Select Size');
+        sizeDropdownRef.current.options.selectedIndex = 0;
+      })
+      .catch(err => console.error(err));
   }
 
   const DropDown = styled.select`
@@ -126,7 +163,22 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock }, ref
         <br />
         {outOfStock ? null : <AddButton type="submit">Add to Cart</AddButton>}
       </form>
-      <AddButton type="button" onClick={share} >Share</AddButton>
+      <p style={{ 'font-size': "calc(2vh + 1pt)", 'margin-bottom': 0 }}>Share:</p>
+      <FacebookShareButton
+        url="https://github.com/FEC-ArchLinux/FEC"
+      >
+        <FacebookIcon size={window.innerWidth / 45} round />
+      </FacebookShareButton>
+      <TwitterShareButton
+        url="https://github.com/FEC-ArchLinux/FEC"
+      >
+        <TwitterIcon size={window.innerWidth / 45} round />
+      </TwitterShareButton>
+      <PinterestShareButton
+        url="https://github.com/FEC-ArchLinux/FEC"
+      >
+        <PinterestIcon size={window.innerWidth / 45} round />
+      </PinterestShareButton>
     </div>
   );
 }

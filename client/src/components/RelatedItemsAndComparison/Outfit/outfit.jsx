@@ -6,8 +6,10 @@ import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 function Outfit({ mainProduct, placeHolderImage, outfitList, handleAddOutfit, handleRemove }) {
   const [imagesToLeft, setImagesToLeft] = useState(false);
+  const [imagesToRight, setImagesToRight] = useState(true);
 
   const slideLeft = () => {
+    setImagesToRight(true);
     const slider = document.getElementById("outfitSlider");
     slider.scrollLeft -= 350;
     if (slider.scrollLeft <= 350) {
@@ -18,13 +20,16 @@ function Outfit({ mainProduct, placeHolderImage, outfitList, handleAddOutfit, ha
     setImagesToLeft(true);
     const slider = document.getElementById("outfitSlider");
     slider.scrollLeft += 350;
+    if (slider.scrollWidth - slider.clientWidth - slider.scrollLeft - 350 <= 0) {
+      setImagesToRight(false);
+    }
   }
   return (
     <OutWrapper>
       <LeftButtonWrapper>
         {imagesToLeft ? <LeftButton onClick={slideLeft}><FaChevronLeft /></LeftButton> : null}
       </LeftButtonWrapper>
-      <OutfitWrapper id="outfitSlider">
+      <OutfitContainer id="outfitSlider">
         <AddOutfit
           mainProduct={mainProduct}
           placeHolderImage={placeHolderImage}
@@ -32,9 +37,9 @@ function Outfit({ mainProduct, placeHolderImage, outfitList, handleAddOutfit, ha
           handleAddOutfit={handleAddOutfit}
           handleRemove={handleRemove}
         ></AddOutfit>
-      </OutfitWrapper>
+      </OutfitContainer>
       <RightButtonWrapper>
-        <RightButton onClick={slideRight}><FaChevronRight /></RightButton>
+        {imagesToRight ? <RightButton onClick={slideRight}><FaChevronRight /></RightButton> : null}
       </RightButtonWrapper>
     </OutWrapper>
 
@@ -42,16 +47,17 @@ function Outfit({ mainProduct, placeHolderImage, outfitList, handleAddOutfit, ha
 }
 
 const OutWrapper = styled.div`
-display: flex;
-flex-direction: row;
-height: 23rem;
+${'' /* display: flex; */}
+${'' /* flex-direction: row; */}
+height: 40vh;
 width: 100%;
 position: relative;
 `;
-const OutfitWrapper = styled.div`
+const OutfitContainer = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: flex-start;
+flex-flow: nowrap;
 overflow: scroll;
 height: 100%;
 width: 100%;
@@ -86,7 +92,6 @@ position: absolute;
 right:0;
 top: 35%;
 z-index: 10;
-
 `
 
 export default Outfit;

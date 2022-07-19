@@ -25,6 +25,18 @@ const Overlay = styled.div`
   z-index: 10;
 `;
 
+const Button = styled.button`
+  font-size: calc(2vh + 1pt);
+  border: 1px solid;
+  height: 40px;
+  margin-right: 8px;
+  background-color: white;
+  :hover {
+    background-color: lightgrey;
+    cursor: pointer;
+  }
+`;
+
 function ReviewList({ metaTransfer, starFilter, productId }) {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [reviewCopy, setReviewCopy] = useState([]);
@@ -82,11 +94,11 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
   }
   if (reviewInfo) {
     return (
-      <div className="review-container" style={{ width: "750px", overflowY: 'auto', height: "500px" }}>
+      <div className="review-container" style={{ width: "750px", overflowY: 'auto', height: "550px" }}>
         <SortRelevance reviewCopy={reviewCopy} setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={review.review_id} />)}
-        {pageNumber >= reviewInfo.length ? null : <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={incrementReviews} type="button"> More Reviews </button>}
-        <button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={addReviewHandler} type="button">Add a Review</button>
+        {pageNumber >= reviewInfo.length ? null : <Button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={incrementReviews} type="button">MORE REVIEWS</Button>}
+        <Button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={addReviewHandler} type="button">ADD A REVIEW <small>➕</small></Button>
       </div>
     );
   }

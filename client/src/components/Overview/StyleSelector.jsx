@@ -34,7 +34,7 @@ function StyleSelector({ styles, changeActiveStyle, activeStyle, placeHolderImag
   let index = -1;
   return (
     <div>
-      <h3>Styles:</h3>
+      <h3 style={{'margin-top': '0.5em'}}>Styles:</h3>
       <p>
         Style
         {" > "}

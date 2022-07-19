@@ -94,14 +94,13 @@ function OutfitCard(props) {
     return (
       <CardContainer>
         <ImgWrapper>
-          {item.photos[0].thumbnail_url ? <img height="300rem" width="100%" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src={props.placeHolderImage} height="300rem" width="100%" />}
+          {item.photos[0].thumbnail_url ? <RelatedImg  src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <RelatedImg src={props.placeHolderImage} />}
           <RemoveButton onClick={()=>(props.handleRemove(props.item))}><FaTimes /></RemoveButton>
         </ImgWrapper>
         <CardContent>{product.category}</CardContent>
         <CardContent style={{ "font-weight": "bold" }}>{product.name}</CardContent>
         <CardContent>{price}</CardContent>
         {reviews && <StarRatings rating={reviews} starDimension="15px" starSpacing="1px" />}
-        {/* {openModal && <RelatedModal closeModal={changeOpenModal} item={product} mainProduct={props.mainProduct} />} */}
       </CardContainer>
     );
   }
@@ -110,9 +109,11 @@ function OutfitCard(props) {
 
 const CardContainer = styled.div`
 position: relative;
-height: 100%;
-width: 20rem;
+height: 40vh;
+width: 15vw;
+flex-grow: 0;
 flex-shrink: 0;
+flex-basis: 30%;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);
 &:hover {
@@ -126,6 +127,11 @@ margin: 5px 0px;
 `;
 const ImgWrapper = styled.div`
 position: relative;
+`;
+
+const RelatedImg = styled.img`
+  height: 30vh;
+  width: 100%;
 `;
 
 const RemoveButton = styled.button`
@@ -143,5 +149,7 @@ const RemoveButton = styled.button`
   }
 
 `;
+
+
 
 export default OutfitCard;
