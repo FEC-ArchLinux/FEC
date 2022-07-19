@@ -12,7 +12,7 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
     const currentList = window.localStorage.getItem('outfitList');
     const currentListArray = JSON.parse(currentList);
     if (currentListArray === null) {
-      const updatedArray = [...outfitList, mainProduct.toString()];
+      const updatedArray = [mainProduct.toString()];
       setOutfitList(updatedArray);
       window.localStorage.setItem('outfitList', JSON.stringify(updatedArray));
     } else {
