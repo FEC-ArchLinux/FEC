@@ -11,6 +11,8 @@ import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-libra
 // import Enzyme, { shallow } from 'enzyme';
 import ReviewList from './ReviewList.jsx';
 import App from '../App.jsx';
+import PercentRecommend from './PercentRecommend.jsx';
+import ProductBreakdown from './ProductBreakdown.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -75,25 +77,27 @@ describe('render page after axios request', () => {
   });
 });
 
-// const { container } = render(<ReviewList productId={test} />);
-// await waitFor(() => expect(screen.getByText("More Reviews")).toBeInTheDocument());
+describe('render percent recommend module', () => {
+  it('should render percentage of reviews', async () => {
+    const reviewlist = render(<PercentRecommend />);
 
-// fireEvent.click(button);
-// const reviewContainer = screen.getByTitle("review-container");
-// console.log(reviewContainer);
+    await waitFor(() => {
+      const span = screen.getByText('%', { exact: false });
+      expect(span.innerHTML).toBe("% of reviews recommend this product");
+    });
+    cleanup();
+  });
+});
 
-//   const reviewList = render(<ReviewList productId={37311} />);
-//   const { container } = render(<ReviewList />);
-//
-//   console.log(reviewList);
-//   console.log(button);
-
-// const { container } = renderer.create(<ReviewList />);
-
-// const tree = reviewList.toJSON();
-// console.log(tree);
-
-// fireEvent.click(button);
-
-// console.log(ReviewContainer);
-// expect(ReviewContainer.length).toBe(4);
+describe('Render and Test ProductBreakdown Component', () => {
+  it('should render marker', async () => {
+    const { findAllByTestId } = render(<ProductBreakdown />);
+    await waitFor(() => {
+      const span = screen.findAllByTestId('marker', { exact: false })
+        .then((spans) => {
+          expect(spans.innerHTML).toBe("🔻");
+        });
+    });
+    cleanup();
+  });
+});
