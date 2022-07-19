@@ -93,7 +93,7 @@ function ItemCard(props) {
     return (
       <CardContainer>
         <ImgWrapper>
-          {item.photos[0].thumbnail_url ? <img height="300rem" width="100%" src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <img src={props.placeholderImage} height="300rem" width="100%" onClick={() => { props.setProductId(props.item); }} />}
+          {item.photos[0].thumbnail_url ? <RelatedImg src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <RelatedImg src={props.placeholderImage} onClick={() => { props.setProductId(props.item); }} />}
           <CompareButton onClick={() => { changeOpenModal(true) }}><FaRegStar /></CompareButton>
         </ImgWrapper>
         <CardContent data-testid="productCategory">{product.category}</CardContent>
@@ -109,12 +109,11 @@ function ItemCard(props) {
 
 const CardContainer = styled.div`
 position: relative;
-height: 100%;
-width: 20rem;
+height: 40vh;
+width: 15vw;
 flex-shrink: 0;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);
-background: linear-gradient(180deg, hsl(190,70%,99%), hsl(240,60%,100%));
 &:hover {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   bottom-border: 0px;
@@ -123,10 +122,17 @@ background: linear-gradient(180deg, hsl(190,70%,99%), hsl(240,60%,100%));
 `;
 const CardContent = styled.div`
 margin: 5px 0px;
+
 `;
 const ImgWrapper = styled.div`
 position: relative;
 `;
+
+const RelatedImg = styled.img`
+  height: 30vh;
+  width: 100%
+`;
+
 
 const CompareButton = styled.button`
   position: absolute;

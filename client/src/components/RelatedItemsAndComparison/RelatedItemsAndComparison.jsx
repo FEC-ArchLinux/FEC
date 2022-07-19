@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import GH_TOKEN from '../../../../token.js';
+import styled from "styled-components";
 import Outfit from './Outfit/outfit.jsx';
 import RelatedItems from './Relateditems/relateditems.jsx';
 
@@ -25,20 +26,29 @@ function RelatedItemsAndComparison(props) {
     getRelatedItems();
   }, [props]);
 
+  const getClicked = (event) => {
+    props.clickTracker(event, 'RelatedItems');
+  }
+
   return (
-    <div>
+    <MainWrapper onClick={getClicked}>
       <h3>RELATED PRODUCTS</h3>
       <RelatedItems relatedItems={relatedItems} mainProduct={props.productId} setProductId={props.setProductId} placeHolderImage={props.placeHolderImage} />
       <h3>YOUR OUTFIT</h3>
       <Outfit
         mainProduct={props.productId}
         placeHolderImage={props.placeHolderImage}
-        // outfitList={outfitList}
-        // handleAddOutfit={handleAddOutfit}
-        // handleRemove={handleRemove}
-         />
-    </div>
+      // outfitList={outfitList}
+      // handleAddOutfit={handleAddOutfit}
+      // handleRemove={handleRemove}
+      />
+    </MainWrapper>
   );
 }
+
+const MainWrapper = styled.div`
+margin: auto;
+width: 60%;
+`
 
 export default RelatedItemsAndComparison;
