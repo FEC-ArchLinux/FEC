@@ -207,7 +207,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
-      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center', 'max-width': '140px', width: '15%'}}>
+      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center', 'max-width': '6vw'}}>
         <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && galleryGenerator()}
