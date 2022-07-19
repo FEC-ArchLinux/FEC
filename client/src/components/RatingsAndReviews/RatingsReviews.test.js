@@ -12,6 +12,7 @@ import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-libra
 import ReviewList from './ReviewList.jsx';
 import App from '../App.jsx';
 import PercentRecommend from './PercentRecommend.jsx';
+import ProductBreakdown from './ProductBreakdown.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -88,6 +89,17 @@ describe('render percent recommend module', () => {
   });
 });
 
+describe('Render and Test ProductBreakdown Component', () => {
+  it('should calculate product breakdown stats appropriately', async () => {
+    const testProp = { Comfort: { id: 125042, value: "2.7500000000000000" }, Fit: { id: 125040, value: "3.2558139534883721" }, Length: { id: 125040, value: "3.2558139534883721" }, Quality: { id: 125040, value: "3.2558139534883721" } };
+    const productBreakdown = render(<ProductBreakdown recommend={testProp} />);
+    await waitFor(() => {
+      // const span = screen.getAllByText('🔻', { exact: false });
+      // console.log(span);
+    });
+    cleanup();
+  });
+});
 // const { container } = render(<ReviewList productId={test} />);
 // await waitFor(() => expect(screen.getByText("More Reviews")).toBeInTheDocument());
 
