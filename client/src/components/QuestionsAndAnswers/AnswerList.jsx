@@ -28,6 +28,7 @@ function AnswerList({ answerList }) {
     return (
       <AnswerListEntry
         key={answerIds[0]}
+        answerId={answerIds[0]}
         answerData={answerData}
       />
     );
@@ -43,6 +44,7 @@ function AnswerList({ answerList }) {
             return (
               <AnswerListEntry
                 key={answerId}
+                answerId={answerId}
                 answerData={answerData}
               />
             );
@@ -52,6 +54,7 @@ function AnswerList({ answerList }) {
         return (
           <AnswerListEntry
             key={answerId}
+            answerId={answerId}
             answerData={answerData}
           />
         );

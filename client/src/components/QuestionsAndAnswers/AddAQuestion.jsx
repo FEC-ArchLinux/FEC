@@ -12,11 +12,12 @@ const boxButtonStyle = {
   backgroundColor: 'white',
 };
 
-function AddAQuestion() {
+function AddAQuestion({ productId }) {
   const [showAddAQuestionModal, setShowAddAQuestionModal] = useState(false);
   if (showAddAQuestionModal) {
     return (
       <AddAQuestionModal
+        productId={productId}
         AddAQuestionModal={AddAQuestionModal}
         setShowAddAQuestionModal={setShowAddAQuestionModal}
       />

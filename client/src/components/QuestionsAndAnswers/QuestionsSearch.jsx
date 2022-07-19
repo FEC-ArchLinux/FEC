@@ -6,7 +6,7 @@ const questionSearchStyle = {
   border: "solid",
   maxWidth: "860px",
   borderWidth: "thin",
-  width: "60vw",
+  width: "80vw",
   height: "40px",
   display: "inline-flex",
 
@@ -24,7 +24,7 @@ const buttonStyle = {
 };
 
 const inputStyle = {
-  width: "55vw",
+  width: "75vw",
   maxWidth: "860px",
   height: "40px",
   fontSize: "large",

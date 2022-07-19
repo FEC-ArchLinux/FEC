@@ -8,8 +8,9 @@ function QuestionsList({ questionsData = {}, moreAnsweredQuestions }) {
   const limit = limit || 4;
 
   const listOverflow = {
-    maxHeight: "50vh",
+    maxHeight: "40vh",
     maxWdith: "860px",
+    width: "80vw",
     overflowX: "hidden",
     overflowY: "scroll",
   };

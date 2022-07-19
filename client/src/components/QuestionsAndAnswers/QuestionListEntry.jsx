@@ -14,7 +14,7 @@ function QuestionListEntry({ question }) {
   const answerList = question.answers;
   const questionHelpfulness = question.question_helpfulness;
   const questionBody = question.question_body;
-
+  const questionId = question.question_id;
   return (
     <ul>
       <span>
@@ -26,6 +26,7 @@ function QuestionListEntry({ question }) {
         <span>
           <HelpfulQuestionButton
             questionHelpfulness={questionHelpfulness}
+            questionId={questionId}
           />
           <AddAnswer />
         </span>

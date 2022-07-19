@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import GH_TOKEN from "../../../../token.js";
 
 const questionModal = {
   position: "fixed",
@@ -34,11 +36,64 @@ const modalBody = {
 };
 
 // const modalContent
+// https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a
 // wrap in forms onsubmit (required)
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal }) {
-  const productName = "[Product Name Goes Here]";
+
+function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, productId }) {
+  const [questionValues, setValues] = useState({
+    question: '',
+    nickname: '',
+    email: '',
+  });
+
+  const addQuestionURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${productId}`;
+
+  const handleQuestionInputChange = (event) => {
+    event.persist();
+    setValues((questionValues) => ({
+      ...questionValues,
+      question: event.target.value,
+    }));
+  };
+  const handleNicknameInputChange = (event) => {
+    event.persist();
+    setValues((questionValues) => ({
+      ...questionValues,
+      nickname: event.target.value,
+    }));
+  };
+  const handleEmailInputChange = (event) => {
+    event.persist();
+    setValues((questionValues) => ({
+      ...questionValues,
+      email: event.target.value,
+    }));
+  };
+
+  // I didn't want to do another HTTP request for the title...
+  const productName = document.body.children.root.children[1].children[0].children[1].children[0].children[4].textContent || '[product name goes here]';
+  const questionParameters = {
+    body: questionValues.question,
+    name: questionValues.nickname,
+    email: questionValues.email,
+    product_id: productId,
+    headers: {
+      authorization: GH_TOKEN,
+      "content-type": "application/json",
+    },
+  };
+
+  const submitQuestion = () => {
+    axios.post(addQuestionURL, questionParameters)
+      .then((data) => {
+        console.log(data);
+        setShowAddAQuestionModal(false);
+      })
+      .catch((err) => console.error(err));
+  };
+  console.log(productId);
   return (
     // click outside of the modalContent div exits the modal
     <div
@@ -52,70 +107,83 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal }) 
     >
       <div style={modalContent}>
         <div style={modalHeader}>
-          <h4 className="questionModalTitle">Ask a Question</h4>
-          <h5 className="questionModalSubtitle">{`About the ${productName}`}</h5>
+          <h3 className="questionModalTitle">Ask a Question</h3>
+          <h4 className="questionModalSubtitle">{`About the ${productName}`}</h4>
         </div>
         <div style={modalBody}>
-          <div>
-            <label htmlFor="questionInput">
-              *Question:
-              <textarea
-                type="text"
-                id="questionInput"
-                name="question"
-                maxLength="1000"
-                required="required"
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="questionNicknameInput">
-              *Nickname:
-              <input
-                type="text"
-                id="quesitonNicknameInput"
-                name="nickname"
-                placeholder="Example: jackson11!"
-                maxLength="60"
-                required="required"
-              />
-              <div>
-                <small>
-                  “For privacy reasons, do not use your full name or email address
-                </small>
-              </div>
-            </label>
-          </div>
-          <div>
-            <label htmlFor="questionEmailInput">
-              *Email:
-              <input
-                type="email"
-                name="nickname"
-                id="questoinEmailInput"
-                required="required"
-              />
-              <div>
-                <small>
-                  For authentication reasons, you will not be emailed
-                </small>
-              </div>
-            </label>
-          </div>
-        </div>
-        <div style={modalFooter}>
-          <button
-            type="button"
-            onClick={() => setShowAddAQuestionModal(false)}
+          <form
+            action=""
+            method="post"
           >
-            close
-          </button>
-          <button
-            type="button"
-            onClick={() => setShowAddAQuestionModal(false)}
-          >
-            submit
-          </button>
+            <div>
+              <label htmlFor="questionInput">
+                *Question:
+                <textarea
+                  type="text"
+                  id="questionInput"
+                  name="question"
+                  placeholder="Why did you like the product or not?"
+                  value={questionValues.question}
+                  maxLength="1000"
+                  required="required"
+                  onChange={handleQuestionInputChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="questionNicknameInput">
+                *Nickname:
+                <input
+                  type="text"
+                  id="quesitonNicknameInput"
+                  name="nickname"
+                  value={questionValues.nickname}
+                  placeholder="Example: jackson11!"
+                  maxLength="60"
+                  required="required"
+                  onChange={handleNicknameInputChange}
+                />
+                <div>
+                  <small>
+                    “For privacy reasons, do not use your full name or email address
+                  </small>
+                </div>
+              </label>
+            </div>
+            <div>
+              <label htmlFor="email">
+                *Email:
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Why did you like the product or not?"
+                  value={questionValues.email}
+                  id="questoinEmailInput"
+                  required="required"
+                  onChange={handleEmailInputChange}
+                />
+                <div>
+                  <small>
+                    For authentication reasons, you will not be emailed
+                  </small>
+                </div>
+              </label>
+            </div>
+            <div style={modalFooter}>
+              <button
+                type="button"
+                onClick={() => setShowAddAQuestionModal(false)}
+              >
+                close
+              </button>
+              <input
+                type="submit"
+                value="submit"
+                onClick={submitQuestion()}
+              >
+              </input>
+            </div>
+          </form>
         </div>
       </div>
     </div>

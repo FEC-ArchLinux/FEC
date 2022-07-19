@@ -12,6 +12,7 @@ const inline = {
 
 function AnswerListEntry({ answerData }) {
   const answerBody = answerData.body;
+  const answerId = answerData.answer_id;
   return (
     <ul style={{ paddingInlineStart: '0' }}>
       <div>
@@ -19,7 +20,7 @@ function AnswerListEntry({ answerData }) {
         {answerBody}
       </div>
       <span>
-        {!answerData.photos.length ? <AnswerInfo answerData={answerData} /> : null}
+        {!answerData.photos.length ? <AnswerInfo answerId={answerId} answerData={answerData} /> : null}
         <AnswerPictureListComponent answerData={answerData} />
       </span>
     </ul>
