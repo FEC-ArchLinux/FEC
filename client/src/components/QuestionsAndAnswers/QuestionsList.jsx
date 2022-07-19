@@ -9,10 +9,12 @@ function QuestionsList({ questionsData = {}, moreAnsweredQuestions }) {
 
   const listOverflow = {
     maxHeight: "40vh",
-    maxWdith: "860px",
-    width: "80vw",
+    maxWdith: "1050px",
+    width:"1050px",
+    // width: "80vw",
     overflowX: "hidden",
-    overflowY: "scroll",
+    overflowY: "auto",
+    overscrollBehaviorX: "contain",
   };
 
   return (

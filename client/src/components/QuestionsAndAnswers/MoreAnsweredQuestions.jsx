@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 
 const boxButtonStyle = {
-  margin: "0 1vw 1vw 0",
+  margin: "0 2vw 0 0",
   fontSize: "large",
   fontStyle: "bold",
   border: "solid",

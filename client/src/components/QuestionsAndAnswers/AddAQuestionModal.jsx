@@ -47,8 +47,8 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
     nickname: '',
     email: '',
   });
-
-  const addQuestionURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${productId}`;
+  const [submit, setSubmit] = useState(false);
+  const addQuestionURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
 
   const handleQuestionInputChange = (event) => {
     event.persist();
@@ -75,25 +75,36 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
   // I didn't want to do another HTTP request for the title...
   const productName = document.body.children.root.children[1].children[0].children[1].children[0].children[4].textContent || '[product name goes here]';
   const questionParameters = {
+    product_id: productId,
     body: questionValues.question,
     name: questionValues.nickname,
     email: questionValues.email,
-    product_id: productId,
+  };
+
+  const addQuestionConfig = {
+    method: 'post',
+    url: addQuestionURL,
     headers: {
       authorization: GH_TOKEN,
       "content-type": "application/json",
     },
+    data: JSON.stringify(questionParameters),
   };
 
-  const submitQuestion = () => {
-    axios.post(addQuestionURL, questionParameters)
+  const submitQuestion = (e) => {
+    if (!submit) {
+      return;
+    }
+    console.log(addQuestionConfig);
+    axios.post(addQuestionConfig)
       .then((data) => {
         console.log(data);
         setShowAddAQuestionModal(false);
+        setSubmit(false);
       })
       .catch((err) => console.error(err));
   };
-  console.log(productId);
+
   return (
     // click outside of the modalContent div exits the modal
     <div
@@ -113,7 +124,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
         <div style={modalBody}>
           <form
             action=""
-            method="post"
+            method="dialog"
           >
             <div>
               <label htmlFor="questionInput">
@@ -179,7 +190,11 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
               <input
                 type="submit"
                 value="submit"
-                onClick={submitQuestion()}
+                onClick={() => {
+                  setSubmit(true);
+                  submitQuestion();
+                  }
+                }
               >
               </input>
             </div>

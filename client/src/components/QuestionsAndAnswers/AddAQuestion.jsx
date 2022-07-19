@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddAQuestionModal from "./AddAQuestionModal.jsx";
 
 const boxButtonStyle = {
-  margin: "0 1vw 1vw 0",
+  margin: "0 0vw 1vw 0",
   fontSize: "large",
   fontStyle: "bold",
   border: "solid",
@@ -29,7 +29,7 @@ function AddAQuestion({ productId }) {
       style={boxButtonStyle}
       onClick={() => setShowAddAQuestionModal(true)}
     >
-      ADD A QUESTION ➕
+      ADD A QUESTION +
     </button>
   );
 }
