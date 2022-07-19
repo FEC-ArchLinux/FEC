@@ -95,6 +95,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     'scroll-behavior': 'smooth',
     'max-height': "80%",
     gap: '0.4%',
+    'align-items': 'center',
   };
 
   const overviewButtonStyle = css`
@@ -135,7 +136,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
     ${overviewButtonStyle};
     cursor: url(https://cdn.custom-cursor.com/db/6777/32/among-us-impostor-of-the-vent-pointer.png), pointer;
     display: ${styles && styles[activeStyle].photos.length <= 7 ? 'none' : 'flex'};
-    visibility: ${atTop ? 'hidden' : 'visible'}
+    visibility: ${atTop ? 'hidden' : 'visible'};
     `;
 
   const DownArrowButton = styled.button`
@@ -177,11 +178,11 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
       if (isExpanded) {
         if (index === activeImage) {
           return (
-            <p style={{ border: 'medium solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center' }} onClick={selectBigPicture} name={index}>🖼️</p>
+            <p style={{ border: 'medium solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center', 'font-size': "calc(0.6vw + 0.6vh)"}} onClick={selectBigPicture} name={index}>🖼️</p>
           );
         }
         return (
-          <p style={{ border: 'thin solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center' }} onClick={selectBigPicture} name={index}>🖼️</p>
+          <p style={{ border: 'thin solid black', cursor: 'pointer', margin: '1px', height: "calc(1vw + 1vh)", width: "calc(1vw + 1vh)", 'text-align': 'center', 'font-size': "calc(0.6vw + 0.6vh)" }} onClick={selectBigPicture} name={index}>🖼️</p>
         );
       } else {
         if (index === activeImage) {
@@ -206,7 +207,7 @@ function ImageGallery({ styles, activeStyle, isExpanded, toggleExpandedView, pla
 
   return (
     <div style={{ display: 'flex', height: '100%', 'flex-basis': '100%', 'background-color': 'whitesmoke' }}>
-      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center' , 'max-width': '140px', width: '15%'}}>
+      <div style={{ 'max-height': '100%', display: (isZoomed ? 'none' : 'flex'), 'flex-direction': 'column', 'align-items': 'center', 'max-width': '140px', width: '15%'}}>
         <UpArrowButton onClick={() => scrollDown(-50)}>⇧</UpArrowButton>
         <div style={imageGalleryDivStyle} ref={imageGalleryRef}>
           {styles && galleryGenerator()}
