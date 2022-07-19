@@ -90,35 +90,14 @@ describe('render percent recommend module', () => {
 });
 
 describe('Render and Test ProductBreakdown Component', () => {
-  it('should calculate product breakdown stats appropriately', async () => {
-    const testProp = { Comfort: { id: 125042, value: "2.7500000000000000" }, Fit: { id: 125040, value: "3.2558139534883721" }, Length: { id: 125040, value: "3.2558139534883721" }, Quality: { id: 125040, value: "3.2558139534883721" } };
-    const productBreakdown = render(<ProductBreakdown recommend={testProp} />);
+  it('should render marker', async () => {
+    const { findAllByTestId } = render(<ProductBreakdown />);
     await waitFor(() => {
-      // const span = screen.getAllByText('🔻', { exact: false });
-      // console.log(span);
+      const span = screen.findAllByTestId('marker', { exact: false })
+        .then((spans) => {
+          expect(spans.innerHTML).toBe("🔻");
+        });
     });
     cleanup();
   });
 });
-// const { container } = render(<ReviewList productId={test} />);
-// await waitFor(() => expect(screen.getByText("More Reviews")).toBeInTheDocument());
-
-// fireEvent.click(button);
-// const reviewContainer = screen.getByTitle("review-container");
-// console.log(reviewContainer);
-
-//   const reviewList = render(<ReviewList productId={37311} />);
-//   const { container } = render(<ReviewList />);
-//
-//   console.log(reviewList);
-//   console.log(button);
-
-// const { container } = renderer.create(<ReviewList />);
-
-// const tree = reviewList.toJSON();
-// console.log(tree);
-
-// fireEvent.click(button);
-
-// console.log(ReviewContainer);
-// expect(ReviewContainer.length).toBe(4);
