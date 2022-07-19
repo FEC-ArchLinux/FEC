@@ -28,7 +28,7 @@ function SortRelevance({ reviewCopy, setCurrentTwo, setPageNumber, reviewInfo, s
     }
   }
   return (
-    <div style={{ position: 'sticky', top: '0', zIndex: '10', backgroundColor: "white" }}>
+    <div style={{ position: 'sticky', top: '0', zIndex: '10' }}>
       <label htmlFor="sortBy"><b>{reviewInfo.length} reviews, sorted by</b></label>
       <select style={{ marginLeft: "3px", border: "none" }} onChange={sortByChange} name="sortBy" id="reviewSort">
         <option value="Relevant">Relevant</option>
