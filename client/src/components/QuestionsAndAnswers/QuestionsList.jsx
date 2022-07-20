@@ -5,18 +5,35 @@ import React, { useEffect } from "react";
 import QuestionListEntry from "./QuestionListEntry.jsx";
 
 function QuestionsList({ questionsData = {}, moreAnsweredQuestions }) {
-  const limit = limit || 4;
+  const limit = 1;
 
   const listOverflow = {
     maxHeight: "40vh",
     maxWdith: "1050px",
-    width:"1050px",
+    width: "1050px",
     // width: "80vw",
     overflowX: "hidden",
     overflowY: "auto",
     overscrollBehaviorX: "contain",
   };
 
+  if (moreAnsweredQuestions) {
+    return (
+      <div
+        id="QuestionList"
+        style={listOverflow}
+      >
+        {questionsData && questionsData
+          .sort((b, a) => a.question_helpfulness - b.question_helpfulness)
+          .map((question, index) => (
+            <QuestionListEntry
+              key={question.question_id}
+              question={question}
+            />
+          ))}
+      </div>
+    );
+  }
   return (
     <div
       id="QuestionList"

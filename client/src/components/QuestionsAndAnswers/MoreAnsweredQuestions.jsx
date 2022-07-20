@@ -13,11 +13,32 @@ const boxButtonStyle = {
   backgroundColor: 'white',
 };
 
-function MoreAnsweredQuestions({ questionsData }) {
+const disabledBoxButtonStyle = {
+  margin: "0 2vw 0 0",
+  fontSize: "large",
+  color: "grey",
+  border: "solid",
+  borderWidth: "1px",
+  height: '40px',
+  cursor: 'not-allowed',
+  backgroundColor: 'white',
+};
+
+function MoreAnsweredQuestions({ questionsData, setMoreAnsweredQuestions, moreAnsweredQuestions }) {
+  if (questionsData.length < 2 || moreAnsweredQuestions) {
+    return (
+      <button
+      style={disabledBoxButtonStyle}
+    >
+      MORE ANSWERED QUESTIONS
+    </button>
+    )
+  }
   return (
     <button
       type="button"
       style={boxButtonStyle}
+      onClick={() => setMoreAnsweredQuestions(true)}
     >
       MORE ANSWERED QUESTIONS
     </button>

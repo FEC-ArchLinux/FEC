@@ -23,7 +23,7 @@ const TopContainer = styled.div`
 
 function QuestionsAndAnswers({ productId }) {
   const [questionsData, setQuestionData] = useState([]);
-  const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(1);
+  const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(false);
 
   function getQuestionsAndAnswers() {
     axios.get(
@@ -52,9 +52,9 @@ function QuestionsAndAnswers({ productId }) {
         />
         <span style={inline}>
           <MoreAnsweredQuestions
-            setMoreAnsweredQuestions={setMoreAnsweredQuestions}
-            moreAnsweredQuestions={moreAnsweredQuestions}
             questionsData={questionsData}
+            moreAnsweredQuestions={moreAnsweredQuestions}
+            setMoreAnsweredQuestions={setMoreAnsweredQuestions}
           />
           <AddAQuestion productId={productId} />
         </span>
