@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import GH_TOKEN from "../../../../token.js";
+import AnswerPictureList from "./AnswerPictureList.jsx";
 
 const answerModal = {
   position: "fixed",
@@ -86,7 +87,14 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
   }
 
   return (
-    <div id="answerModal" style={answerModal}>
+    <div id="answerModal"
+      style={answerModal}
+      onClick={(event) => {
+        if (event.target.id === "answerModal") {
+          setShowAddAnswerModal(false);
+        }
+      }}
+    >
       <div style={modalContent}>
         <div style={modalHeader}>
           <h3 className="AnswerModalTitle">Answer A Question</h3>
@@ -162,9 +170,8 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
                   onChange={handlePhotosInputChange}
                 />
                 <div>
-                  <small>
-                    For authentication reasons, you will not be emailed
-                  </small>
+                  Add Photos
+                  <answerPictureList answerPictureList={answerValues.Photos} />
                 </div>
               </label>
             </div>

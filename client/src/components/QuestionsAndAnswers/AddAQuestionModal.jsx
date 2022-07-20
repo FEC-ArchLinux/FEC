@@ -73,7 +73,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
   };
 
   // I didn't want to do another HTTP request for the title...
-  const productName = '[product name goes here]';
+  const productName = document.body.children.root.children[1].children[1].children[0].children[1].children[0].children[4].textContent;
   const questionParameters = {
     product_id: productId,
     body: questionValues.question,
@@ -83,12 +83,12 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
 
   const addQuestionConfig = {
     method: 'post',
-    url: addQuestionURL,
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/',
     headers: {
-      authorization: GH_TOKEN,
-      "content-type": "application/json",
+      Authorization: GH_TOKEN,
+      'Content-Type': 'application/json',
     },
-    data: JSON.stringify(questionParameters),
+    data: questionParameters,
   };
 
   const submitQuestion = (e) => {
@@ -96,9 +96,9 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
       return;
     }
     console.log(addQuestionConfig);
-    axios.post(addQuestionConfig)
+    axios(addQuestionConfig)
       .then((data) => {
-        console.log(data);
+        console.log((data));
         setShowAddAQuestionModal(false);
         setSubmit(false);
       })
