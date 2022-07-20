@@ -7,6 +7,7 @@ import GH_TOKEN from '../../../../token.js';
 import styled from "styled-components";
 import Outfit from './Outfit/outfit.jsx';
 import RelatedItems from './Relateditems/relateditems.jsx';
+import withClickTracker from "../withClickTracker.jsx";
 
 function RelatedItemsAndComparison(props) {
   const [relatedItems, changeRelatedItems] = useState([]);
@@ -26,12 +27,12 @@ function RelatedItemsAndComparison(props) {
     getRelatedItems();
   }, [props]);
 
-  const getClicked = (event) => {
-    props.clickTracker(event, 'RelatedItems');
-  }
+  // const getClicked = (event) => {
+  //   props.clickTracker(event, 'RelatedItems');
+  // }
 
   return (
-    <MainWrapper onClick={getClicked}>
+    <MainWrapper onClick={(e) => props.clickTracker(e, "RelatedItemsAndComparison")}>
       <h3>RELATED PRODUCTS</h3>
       <RelatedItems relatedItems={relatedItems} mainProduct={props.productId} setProductId={props.setProductId} placeHolderImage={props.placeHolderImage} />
       <h3>YOUR OUTFIT</h3>
@@ -51,4 +52,4 @@ margin: auto;
 width: 60%;
 `
 
-export default RelatedItemsAndComparison;
+export default withClickTracker(RelatedItemsAndComparison);

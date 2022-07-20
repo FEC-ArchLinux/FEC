@@ -70,6 +70,7 @@ display: flex;
 flex-direction: row;
 justify-content: flex-start;
 overflow: scroll;
+overflow-y: hidden;
 height: 100%;
 width: 100%;
 position: relative;
