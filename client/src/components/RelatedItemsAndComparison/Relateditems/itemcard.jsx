@@ -118,8 +118,8 @@ function ItemCard(props) {
     return (
       <CardContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <ImgWrapper>
-          <LeftPicArr onClick={pictureBack} font="4vh"><BsArrowLeftShort /></LeftPicArr>
-          <RightPicArr onClick={pictureForward}><BsArrowRightShort /></RightPicArr>
+          {carosel && <LeftPicArr onClick={pictureBack} font="4vh"><BsArrowLeftShort /></LeftPicArr> }
+          {carosel && <RightPicArr onClick={pictureForward}><BsArrowRightShort /></RightPicArr>}
           {item.photos[0].thumbnail_url ? <RelatedImg src={item.photos[currentPic].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <RelatedImg src={props.placeholderImage} onClick={() => { props.setProductId(props.item); }} />}
           <CompareButton onClick={() => { changeOpenModal(true) }}><FaRegStar /></CompareButton>
           {carosel ? (<Carosel>
