@@ -34,22 +34,40 @@ const inputStyle = {
 };
 // useRef hook
 function QuestionsSearch() {
-  const [questionSearchValue, setQuestionSearchValue] = useState('');
+  const inputSearchValue = useRef('');
+  const onSearchInput = () => {
+    inputSearchValue.current.focus();
+  };
   return (
-    <div style={questionSearchStyle}>
+    <>
       <input
-        style={inputStyle}
-        onChange={() => setQuestionSearchValue()}
-        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
+        style={questionSearchStyle}
+        ref={inputSearchValue}
+        type="text"
+        placeholder="Have a question? Search for answers..."
+        onChange={onSearchInput}
       />
-      <button
-        style={buttonStyle}
-        type="submit"
-      >
-        🔍
-      </button>
-    </div>
+    </>
   );
 }
+
+// function QuestionsSearch() {
+//   const [questionSearchValue, setQuestionSearchValue] = useState('');
+//   return (
+//     <div style={questionSearchStyle}>
+//       <input
+//         style={inputStyle}
+//         onChange={() => setQuestionSearchValue()}
+//         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
+//       />
+//       <button
+//         style={buttonStyle}
+//         type="submit"
+//       >
+//         🔍
+//       </button>
+//     </div>
+//   );
+// }
 
 export default QuestionsSearch;
