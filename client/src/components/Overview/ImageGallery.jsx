@@ -241,24 +241,26 @@ function ImageGallery(
         );
       } else {
         if (index === activeImage) {
+          const altTag = `${styles[activeStyle].name} ${index}`
           return (
             <ImageGalleryImgContainer>
               <ActiveImageStyle
                 onClick={selectBigPicture}
                 name={index}
                 src={photo.url === null ? placeHolderImage : photo.url}
-                alt="style-img"
+                alt={altTag}
               />
             </ImageGalleryImgContainer>
           );
         }
+        const altTag = `${styles[activeStyle].name} ${index}`
         return (
           <ImageGalleryImgContainer>
             <ImageGalleryImage
               onClick={selectBigPicture}
               name={index}
               src={photo.url === null ? placeHolderImage : photo.url}
-              alt="style-img"
+              alt={altTag}
             />
           </ImageGalleryImgContainer>
         );
@@ -307,6 +309,7 @@ function ImageGallery(
           ⇦
         </LeftArrowButton>
         <BigImage
+          data-testid="big-image"
           onClick={isExpanded ? toggleZoomView : toggleExpandedView}
           onMouseMove={isZoomed ? handleMouseZoom : null}
         />
