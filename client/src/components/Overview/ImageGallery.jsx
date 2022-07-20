@@ -102,6 +102,7 @@ function ImageGallery(
     background-position: ${isZoomed ? bigImagePos : "center"};
     background-size: ${isZoomed ? "250%" : "contain"};
     background-repeat: no-repeat;
+    z-index: ${isZoomed ? 11 : 'auto'};
   `;
 
   const imageGalleryDivStyle = {

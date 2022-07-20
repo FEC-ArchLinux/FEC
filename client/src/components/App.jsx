@@ -69,7 +69,7 @@ function App() {
     align-items: center;
     flex-direction: row;
     border-bottom: 5px solid black;
-    z-index: 11;
+    z-index: 10;
   `;
 
   async function handleSearch() {
