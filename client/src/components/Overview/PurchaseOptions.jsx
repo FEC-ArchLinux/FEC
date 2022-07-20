@@ -1,6 +1,11 @@
-import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
+import React, {
+  forwardRef,
+  useState,
+  useRef,
+  useImperativeHandle,
+} from "react";
+import styled from "styled-components";
+import axios from "axios";
 import {
   FacebookShareButton,
   PinterestShareButton,
@@ -10,16 +15,21 @@ import {
   PinterestIcon,
 } from "react-share";
 
-function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TOKEN }, ref) {
+function PurchaseOptions(
+  { styles, activeStyle, outOfStock, setOutOfStock, GH_TOKEN },
+  ref
+) {
   const sizeDropdownRef = useRef();
   const quantityDropdownRef = useRef();
-  const [selectedSize, setSelectedSize] = useState('Select Size');
+  const [selectedSize, setSelectedSize] = useState("Select Size");
 
   // pass up function to reset selected size when another style is selected
   useImperativeHandle(ref, () => ({
     resetSelectedSize: () => {
-      setSelectedSize('Select Size');
-      sizeDropdownRef.current !== undefined ? sizeDropdownRef.current.options.selectedIndex = 0 : null;
+      setSelectedSize("Select Size");
+      sizeDropdownRef.current !== undefined
+        ? (sizeDropdownRef.current.options.selectedIndex = 0)
+        : null;
     },
   }));
 
@@ -39,11 +49,13 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
       setOutOfStock(true);
       return 0;
     }
-    return skus.map((sku) => <option value={sku}>{styles[activeStyle].skus[sku].size}</option>);
+    return skus.map((sku) => (
+      <option value={sku}>{styles[activeStyle].skus[sku].size}</option>
+    ));
   }
 
   function quantitySelector() {
-    if (selectedSize === 'Select Size' || outOfStock) {
+    if (selectedSize === "Select Size" || outOfStock) {
       return <option>-</option>;
     }
     const options = [];
@@ -53,7 +65,11 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
           options.push(<option>{i}</option>);
         }
       } else {
-        for (let i = 1; i <= styles[activeStyle].skus[selectedSize].quantity; i++) {
+        for (
+          let i = 1;
+          i <= styles[activeStyle].skus[selectedSize].quantity;
+          i++
+        ) {
           options.push(<option>{i}</option>);
         }
       }
@@ -61,19 +77,63 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
     }
   }
 
+  const DropDown = styled.select`
+    font-size: calc(2vh + 1pt);
+    border-width: calc(0.3vh + 2px);
+    border-color: black;
+    padding: calc(0.3vh + 2px);
+    margin: calc(0.3vh + 2px);
+    cursor: pointer;
+  `;
+
+  const AddButton = styled.button`
+    font-size: calc(2vh + 1pt);
+    border-width: calc(0.3vh + 2px);
+    border-color: black;
+    padding: calc(0.3vh + 2px);
+    margin: calc(0.3vh + 2px);
+    background-color: white;
+    cursor: pointer;
+    :hover {
+      background-color: lightgrey;
+    }
+  `;
+
+  const selectStyle = {
+    "border-width": "calc(.3vh + 2px)",
+    "border-color": "black",
+    padding: "calc(.3vh + 2px)",
+    margin: "calc(.3vh + 2px)",
+    "background-color": "white",
+    "font-size": "calc(2vh + 1pt)",
+    cursor: "pointer",
+  };
+
   function sizeDropdown() {
     const sizes = optionGenerator();
     if (sizes === 0) {
       setOutOfStock(true);
       return (
-        <select style={selectStyle} required disabled id="sizeDropdown" ref={sizeDropdownRef}>
+        <select
+          style={selectStyle}
+          required
+          disabled
+          id="sizeDropdown"
+          ref={sizeDropdownRef}
+        >
           <option value="">Out of Stock</option>
         </select>
       );
     }
     setOutOfStock(false);
     return (
-      <select style={selectStyle} required id="sizeDropdown" ref={sizeDropdownRef} onChange={changeSelectedSize}>
+      <select
+        style={selectStyle}
+        required
+        id="sizeDropdown"
+        ref={sizeDropdownRef}
+        onChange={changeSelectedSize}
+      >
         <option value="">Select Size</option>
         {sizes}
       </select>
@@ -94,89 +154,64 @@ function PurchaseOptions({ styles, activeStyle, outOfStock, setOutOfStock, GH_TO
     //     .catch(err => console.error(err));
     // }
 
-    const postPromise = () => (
-      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
-        sku_id: Number(sizeDropdownRef.current.value),
-      }, {
-        headers: {
-          authorization: GH_TOKEN,
+    const postPromise = () =>
+      axios.post(
+        "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart",
+        {
+          sku_id: Number(sizeDropdownRef.current.value),
         },
-      })
-    );
+        {
+          headers: {
+            authorization: GH_TOKEN,
+          },
+        }
+      );
 
     const promiseArray = Array(Number(quantityDropdownRef.current.value));
     promiseArray.fill(postPromise);
-    Promise.all(promiseArray.map(promise => promise()
-      .catch(err => console.error(err))))
+    Promise.all(
+      promiseArray.map((promise) =>
+        promise().catch((err) => console.error(err))
+      )
+    )
 
       .then(() => {
-        alert(`${quantityDropdownRef.current.value} of item ${sizeDropdownRef.current.value} added to your cart.`)
-        setSelectedSize('Select Size');
+        alert(
+          `${quantityDropdownRef.current.value} of item ${sizeDropdownRef.current.value} added to your cart.`
+        );
+        setSelectedSize("Select Size");
         sizeDropdownRef.current.options.selectedIndex = 0;
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   }
 
-  const DropDown = styled.select`
-    font-size: calc(2vh + 1pt);
-    border-width: calc(.3vh + 2px);
-    border-color: black;
-    padding: calc(.3vh + 2px);
-    margin: calc(.3vh + 2px);
-    cursor: pointer;
-    `;
-
-  const AddButton = styled.button`
-    font-size: calc(2vh + 1pt);
-    border-width: calc(.3vh + 2px);
-    border-color: black;
-    padding: calc(.3vh + 2px);
-    margin: calc(.3vh + 2px);
-    background-color: white;
-    cursor: pointer;
-    :hover {
-      background-color: lightgrey;
-    }
-    `;
-
-  const selectStyle = {
-    'border-width': "calc(.3vh + 2px)",
-    'border-color': 'black',
-    padding: "calc(.3vh + 2px)",
-    margin: "calc(.3vh + 2px)",
-    'background-color': 'white',
-    'font-size': "calc(2vh + 1pt)",
-    cursor: 'pointer',
-  };
-
   return (
-    <div style={{ 'margin-top': '3vh' }}>
+    <div style={{ "margin-top": "3vh" }}>
       <form onSubmit={completePurchase}>
         {styles && sizeDropdown()}
-        {styles && (selectedSize === 'Select Size' || outOfStock
-          ? <DropDown required disabled>
-            {styles && quantitySelector()}
-          </DropDown>
-          : <DropDown ref={quantityDropdownRef} required>
-            {styles && quantitySelector()}
-          </DropDown>)}
+        {styles &&
+          (selectedSize === "Select Size" || outOfStock ? (
+            <DropDown required disabled>
+              {styles && quantitySelector()}
+            </DropDown>
+          ) : (
+            <DropDown ref={quantityDropdownRef} required>
+              {styles && quantitySelector()}
+            </DropDown>
+          ))}
         <br />
         {outOfStock ? null : <AddButton type="submit">Add to Cart</AddButton>}
       </form>
-      <p style={{ 'font-size': "calc(2vh + 1pt)", 'margin-bottom': 0 }}>Share:</p>
-      <FacebookShareButton
-        url="https://github.com/FEC-ArchLinux/FEC"
-      >
+      <p style={{ "font-size": "calc(2vh + 1pt)", "margin-bottom": 0 }}>
+        Share:
+      </p>
+      <FacebookShareButton url="https://github.com/FEC-ArchLinux/FEC">
         <FacebookIcon size={window.innerWidth / 45} round />
       </FacebookShareButton>
-      <TwitterShareButton
-        url="https://github.com/FEC-ArchLinux/FEC"
-      >
+      <TwitterShareButton url="https://github.com/FEC-ArchLinux/FEC">
         <TwitterIcon size={window.innerWidth / 45} round />
       </TwitterShareButton>
-      <PinterestShareButton
-        url="https://github.com/FEC-ArchLinux/FEC"
-      >
+      <PinterestShareButton url="https://github.com/FEC-ArchLinux/FEC">
         <PinterestIcon size={window.innerWidth / 45} round />
       </PinterestShareButton>
     </div>
