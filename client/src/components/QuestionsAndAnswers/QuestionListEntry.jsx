@@ -28,7 +28,9 @@ function QuestionListEntry({ question }) {
             questionHelpfulness={questionHelpfulness}
             questionId={questionId}
           />
-          <AddAnswer />
+          <AddAnswer
+            questionId={questionId}
+          />
         </span>
         <AnswerList
           answerList={answerList}

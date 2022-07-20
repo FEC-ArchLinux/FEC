@@ -14,6 +14,7 @@ const boxButtonStyle = {
 
 function AddAQuestion({ productId }) {
   const [showAddAQuestionModal, setShowAddAQuestionModal] = useState(false);
+
   if (showAddAQuestionModal) {
     return (
       <AddAQuestionModal

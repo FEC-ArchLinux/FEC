@@ -73,7 +73,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
   };
 
   // I didn't want to do another HTTP request for the title...
-  const productName = document.body.children.root.children[1].children[0].children[1].children[0].children[4].textContent || '[product name goes here]';
+  const productName = '[product name goes here]';
   const questionParameters = {
     product_id: productId,
     body: questionValues.question,
@@ -190,13 +190,12 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
               <input
                 type="submit"
                 value="submit"
+                url={addQuestionURL}
                 onClick={() => {
                   setSubmit(true);
                   submitQuestion();
-                  }
-                }
-              >
-              </input>
+                }}
+              />
             </div>
           </form>
         </div>
