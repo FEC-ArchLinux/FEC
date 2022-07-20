@@ -84,7 +84,19 @@ function App() {
           },
         }
       );
-      setProductId(searchBarRef.current.value);
+      const response = await axios.get(
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${searchedTerm}/styles`,
+        {
+          headers: {
+            authorization: GH_TOKEN,
+          },
+        }
+      );
+      if (response.data.results.length === 0) {
+        alert("Entered product has no styles.");
+        return;
+      }
+      //setProductId(searchBarRef.current.value);
     } catch (err) {
       alert(err.response.data);
     }
@@ -126,7 +138,9 @@ function App() {
             type="number"
             ref={searchBarRef}
           />
-          <SearchButton data-testid="searchButton" type="submit">Go</SearchButton>
+          <SearchButton data-testid="searchButton" type="submit">
+            Go
+          </SearchButton>
         </form>
         <ThemeButton
           style={{ "margin-right": "1vw" }}
