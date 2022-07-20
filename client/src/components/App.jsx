@@ -120,12 +120,13 @@ function App() {
         </a>
         <form onSubmit={handleSearch}>
           <Input
+            data-testid="searchBar"
             placeholder="Enter Product ID"
             required
             type="number"
             ref={searchBarRef}
           />
-          <SearchButton type="submit">Go</SearchButton>
+          <SearchButton data-testid="searchButton" type="submit">Go</SearchButton>
         </form>
         <ThemeButton
           style={{ "margin-right": "1vw" }}

@@ -10,11 +10,29 @@ import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/re
 import 'jest-styled-components';
 // import Enzyme, { shallow } from 'enzyme';
 import Overview from '../Overview.jsx';
+import App from '../../App.jsx';
 import ProductDescription from '../ProductDescription.jsx';
 
-describe('test', () => {
-  it('should be true', () => {
-    expect(true).toBe(true);
+describe('App - Item Search', () => {
+  it('should change to new', async () => {
+    const app = render(<App />);
+
+    const search = app.getByTestId('searchBar', {
+      selector: 'input',
+    });
+    fireEvent.change(search, {
+      target: { value: 37318 },
+    });
+    const searchButton = app.getByTestId('searchButton', {
+      selector: 'button',
+    });
+    fireEvent.click(searchButton);
+    await waitFor(() => {
+      const bigImage = screen.getByTestId("big-image", {
+        selector: 'div',
+      });
+      expect(bigImage).toHaveStyleRule("background-image", "url(https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)");
+    });
     cleanup();
   });
 });
