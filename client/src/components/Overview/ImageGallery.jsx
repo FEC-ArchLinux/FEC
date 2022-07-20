@@ -268,8 +268,8 @@ function ImageGallery(
 
   function handleMouseZoom(e) {
     setBigImagePos(
-      `${(e.nativeEvent.offsetX / window.innerWidth) * 100}% ${
-        (e.nativeEvent.offsetY / window.innerHeight) * 100
+      `${(e.clientX / window.innerWidth) * 100}% ${
+        (e.clientY / window.innerHeight) * 100
       }%`
     );
   }
