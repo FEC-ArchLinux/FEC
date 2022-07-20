@@ -12,7 +12,7 @@ function OutfitCard(props) {
   const [item, changeItem] = useState('');
   const [product, changeProduct] = useState('');
   const [reviews, changeRev] = useState();
-  // const [openModal, changeOpenModal] = useState(false);
+
 
 
   // reviews calculation
@@ -100,7 +100,7 @@ function OutfitCard(props) {
         <CardContent>{product.category}</CardContent>
         <CardContent style={{ "font-weight": "bold" }}>{product.name}</CardContent>
         <CardContent>{price}</CardContent>
-        {reviews && <StarRatings rating={reviews} starDimension="15px" starSpacing="1px" />}
+        {reviews && <StarRatings rating={reviews} starDimension="1.5vh" starSpacing="1px" />}
       </CardContainer>
     );
   }
@@ -109,11 +109,12 @@ function OutfitCard(props) {
 
 const CardContainer = styled.div`
 position: relative;
-height: 40vh;
+height: 42vh;
 width: 15vw;
 flex-grow: 0;
 flex-shrink: 0;
 flex-basis: 30%;
+font-size: 1.5vh;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);
 &:hover {

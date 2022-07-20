@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { FaRegStar } from 'react-icons/fa';
+import { BsArrowRightShort, BsArrowLeftShort } from 'react-icons/bs';
 import StarRatings from 'react-star-ratings';
 import GH_TOKEN from '../../../../../token.js';
 import RelatedModal from './relatedmodal.jsx';
@@ -14,6 +15,8 @@ function ItemCard(props) {
   const [product, changeProduct] = useState('');
   const [reviews, changeRev] = useState();
   const [openModal, changeOpenModal] = useState(false);
+  const [currentPic, changeCurrentPic] = useState(0);
+  const [carosel, showCarosel] = useState(false);
 
 
   // reviews calculation
@@ -68,6 +71,28 @@ function ItemCard(props) {
     });
   }
 
+  //picturefunctions
+  const pictureForward = () => {
+    if (currentPic + 1 < item.photos.length) {
+      changeCurrentPic(currentPic + 1);
+    }
+  }
+
+  const pictureBack = () => {
+    if (currentPic - 1 >= 0) {
+      changeCurrentPic(currentPic - 1);
+    }
+  }
+
+  //handleHover
+
+  const handleMouseEnter = () => {
+    showCarosel(true);
+  };
+  const handleMouseLeave = () => {
+    showCarosel(false);
+  };
+
   useEffect(() => {
     getStyles();
     getReviews();
@@ -91,15 +116,27 @@ function ItemCard(props) {
 
   if (product && item) {
     return (
-      <CardContainer>
+      <CardContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <ImgWrapper>
-          {item.photos[0].thumbnail_url ? <RelatedImg src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <RelatedImg src={props.placeholderImage} onClick={() => { props.setProductId(props.item); }} />}
+          <LeftPicArr onClick={pictureBack} font="4vh"><BsArrowLeftShort /></LeftPicArr>
+          <RightPicArr onClick={pictureForward}><BsArrowRightShort /></RightPicArr>
+          {item.photos[0].thumbnail_url ? <RelatedImg src={item.photos[currentPic].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <RelatedImg src={props.placeholderImage} onClick={() => { props.setProductId(props.item); }} />}
           <CompareButton onClick={() => { changeOpenModal(true) }}><FaRegStar /></CompareButton>
+          {carosel ? (<Carosel>
+            {item.photos && item.photos.map((pic, index) => {
+              return (
+                <ThumbnailPic src={pic.thumbnail_url} onClick={()=>changeCurrentPic(index)}>
+                </ThumbnailPic>
+              )
+
+            })}
+          </Carosel>) : null}
+
         </ImgWrapper>
         <CardContent data-testid="productCategory">{product.category}</CardContent>
         <CardContent style={{ "font-weight": "bold" }}>{product.name}</CardContent>
         <CardContent>{price}</CardContent>
-        {reviews && <StarRatings rating={reviews} starDimension="15px" starSpacing="1px" />}
+        {reviews && <StarRatings rating={reviews} starDimension="1.5vh" starSpacing="1px" />}
         {openModal && <RelatedModal closeModal={changeOpenModal} item={product} mainProduct={props.mainProduct} />}
       </CardContainer>
     );
@@ -109,9 +146,10 @@ function ItemCard(props) {
 
 const CardContainer = styled.div`
 position: relative;
-height: 40vh;
+height: 42vh;
 width: 15vw;
 flex-shrink: 0;
+font-size: 1.5vh;
 margin: 0px 40px;
 background: rgba(255,255,255,0.1);
 &:hover {
@@ -133,6 +171,25 @@ const RelatedImg = styled.img`
   width: 100%
 `;
 
+const LeftPicArr = styled.button`
+position: absolute;
+top: 50%;
+left: 0;
+border: none;
+background: none;
+font-size: 3vh;
+color: white;
+`;
+
+const RightPicArr = styled.button`
+position: absolute;
+top: 50%;
+right: 0;
+border: none;
+background: none;
+font-size: 3vh;
+color: white;
+`;
 
 const CompareButton = styled.button`
   position: absolute;
@@ -147,5 +204,25 @@ const CompareButton = styled.button`
     color: gold;
   }
 `;
+
+const Carosel = styled.div`
+position:absolute;
+top: 80%;
+width: 100%;
+height: 6vh;
+display: flex;
+gap: 1rem;
+flex-direction: row;
+flex-wrap: nowrap;
+overflow-x: scroll;
+
+`
+const ThumbnailPic = styled.img`
+align-self: center;
+aspect-ratio: 1/1;
+height: 6vh;
+flex: 0 0 25%;
+
+`
 
 export default ItemCard;
