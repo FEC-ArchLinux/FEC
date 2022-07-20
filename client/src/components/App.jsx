@@ -96,7 +96,7 @@ function App() {
         alert("Entered product has no styles.");
         return;
       }
-      //setProductId(searchBarRef.current.value);
+      setProductId(searchBarRef.current.value);
     } catch (err) {
       alert(err.response.data);
     }
