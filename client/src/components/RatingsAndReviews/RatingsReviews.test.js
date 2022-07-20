@@ -14,6 +14,8 @@ import App from '../App.jsx';
 import PercentRecommend from './PercentRecommend.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import AddReview from './AddReview.jsx';
+import StarFilter from './StarFilter.jsx';
+import SortRelevance from './SortRelevance.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -142,3 +144,26 @@ describe('Render and Test AddReview Component', () => {
     cleanup();
   });
 });
+
+describe('Render and Test AddReview Component', () => {
+  it('should render add review characteristics', async () => {
+    const starProp = ['1'];
+    const reviewProp = [{ rating: 1 }, { rating: 1 }];
+    const results = StarFilter(reviewProp, starProp);
+    expect(results.length).toBe(2);
+    cleanup();
+  });
+});
+
+// describe('Render and Test Sort Relevance', () => {
+//   it('should have selectable drop down', async () => {
+//     const overview = render(<SortRelevance productId={37311} />);
+
+//     await waitFor(() => {
+//       const span = screen.getByText('sorted by', { exact: false });
+//       expect(span.innerHTML).toBe("reviews, sorted by");
+//     });
+
+//     cleanup();
+//   });
+// });
