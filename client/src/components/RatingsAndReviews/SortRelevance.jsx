@@ -7,7 +7,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-function SortRelevance({ reviewCopy, setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo }) {
+function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo }) {
   function sortByChange(event) {
     const selector = event.target.value;
     if (selector === 'Newest') {
@@ -21,22 +21,24 @@ function SortRelevance({ reviewCopy, setCurrentTwo, setPageNumber, reviewInfo, s
       setCurrentTwo(reviewInfo.slice(0, 2));
       setPageNumber(0);
     } else if (selector === "Relevant") {
-      let relevant = reviewCopy.sort((a, b) => (a.date > b.date) ? -1 : ((a.date > b.date) ? 1 : 0) || (a.helpfulness > b.helpfulness) ? -1 : ((a.helpfulness > b.helpfulness) ? 1 : 0));
+      let relevant = reviewInfo.sort((a, b) => (a.date > b.date) ? -1 : ((a.date > b.date) ? 1 : 0) || (a.helpfulness > b.helpfulness) ? -1 : ((a.helpfulness > b.helpfulness) ? 1 : 0));
       setReviewInfo(relevant);
       setCurrentTwo(reviewInfo.slice(0, 2));
       setPageNumber(0);
     }
   }
-  return (
-    <div style={{ position: 'sticky', top: '0', zIndex: '10' }}>
-      <label htmlFor="sortBy"><b>{reviewInfo.length} reviews, sorted by</b></label>
-      <select style={{ marginLeft: "3px", border: "none" }} onChange={sortByChange} name="sortBy" id="reviewSort">
-        <option value="Relevant">Relevant</option>
-        <option value="Helpful">Helpful</option>
-        <option value="Newest">Newest</option>
-      </select>
-    </div>
-  );
+  if (reviewInfo) {
+    return (
+      <div style={{ position: 'sticky', top: '0', zIndex: '10' }}>
+        <label htmlFor="sortBy"><b>{reviewInfo.length} reviews, sorted by</b></label>
+        <select data-testid="relevance-selector" style={{ marginLeft: "3px", border: "none" }} onChange={sortByChange} name="sortBy" id="reviewSort">
+          <option value="Relevant">Relevant</option>
+          <option value="Helpful">Helpful</option>
+          <option value="Newest">Newest</option>
+        </select>
+      </div>
+    );
+  }
 }
 
 export default SortRelevance;
