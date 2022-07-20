@@ -59,6 +59,7 @@ flex-direction: row;
 justify-content: flex-start;
 flex-flow: nowrap;
 overflow: scroll;
+overflow-y: hidden;
 height: 100%;
 width: 100%;
 position: relative;
@@ -77,7 +78,7 @@ const LeftButtonWrapper = styled.div`
 position: absolute;
 left:0;
 top: 35%;
-z-index: 10;
+z-index: 9;
 `
 const RightButton = styled.button`
 position: sticky;
@@ -91,7 +92,7 @@ const RightButtonWrapper = styled.div`
 position: absolute;
 right:0;
 top: 35%;
-z-index: 10;
+z-index: 9;
 `
 
 export default Outfit;
