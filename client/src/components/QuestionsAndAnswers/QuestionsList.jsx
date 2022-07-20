@@ -1,12 +1,11 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import QuestionListEntry from "./QuestionListEntry.jsx";
 
-function QuestionsList({ questionsData = {}, moreAnsweredQuestions }) {
+function QuestionsList({ questionsData = {}, moreAnsweredQuestions, questionSearchInput }) {
   const limit = 1;
-
   const listOverflow = {
     maxHeight: "40vh",
     maxWdith: "1050px",
@@ -16,7 +15,26 @@ function QuestionsList({ questionsData = {}, moreAnsweredQuestions }) {
     overflowY: "auto",
     overscrollBehaviorX: "contain",
   };
-
+  if (questionSearchInput.length > 3) {
+    const filteredQuestionsData = questionsData.filter((question) => (
+      question.question_body.includes(questionSearchInput)
+    ));
+    return (
+      <div
+        id="QuestionList"
+        style={listOverflow}
+      >
+        {filteredQuestionsData
+          .sort((b, a) => a.question_helpfulness - b.question_helpfulness)
+          .map((question, index) => (
+            <QuestionListEntry
+              key={question.question_id}
+              question={question}
+            />
+          ))}
+      </div>
+    );
+  }
   if (moreAnsweredQuestions) {
     return (
       <div

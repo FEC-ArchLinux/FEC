@@ -32,42 +32,60 @@ const inputStyle = {
   padding: "0vw 1vw",
   borderWidth: "0em",
 };
-// useRef hook
-function QuestionsSearch() {
-  const inputSearchValue = useRef('');
-  const onSearchInput = () => {
-    inputSearchValue.current.focus();
-  };
-  return (
-    <>
-      <input
-        style={questionSearchStyle}
-        ref={inputSearchValue}
-        type="text"
-        placeholder="Have a question? Search for answers..."
-        onChange={onSearchInput}
-      />
-    </>
-  );
-}
-
+// // useRef hook
 // function QuestionsSearch() {
-//   const [questionSearchValue, setQuestionSearchValue] = useState('');
+//   const inputSearchValue = useRef('');
+//   const onSearchInput = () => {
+//     inputSearchValue.current.focus();
+//   };
 //   return (
-//     <div style={questionSearchStyle}>
+//     <>
 //       <input
-//         style={inputStyle}
-//         onChange={() => setQuestionSearchValue()}
-//         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
+//         style={questionSearchStyle}
+//         ref={inputSearchValue}
+//         type="text"
+//         placeholder="Have a question? Search for answers..."
+//         onChange={onSearchInput}
 //       />
-//       <button
-//         style={buttonStyle}
-//         type="submit"
-//       >
-//         🔍
-//       </button>
-//     </div>
+//     </>
 //   );
 // }
+// function QuestionsSearch() {
+//   const inputSearchValue = useRef('');
+//   const onSearchInput = () => {
+//     inputSearchValue.current;
+//   };
+//   return (
+//     <>
+//       <input
+//         style={questionSearchStyle}
+//         ref={inputSearchValue}
+//         type="text"
+//         placeholder="Have a question? Search for answers..."
+//         onChange={onSearchInput}
+//       />
+//     </>
+//   );
+// }
+
+function QuestionsSearch({ questionSearchInput, setQuestionSearchInput }) {
+  return (
+    <div style={questionSearchStyle}>
+      <input
+        style={inputStyle}
+        onChange={(e) => {
+          setQuestionSearchInput(e.target.value);
+        }}
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
+      />
+      <button
+        style={buttonStyle}
+        type="submit"
+      >
+        🔍
+      </button>
+    </div>
+  );
+}
 
 export default QuestionsSearch;

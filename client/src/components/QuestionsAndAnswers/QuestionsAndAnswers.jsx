@@ -24,6 +24,7 @@ const TopContainer = styled.div`
 function QuestionsAndAnswers({ productId }) {
   const [questionsData, setQuestionData] = useState([]);
   const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(false);
+  const [questionSearchInput, setQuestionSearchInput] = useState('');
 
   function getQuestionsAndAnswers() {
     axios.get(
@@ -45,8 +46,13 @@ function QuestionsAndAnswers({ productId }) {
     <TopContainer>
       <MainFlex>
         <h3>{`QUESTIONS ${'&'} ANSWERS`}</h3>
-        <QuestionsSearch productId={productId} />
+        <QuestionsSearch
+          productId={productId}
+          questionSearchInput={questionSearchInput}
+          setQuestionSearchInput={setQuestionSearchInput}
+        />
         <QuestionsList
+          questionSearchInput={questionSearchInput}
           questionsData={questionsData}
           moreAnsweredQuestions={moreAnsweredQuestions}
         />
