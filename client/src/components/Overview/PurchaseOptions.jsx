@@ -118,7 +118,7 @@ function PurchaseOptions(
           style={selectStyle}
           required
           disabled
-          id="sizeDropdown"
+          data-testid="sizeDropdown"
           ref={sizeDropdownRef}
         >
           <option value="">Out of Stock</option>
@@ -130,7 +130,7 @@ function PurchaseOptions(
       <select
         style={selectStyle}
         required
-        id="sizeDropdown"
+        data-testid="sizeDropdown"
         ref={sizeDropdownRef}
         onChange={changeSelectedSize}
       >
