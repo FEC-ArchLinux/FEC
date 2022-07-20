@@ -118,12 +118,27 @@ describe('Render and Test ProductBreakdown Component', () => {
   });
 });
 
-// describe('Render and Test AddReview Component', () => {
-//   it('should render starfilters', async () => {
-//     const addReview = render(<AddReview />);
-//     const exitButton = reviewList.getByText('Exit', { exact: false });
-
-//     expect(exitButton).toBeDefined();
-//     cleanup();
-//   });
-// });
+describe('Render and Test AddReview Component', () => {
+  it('should render add review characteristics', async () => {
+    const prop = { characteristics: { Comfort: { id: 127521, value: "3.4444444444444444" }, Fit: { id: 127519, value: "3.0000000000000000" } } };
+    const addReview = render(<AddReview metaTransfer={prop} />);
+    await waitFor(() => {
+      const span = screen.getByText('Comfort', { exact: true });
+      const span2 = screen.getByText('Fit', { exact: true });
+      expect(span.innerHTML).toBe("Comfort");
+      expect(span2.innerHTML).toBe("Fit");
+    });
+    cleanup();
+  });
+  it('should render submit review button', async () => {
+    const prop = { characteristics: { Comfort: { id: 127521, value: "3.4444444444444444" }, Fit: { id: 127519, value: "3.0000000000000000" } } };
+    const addReview = render(<AddReview metaTransfer={prop} />);
+    await waitFor(() => {
+      const button = screen.getByText('Submit Review', { exact: true });
+      const button2 = screen.getByText('Exit', { exact: true });
+      expect(button.innerHTML).toBe("Submit Review");
+      expect(button2.innerHTML).toBe("Exit");
+    });
+    cleanup();
+  });
+});
