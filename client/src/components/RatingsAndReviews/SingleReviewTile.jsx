@@ -13,7 +13,7 @@ import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 
 const ReviewContainer = styled.div`
-  width: 650px;
+  width: 750px;
   border-bottom: 2px solid rgb(105 105 105 / 44%);
   margin-top: 25px;
   padding-bottom: 15px;

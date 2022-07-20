@@ -37,7 +37,8 @@ describe('Shoulder render app', () => {
 
 describe('ReviewList - Add Reviews Button', () => {
   it('should render button', () => {
-    const reviewList = render(<ReviewList />);
+    const test = 37311;
+    const reviewList = render(<ReviewList productId={test} />);
 
     const button = reviewList.getByText('Add a Review', { exact: false });
 
