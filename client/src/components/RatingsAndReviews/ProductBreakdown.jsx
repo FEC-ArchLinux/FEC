@@ -69,7 +69,7 @@ function ProductBreakdown({ breakdown }) {
   if (breakdown) {
     let characteristics = pixelMarginDeterminer();
     return (
-      <div className="product-breakdown">
+      <div data-testid="product-breakdown">
         {breakdown.Comfort ? <><Header>Comfort</Header><br /> <FlexContainer><Marker data-testid="marker" style={{ marginLeft: `${characteristics.Comfort}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Poor</LeftFooter><QualitySpan>Great</QualitySpan><br /></> : null}
         {breakdown.Fit ? <><Header>Fit</Header><br /> <FlexContainer><Marker data-testid="marker" style={{ marginLeft: `${characteristics.Fit}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}
         {breakdown.Length ? <><Header>Length</Header><br /> <FlexContainer><Marker data-testid="marker" style={{ marginLeft: `${characteristics.Length}px` }}>🔻</Marker><Rectangle /><Rectangle /><Rectangle /></FlexContainer><br /><LeftFooter>Too Small</LeftFooter><RightFooter>Too Large</RightFooter><br /></> : null}

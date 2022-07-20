@@ -13,6 +13,8 @@ import ReviewList from './ReviewList.jsx';
 import App from '../App.jsx';
 import PercentRecommend from './PercentRecommend.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
+import StarBreakDown from './StarBreakDown.jsx';
+import StarFilter from './StarFilter.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -51,7 +53,9 @@ describe('render page after axios request', () => {
     const reviewlist = render(<ReviewList productId={test} />);
 
     await waitFor(() => {
-      const button = screen.getByText('MORE REVIEWS');
+      const button = screen.getByText('MORE REVIEWS', {
+        selector: 'button',
+      });
       expect(button).toBeDefined();
     });
     cleanup();
@@ -66,7 +70,9 @@ describe('render page after axios request', () => {
     expect(initialCount.length).toBe(1);
 
     await waitFor(() => {
-      const button = screen.getByText('MORE REVIEWS');
+      const button = screen.getByText('MORE REVIEWS', {
+        selector: 'button',
+      });
       fireEvent.click(button);
       fireEvent.click(button);
     });
@@ -100,4 +106,25 @@ describe('Render and Test ProductBreakdown Component', () => {
     });
     cleanup();
   });
+  it('should render whole breakdown', async () => {
+    const { findAllByTestId } = render(<ProductBreakdown />);
+    await waitFor(() => {
+      const div = screen.findAllByTestId('product-breakdown', { exact: false })
+        .then((divs) => {
+          expect(divs).toBeDefined();
+        });
+    });
+    cleanup();
+  });
 });
+
+// describe('Render and Test StarbreakdownComponent', () => {
+//   it('should render starfilters', async () => {
+//     const starBreakDown = render(<StarBreakDown />);
+//     await waitFor(() => {
+//       const filters = screen.getAllByText("stars", { exact: false });
+//       console.log(filters);
+//     });
+//     cleanup();
+//   });
+// });
