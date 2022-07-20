@@ -13,8 +13,7 @@ import ReviewList from './ReviewList.jsx';
 import App from '../App.jsx';
 import PercentRecommend from './PercentRecommend.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
-import StarBreakDown from './StarBreakDown.jsx';
-import StarFilter from './StarFilter.jsx';
+import AddReview from './AddReview.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -119,13 +118,12 @@ describe('Render and Test ProductBreakdown Component', () => {
   });
 });
 
-// describe('Render and Test StarbreakdownComponent', () => {
+// describe('Render and Test AddReview Component', () => {
 //   it('should render starfilters', async () => {
-//     const starBreakDown = render(<StarBreakDown />);
-//     await waitFor(() => {
-//       const filters = screen.getAllByText("stars", { exact: false });
-//       console.log(filters);
-//     });
+//     const addReview = render(<AddReview />);
+//     const exitButton = reviewList.getByText('Exit', { exact: false });
+
+//     expect(exitButton).toBeDefined();
 //     cleanup();
 //   });
 // });
