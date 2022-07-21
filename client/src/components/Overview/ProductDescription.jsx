@@ -4,8 +4,7 @@ function ProductDescription({ productInfo }) {
   const productDescriptionStyle = {
     display: "flex",
     margin: "20px 0px",
-    "justify-content": "flex-start",
-    gap: "5%",
+    "justify-content": "center",
   };
 
   return (
