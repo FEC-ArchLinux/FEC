@@ -27,16 +27,18 @@ function SortRelevance({ setCurrentTwo, setPageNumber, reviewInfo, setReviewInfo
       setPageNumber(0);
     }
   }
-  return (
-    <div>
-      <label htmlFor="sortBy">{reviewInfo.length} reviews, sorted by</label>
-      <select onChange={sortByChange} name="sortBy" id="reviewSort">
-        <option value="Relevant">Relevant</option>
-        <option value="Helpful">Helpful</option>
-        <option value="Newest">Newest</option>
-      </select>
-    </div>
-  );
+  if (reviewInfo) {
+    return (
+      <div style={{ position: 'sticky', top: '0', zIndex: '10' }}>
+        <label htmlFor="sortBy"><b>{reviewInfo.length} reviews, sorted by</b></label>
+        <select data-testid="relevance-selector" style={{ marginLeft: "3px", border: "none" }} onChange={sortByChange} name="sortBy" id="reviewSort">
+          <option value="Relevant">Relevant</option>
+          <option value="Helpful">Helpful</option>
+          <option value="Newest">Newest</option>
+        </select>
+      </div>
+    );
+  }
 }
 
 export default SortRelevance;

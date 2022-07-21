@@ -3,10 +3,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 import GH_TOKEN from '../../../../../token.js';
 
+
 function RelatedModal(props) {
-  const [mainfeature, changeMain] = useState([]);
+  const [mainProduct, changeMainProduct] = useState({});
 
   // GET main product information
   useEffect(() => {
@@ -15,62 +18,114 @@ function RelatedModal(props) {
         authorization: GH_TOKEN,
       },
     }).then((res) => {
-      changeMain(res.data.features);
+      changeMainProduct(res.data);
     }).catch((err) => {
       console.log(err);
     });
   }, []);
 
   // combine two tables into a comparison table
-  let combinedFeatures = [];
-  let mainfeatureMap = new Map();
-  mainfeature.forEach((item) => {
-    mainfeatureMap.set(item.feature, item.value);
-  });
-  let secondFeatureMap = new Map();
-  props.item.features.forEach((item) => {
-    secondFeatureMap.set(item.feature, item.value);
-  });
-  let unionKeys = new Set([...mainfeatureMap.keys(), ...secondFeatureMap.keys()]);
+  const combinedFeatures = [];
+  if (mainProduct.features) {
+    const mainfeatureMap = new Map();
+    mainProduct.features.forEach((item) => {
+      mainfeatureMap.set(item.feature, item.value);
+    });
+    const secondFeatureMap = new Map();
+    props.item.features.forEach((item) => {
+      secondFeatureMap.set(item.feature, item.value);
+    });
+    const unionKeys = new Set([...mainfeatureMap.keys(), ...secondFeatureMap.keys()]);
 
-  unionKeys.forEach((key) => {
-    let result = [];
-    result.push(key);
-    if (mainfeatureMap.has(key)) {
-      result.push(mainfeatureMap.get(key));
-    } else {
-      result.push(null);
-    }
+    unionKeys.forEach((key) => {
+      const result = [];
+      result.push(key);
+      if (mainfeatureMap.has(key)) {
+        if (mainfeatureMap.get(key) === true) {
+          result.push('✓');
+        } else {
+          result.push(mainfeatureMap.get(key));
+        }
+      } else {
+        result.push(null);
+      }
 
-    if (secondFeatureMap.has(key)) {
-      result.push(secondFeatureMap.get(key));
-    } else {
-      result.push(null);
-    }
-    combinedFeatures.push(result);
-  });
-
+      if (secondFeatureMap.has(key)) {
+        if (secondFeatureMap.get(key) === true) {
+          result.push('✓');
+        } else {
+          result.push(secondFeatureMap.get(key));
+        }
+      } else {
+        result.push(null);
+      }
+      combinedFeatures.push(result);
+    });
+  }
   return (
-    <table>
-      <tr>COMPARING</tr>
-      <span><button type="button" onClick={() => { props.closeModal(false); }}>x</button></span>
+    <ModalWrapper>
+      <ComparisonTitle>COMPARING</ComparisonTitle>
+      <CloseButton type="button" onClick={() => { props.closeModal(false); }}><AiOutlineCloseCircle /></CloseButton>
+      <TableWrapper data-testid="comparison" >
       <tr>
-        <th>Current Product Name</th>
+        <th>{mainProduct.name}</th>
         <th> </th>
-        <th>Compared Product Name</th>
+        <th>{props.item.name}</th>
       </tr>
-      <tbody>
         {combinedFeatures.map((item) => (
           <tr>
-            <td>{item[1]}</td>
-            <td>{item[0]}</td>
-            <td>{item[2]}</td>
+            <TableElement>{item[1]}</TableElement>
+            <TableElement>{item[0]}</TableElement>
+            <TableElement>{item[2]}</TableElement>
           </tr>
-        ))}
-      </tbody>
 
-    </table>
+        ))}
+      </TableWrapper>
+    </ModalWrapper>
   );
 }
+
+const ModalWrapper = styled.div`
+background-color: white;
+border-style: solid;
+border_width: 5px;
+width: 20%;
+height: 40%;
+display: flex;
+overflow: scroll;
+position: fixed;
+left: 30%;
+top: 30%;
+display: block;
+z-index: 10;
+font-size: calc(1.5vh + 2pt);
+`;
+const ComparisonTitle = styled.div`
+text-align: left;
+fontWeight: bold;
+color: grey;
+margin: 15px;
+`;
+
+const CloseButton = styled.span`
+position: absolute;
+top: 0%;
+right: 0%;
+font-size: x-large;
+border: none;
+background: none;
+
+`;
+
+const TableWrapper = styled.div`
+color: black;
+padding: 10px;
+text-align: center;
+vertical-align: bottom;
+`;
+
+const TableElement = styled.td`
+padding: 15px;
+`
 
 export default RelatedModal;
