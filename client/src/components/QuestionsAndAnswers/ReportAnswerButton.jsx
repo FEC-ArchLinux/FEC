@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import GH_TOKEN from "../../../../token.js";
+import styled from "styled-components";
 
 function ReportAnswerButton({ answerId }) {
-  const linkButton = {
-    'background-color': 'transparent',
-    border: 'none',
-    cursor: 'pointer',
-    textDecoration: 'underline',
-  };
-
   const [reportedAnswer, setReportedAnswer] = useState(false);
   const reportAnswerConfig = {
     method: 'put',
@@ -27,7 +21,7 @@ function ReportAnswerButton({ answerId }) {
       .catch((error) => console.error(error));
   }
 
-  let reportAnswerURI = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${answerId}/report/`;
+  const reportAnswerURI = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${answerId}/report/`;
 
   if (reportedAnswer) {
     return (
@@ -35,13 +29,27 @@ function ReportAnswerButton({ answerId }) {
     );
   }
   return (
-    <button
-      style={linkButton}
+    <LinkButton
       onClick={() => {
-        clickReportButton()}
-      }
-    >Report</button>
+        clickReportButton();
+      }}
+    >
+      Report
+    </LinkButton>
   );
 }
+
+const LinkButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  fontSize: medium;
+  color: grey;
+  text-decoration: none;
+  &:hover {
+    fontStyle: bold;
+    text-decoration: underline;
+  }
+`;
 
 export default ReportAnswerButton;

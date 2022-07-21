@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import axios from "axios";
 import GH_TOKEN from "../../../../token.js";
 
@@ -41,16 +42,29 @@ function HelpfulQuestionButton({ questionHelpfulness, questionId }) {
   return (
     <span>
       Helpful?
-      <button
+      <LinkButton
         type="button"
-        style={linkButton}
+        // style={linkButton}
         onClick={() => clickHelpfulButton()}
       >
         Yes
-      </button>
+      </LinkButton>
       {`(${questionHelpfulness})`}
     </span>
   );
 }
+
+const LinkButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  fontSize: medium;
+  color: grey;
+  text-decoration: none;
+  &:hover {
+    fontStyle: bold;
+    text-decoration: underline;
+  }
+`;
 
 export default HelpfulQuestionButton;
