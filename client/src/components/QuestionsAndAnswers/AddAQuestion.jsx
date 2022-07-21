@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddAQuestionModal from "./AddAQuestionModal.jsx";
 
 const boxButtonStyle = {
-  margin: "0 1vw 1vw 0",
+  margin: "0 0vw 1vw 0",
   fontSize: "large",
   fontStyle: "bold",
   border: "solid",
@@ -12,11 +12,13 @@ const boxButtonStyle = {
   backgroundColor: 'white',
 };
 
-function AddAQuestion() {
+function AddAQuestion({ productId }) {
   const [showAddAQuestionModal, setShowAddAQuestionModal] = useState(false);
+
   if (showAddAQuestionModal) {
     return (
       <AddAQuestionModal
+        productId={productId}
         AddAQuestionModal={AddAQuestionModal}
         setShowAddAQuestionModal={setShowAddAQuestionModal}
       />
@@ -28,7 +30,7 @@ function AddAQuestion() {
       style={boxButtonStyle}
       onClick={() => setShowAddAQuestionModal(true)}
     >
-      ADD A QUESTION ➕
+      ASK A QUESTION +
     </button>
   );
 }

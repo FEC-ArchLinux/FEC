@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import axios from "axios";
 import GH_TOKEN from "../../../../token.js";
+import AnswerPictureList from "./AnswerPictureList.jsx";
 
-const questionModal = {
+const answerModal = {
   position: "fixed",
   left: "0",
   top: "0",
@@ -35,84 +34,86 @@ const modalBody = {
   borderBottom: "10px solid #eee",
 };
 
-function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, productId }) {
+function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal, questionId }) {
   const [submit, setSubmit] = useState(false);
-  const [questionValues, setValues] = useState({
-    question: '',
+  const [answerValues, setAnswerValues] = useState({
+    answer: '',
     nickname: '',
     email: '',
+    photos: [],
   });
-  const addQuestionURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
 
-  const handleQuestionInputChange = (event) => {
+  function handleAnswerInputChange(event) {
     event.persist();
-    setValues((questionValues) => ({
-      ...questionValues,
-      question: event.target.value,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
+      answer: event.target.value,
     }));
-  };
-  const handleNicknameInputChange = (event) => {
+  }
+  function handleNicknameInputChange(event) {
     event.persist();
-    setValues((questionValues) => ({
-      ...questionValues,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
       nickname: event.target.value,
     }));
-  };
-  const handleEmailInputChange = (event) => {
+  }
+  function handleEmailInputChange(event) {
     event.persist();
-    setValues((questionValues) => ({
-      ...questionValues,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
       email: event.target.value,
     }));
-  };
+  }
+  function handlePhotosInputChange(event) {
+    event.persist();
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
+      photos: event.target.value,
+    }));
+  }
 
-  // I didn't want to do another HTTP request for the title...
-  const productName = document.body.children[0].children[1].children[0].children[0].children[1].children[0].children[4].textContent;
-  const questionParameters = {
-    product_id: productId,
-    body: questionValues.question,
-    name: questionValues.nickname,
-    email: questionValues.email,
+  const addAnswerParameters = {
+    body: answerValues.answer,
+    name: answerValues.nickname,
+    email: answerValues.email,
+    photos: answerValues.photos,
   };
-
-  const addQuestionConfig = {
+  const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/answers/`;
+  const addAnswerConfig = {
     method: 'post',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/',
+    url: addAnswerURL,
     headers: {
       Authorization: GH_TOKEN,
       'Content-Type': 'application/json',
     },
-    data: questionParameters,
+    data: JSON.stringify(addAnswerParameters),
   };
 
-  const submitQuestion = (e) => {
+  function submitAnswer() {
     if (!submit) {
       return;
     }
-    axios(addQuestionConfig)
+    axios(addAnswerConfig)
       .then((data) => {
-        console.log((data));
-        setShowAddAQuestionModal(false);
+        console.log(data);
+        setShowAddAnswerModal(false);
         setSubmit(false);
       })
       .catch((err) => console.error(err));
-  };
+  }
 
   return (
-    // click outside of the modalContent div exits the modal
-    <div
-      id="questionModal"
-      style={questionModal}
+    <div id="answerModal"
+      style={answerModal}
       onClick={(event) => {
-        if (event.target.id === "questionModal") {
-          setShowAddAQuestionModal(false);
+        if (event.target.id === "answerModal") {
+          setShowAddAnswerModal(false);
         }
       }}
     >
       <div style={modalContent}>
         <div style={modalHeader}>
-          <h3 className="questionModalTitle">Ask a Question</h3>
-          <h4 className="questionModalSubtitle">{`About the ${productName}`}</h4>
+          <h3 className="AnswerModalTitle">Answer a Question</h3>
         </div>
         <div style={modalBody}>
           <form
@@ -121,29 +122,28 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
             method="dialog"
           >
             <div>
-              <label htmlFor="questionInput">
-                *Question:
+              <label htmlFor="answerInput">
+                *Answer:
                 <textarea
                   type="text"
-                  id="questionInput"
-                  name="question"
-                  placeholder="Why did you like the product or not?"
-                  value={questionValues.question}
+                  id="answerInput"
+                  name="answer"
+                  value={answerValues.answer}
                   maxLength="1000"
                   required="required"
-                  onChange={handleQuestionInputChange}
+                  onChange={handleAnswerInputChange}
                 />
               </label>
             </div>
             <div>
-              <label htmlFor="questionNicknameInput">
+              <label htmlFor="answerNicknameInput">
                 *Nickname:
                 <input
                   type="text"
                   id="quesitonNicknameInput"
                   name="nickname"
-                  value={questionValues.nickname}
-                  placeholder="Example: jackson11!"
+                  value={answerValues.nickname}
+                  placeholder="Example: jack543!"
                   maxLength="60"
                   required="required"
                   onChange={handleNicknameInputChange}
@@ -162,8 +162,9 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
                   type="email"
                   name="email"
                   placeholder="Why did you like the product or not?"
-                  value={questionValues.email}
-                  id="questionnEmailInput"
+                  maxLength="60"
+                  value={answerValues.email}
+                  id="answerEmailInput"
                   required="required"
                   onChange={handleEmailInputChange}
                 />
@@ -174,20 +175,35 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
                 </div>
               </label>
             </div>
+            <div>
+              <label htmlFor="photos">
+                <input
+                  type="button"
+                  name="photos"
+                  value="Add Photos"
+                  id="answerPhotoInput"
+                  onClick={handlePhotosInputChange}
+                />
+                <div>
+                  <AnswerPictureList answerPictureList={answerValues.Photos} />
+                </div>
+              </label>
+            </div>
+
             <div style={modalFooter}>
               <button
                 type="button"
-                onClick={() => setShowAddAQuestionModal(false)}
+                onClick={() => setShowAddAnswerModal(false)}
               >
                 close
               </button>
               <input
                 type="submit"
                 value="submit"
-                // url={addQuestionURL}
+                // url={addAnswerURL}
                 onClick={() => {
                   setSubmit(true);
-                  submitQuestion();
+                  submitAnswer();
                 }}
               />
             </div>
@@ -198,4 +214,4 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
   );
 }
 
-export default AddAQuestionModal;
+export default AddAnswerModal;

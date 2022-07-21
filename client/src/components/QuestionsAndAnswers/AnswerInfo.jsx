@@ -13,12 +13,14 @@ const inline = {
 function AnswerInfo({ answerData }) {
   const userName = answerData.answerer_name;
   const date = new Date(answerData.date).toDateString();
+  const answerId = answerData.id;
   const { helpfulness } = answerData;
   return (
     <span style={inline}>
       <span>
         {`by ${userName}, ${date} `}
         <HelpfulButton
+          answerId={answerId}
           helpfulness={helpfulness}
         />
         <ReportAnswerButton />
