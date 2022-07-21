@@ -1,27 +1,47 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
+import styled from "styled-components";
 
-const boxButtonStyle = {
-  margin: "0 1vw 1vw 0",
-  fontSize: "large",
-  fontStyle: "bold",
-  border: "solid",
-  borderWidth: "1px",
-  height: '40px',
-  cursor: 'pointer',
-  backgroundColor: 'white',
-};
-
-function MoreAnsweredQuestions({ questionsData }) {
+function MoreAnsweredQuestions({ questionsData, setMoreAnsweredQuestions, moreAnsweredQuestions }) {
+  if (questionsData.length < 2 || moreAnsweredQuestions) {
+    return (
+      <DisabledBoxButtonStyle>
+        MORE ANSWERED QUESTIONS
+      </DisabledBoxButtonStyle>
+    );
+  }
   return (
-    <button
+    <BoxButtonStyle
       type="button"
-      style={boxButtonStyle}
+      onClick={() => setMoreAnsweredQuestions(true)}
     >
       MORE ANSWERED QUESTIONS
-    </button>
+    </BoxButtonStyle>
   );
 }
+
+const DisabledBoxButtonStyle = styled.button`
+  margin: 0 2vw 0 0;
+  font-size: large;
+  color: grey;
+  border: solid;
+  border-width: 1px;
+  height: 40px;
+  cursor: not-allowed;
+  background-color: white;
+`;
+
+const BoxButtonStyle = styled.button`
+  margin: 0 2vw 0 0;
+  font-size: large;
+  font-style: bold;
+  border: solid;
+  border-width: 1px;
+  height: 40px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 0 0 3px 3px;
+`;
 
 export default MoreAnsweredQuestions;

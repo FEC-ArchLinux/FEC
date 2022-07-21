@@ -23,40 +23,50 @@ const TopContainer = styled.div`
 
 function QuestionsAndAnswers({ productId }) {
   const [questionsData, setQuestionData] = useState([]);
-  const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(1);
+  const [moreAnsweredQuestions, setMoreAnsweredQuestions] = useState(false);
+  const [questionSearchInput, setQuestionSearchInput] = useState('');
 
   function getQuestionsAndAnswers() {
     axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${productId}`,
       {
+        params: {
+          page: 1,
+          count: 200,
+        },
         headers: { authorization: GH_TOKEN },
       },
     )
       .then((data) => {
         setQuestionData(data.data.results);
-      }, [])
+      })
       .catch((err) => console.error(err));
   }
   useEffect(() => {
     getQuestionsAndAnswers();
-  }, []);
+  }, [productId]);
 
   return (
     <TopContainer>
       <MainFlex>
         <h3>{`QUESTIONS ${'&'} ANSWERS`}</h3>
-        <QuestionsSearch productId={productId} />
+        <QuestionsSearch
+          productId={productId}
+          questionSearchInput={questionSearchInput}
+          setQuestionSearchInput={setQuestionSearchInput}
+        />
         <QuestionsList
+          questionSearchInput={questionSearchInput}
           questionsData={questionsData}
           moreAnsweredQuestions={moreAnsweredQuestions}
         />
         <span style={inline}>
           <MoreAnsweredQuestions
-            setMoreAnsweredQuestions={setMoreAnsweredQuestions}
-            moreAnsweredQuestions={moreAnsweredQuestions}
             questionsData={questionsData}
+            moreAnsweredQuestions={moreAnsweredQuestions}
+            setMoreAnsweredQuestions={setMoreAnsweredQuestions}
           />
-          <AddAQuestion />
+          <AddAQuestion productId={productId} />
         </span>
       </MainFlex>
     </TopContainer>

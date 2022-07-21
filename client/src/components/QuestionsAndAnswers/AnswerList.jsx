@@ -1,21 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import styled from "styled-components";
 import AnswerListEntry from "./AnswerListEntry.jsx";
 
 function AnswerList({ answerList }) {
   const answerIds = Object.keys(answerList);
   const [answerListCount, SetAnswerListCount] = useState(true);
-
-  const linkButton = {
-    backgroundColor: 'transparent',
-    border: 'none',
-    cursor: 'pointer',
-    fontSize: 'medium',
-    fontStyle: 'extra-bold',
-    textDecoration: 'underline',
-
-  };
 
   // do not render when there are no answers to a question
   if (answerIds.length === 0) {
@@ -28,21 +19,24 @@ function AnswerList({ answerList }) {
     return (
       <AnswerListEntry
         key={answerIds[0]}
+        answerId={answerIds[0]}
         answerData={answerData}
       />
     );
   }
-
-  // When there is more than 1 answer, include the 'See more answers' button
+  const sortedAnswerIds = answerIds.sort((b, a) => (
+    answerList[a].helpfulness - answerList[b].helpfulness
+  ));
   return (
     <>
-      {answerIds.map((answerId, index) => {
+      {sortedAnswerIds.map((answerId, index) => {
         const answerData = answerList[answerId];
         if (answerListCount) {
           if (index < 1) {
             return (
               <AnswerListEntry
                 key={answerId}
+                answerId={answerId}
                 answerData={answerData}
               />
             );
@@ -52,19 +46,32 @@ function AnswerList({ answerList }) {
         return (
           <AnswerListEntry
             key={answerId}
+            answerId={answerId}
             answerData={answerData}
           />
         );
       })}
-      <button
+      <LinkButton
         type="button"
-        style={linkButton}
         onClick={() => SetAnswerListCount(!answerListCount)}
       >
         {answerListCount === true ? 'See more answers' : 'Collapse answers'}
-      </button>
+      </LinkButton>
     </>
   );
 }
+
+const LinkButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  fontSize: medium;
+  color: grey;
+  text-decoration: none;
+  &:hover {
+    fontStyle: bold;
+    text-decoration: underline;
+  }
+`;
 
 export default AnswerList;

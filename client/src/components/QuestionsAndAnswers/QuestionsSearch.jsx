@@ -6,7 +6,7 @@ const questionSearchStyle = {
   border: "solid",
   maxWidth: "860px",
   borderWidth: "thin",
-  width: "60vw",
+  width: "80vw",
   height: "40px",
   display: "inline-flex",
 
@@ -24,7 +24,7 @@ const buttonStyle = {
 };
 
 const inputStyle = {
-  width: "55vw",
+  width: "75vw",
   maxWidth: "860px",
   height: "40px",
   fontSize: "large",
@@ -32,14 +32,50 @@ const inputStyle = {
   padding: "0vw 1vw",
   borderWidth: "0em",
 };
-// useRef hook
-function QuestionsSearch() {
-  const [questionSearchValue, setQuestionSearchValue] = useState('');
+// // useRef hook
+// function QuestionsSearch() {
+//   const inputSearchValue = useRef('');
+//   const onSearchInput = () => {
+//     inputSearchValue.current.focus();
+//   };
+//   return (
+//     <>
+//       <input
+//         style={questionSearchStyle}
+//         ref={inputSearchValue}
+//         type="text"
+//         placeholder="Have a question? Search for answers..."
+//         onChange={onSearchInput}
+//       />
+//     </>
+//   );
+// }
+// function QuestionsSearch() {
+//   const inputSearchValue = useRef('');
+//   const onSearchInput = () => {
+//     inputSearchValue.current;
+//   };
+//   return (
+//     <>
+//       <input
+//         style={questionSearchStyle}
+//         ref={inputSearchValue}
+//         type="text"
+//         placeholder="Have a question? Search for answers..."
+//         onChange={onSearchInput}
+//       />
+//     </>
+//   );
+// }
+
+function QuestionsSearch({ questionSearchInput, setQuestionSearchInput }) {
   return (
     <div style={questionSearchStyle}>
       <input
         style={inputStyle}
-        onChange={() => setQuestionSearchValue()}
+        onChange={(e) => {
+          setQuestionSearchInput(e.target.value);
+        }}
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS"
       />
       <button
