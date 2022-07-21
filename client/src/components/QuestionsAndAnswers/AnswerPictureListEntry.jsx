@@ -2,8 +2,11 @@ import React from "react";
 
 function AnswerPictureListEntry({ picture }) {
   const answerImage = {
-    height: '90px',
-    width: '90px',
+    maxHeight: '90px',
+    maxWidth: '180px',
+    // height: '90px',
+    // width: '90px',
+    aspectRatio: 'auto',
     padding: '10px',
   };
   return (
