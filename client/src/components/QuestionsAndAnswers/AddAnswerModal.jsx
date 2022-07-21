@@ -10,9 +10,11 @@ const answerModal = {
   right: "0",
   bottom: "0",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
+  zIndex: "20",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  overflowX: "hidden",
 };
 
 const modalContent = {

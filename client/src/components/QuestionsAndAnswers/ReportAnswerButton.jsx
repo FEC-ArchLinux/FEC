@@ -17,7 +17,10 @@ function ReportAnswerButton({ answerId }) {
 
   function clickReportButton() {
     axios(reportAnswerConfig)
-      .then(() => setReportedAnswer(true))
+      .then((data) => {
+        console.log(data)
+        setReportedAnswer(true)
+      })
       .catch((error) => console.error(error));
   }
 
