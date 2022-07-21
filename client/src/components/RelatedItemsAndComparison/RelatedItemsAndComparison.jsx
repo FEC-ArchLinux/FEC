@@ -39,9 +39,6 @@ function RelatedItemsAndComparison(props) {
       <Outfit
         mainProduct={props.productId}
         placeHolderImage={props.placeHolderImage}
-      // outfitList={outfitList}
-      // handleAddOutfit={handleAddOutfit}
-      // handleRemove={handleRemove}
       />
     </MainWrapper>
   );

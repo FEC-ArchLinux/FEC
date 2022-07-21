@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1658375818514" clover="3.2.0">
+  <project timestamp="1658375818514" name="All files">
+    <metrics statements="745" coveredstatements="482" conditionals="379" coveredconditionals="207" methods="242" coveredmethods="121" elements="1366" coveredelements="810" complexity="0" loc="745" ncloc="745" packages="8" files="45" classes="45"/>
+    <package name="FEC">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="token.js" path="/Users/lu/Documents/HR/FEC/token.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components">
+      <metrics statements="27" coveredstatements="22" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="5"/>
+      <file name="App.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/App.jsx">
+        <metrics statements="24" coveredstatements="20" conditionals="10" coveredconditionals="4" methods="3" coveredmethods="2"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="95" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="105" count="3" type="stmt"/>
+        <line num="119" count="3" type="stmt"/>
+        <line num="123" count="3" type="stmt"/>
+      </file>
+      <file name="withClickTracker.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/withClickTracker.jsx">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="21" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components.Overview">
+      <metrics statements="176" coveredstatements="125" conditionals="134" coveredconditionals="89" methods="51" coveredmethods="34"/>
+      <file name="ImageGallery.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/Overview/ImageGallery.jsx">
+        <metrics statements="63" coveredstatements="31" conditionals="79" coveredconditionals="39" methods="12" coveredmethods="6"/>
+        <line num="13" count="21" type="stmt"/>
+        <line num="14" count="21" type="stmt"/>
+        <line num="15" count="21" type="stmt"/>
+        <line num="16" count="21" type="stmt"/>
+        <line num="17" count="21" type="stmt"/>
+        <line num="20" count="21" type="stmt"/>
+        <line num="22" count="11" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="67" count="21" type="stmt"/>
+        <line num="75" count="21" type="stmt"/>
+        <line num="80" count="21" type="stmt"/>
+        <line num="85" count="21" type="stmt"/>
+        <line num="93" count="21" type="stmt"/>
+        <line num="108" count="21" type="stmt"/>
+        <line num="119" count="21" type="stmt"/>
+        <line num="130" count="21" type="stmt"/>
+        <line num="138" count="21" type="stmt"/>
+        <line num="149" count="21" type="stmt"/>
+        <line num="157" count="21" type="stmt"/>
+        <line num="167" count="21" type="stmt"/>
+        <line num="174" count="21" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="186" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="189" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="190" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="191" count="0" type="stmt"/>
+        <line num="197" count="0" type="stmt"/>
+        <line num="198" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="202" count="11" type="stmt"/>
+        <line num="203" count="11" type="stmt"/>
+        <line num="204" count="66" type="stmt"/>
+        <line num="205" count="66" type="cond" truecount="1" falsecount="1"/>
+        <line num="206" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="207" count="0" type="stmt"/>
+        <line num="225" count="0" type="stmt"/>
+        <line num="243" count="66" type="cond" truecount="2" falsecount="0"/>
+        <line num="244" count="11" type="stmt"/>
+        <line num="245" count="11" type="stmt"/>
+        <line num="256" count="55" type="stmt"/>
+        <line num="257" count="55" type="stmt"/>
+        <line num="272" count="0" type="stmt"/>
+        <line num="279" count="21" type="stmt"/>
+        <line num="297" count="0" type="stmt"/>
+        <line num="301" count="0" type="stmt"/>
+      </file>
+      <file name="Overview.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/Overview/Overview.jsx">
+        <metrics statements="27" coveredstatements="24" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="8"/>
+        <line num="12" count="26" type="stmt"/>
+        <line num="13" count="26" type="stmt"/>
+        <line num="14" count="26" type="stmt"/>
+        <line num="15" count="26" type="stmt"/>
+        <line num="16" count="26" type="stmt"/>
+        <line num="18" count="26" type="stmt"/>
+        <line num="19" count="26" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="32" count="10" type="stmt"/>
+        <line num="41" count="10" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="10" type="stmt"/>
+        <line num="55" count="10" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="59" count="26" type="stmt"/>
+        <line num="60" count="10" type="stmt"/>
+        <line num="61" count="10" type="stmt"/>
+        <line num="62" count="10" type="stmt"/>
+        <line num="64" count="10" type="stmt"/>
+        <line num="65" count="10" type="stmt"/>
+        <line num="68" count="26" type="stmt"/>
+        <line num="76" count="26" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="89" count="26" type="stmt"/>
+        <line num="90" count="2" type="stmt"/>
+      </file>
+      <file name="ProductDescription.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/Overview/ProductDescription.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="4" count="21" type="stmt"/>
+        <line num="11" count="21" type="stmt"/>
+        <line num="26" count="27" type="stmt"/>
+      </file>
+      <file name="ProductDetails.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/Overview/ProductDetails.jsx">
+        <metrics statements="25" coveredstatements="22" conditionals="11" coveredconditionals="10" methods="9" coveredmethods="7"/>
+        <line num="8" count="22" type="stmt"/>
+        <line num="9" count="22" type="stmt"/>
+        <line num="10" count="22" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="20" type="stmt"/>
+        <line num="32" count="20" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="38" count="22" type="stmt"/>
+        <line num="39" count="10" type="stmt"/>
+        <line num="42" count="22" type="stmt"/>
+        <line num="43" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="49" count="11" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="61" count="11" type="stmt"/>
+        <line num="64" count="22" type="stmt"/>
+        <line num="71" count="22" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+      </file>
+      <file name="PurchaseOptions.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/Overview/PurchaseOptions.jsx">
+        <metrics statements="49" coveredstatements="36" conditionals="30" coveredconditionals="27" methods="15" coveredmethods="9"/>
+        <line num="22" count="21" type="stmt"/>
+        <line num="23" count="21" type="stmt"/>
+        <line num="24" count="21" type="stmt"/>
+        <line num="27" count="21" type="stmt"/>
+        <line num="29" count="11" type="stmt"/>
+        <line num="30" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="41" count="11" type="stmt"/>
+        <line num="42" count="11" type="stmt"/>
+        <line num="43" count="11" type="stmt"/>
+        <line num="44" count="66" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="65" type="stmt"/>
+        <line num="48" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="52" count="10" type="stmt"/>
+        <line num="53" count="65" type="stmt"/>
+        <line num="58" count="11" type="cond" truecount="4" falsecount="0"/>
+        <line num="59" count="10" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="73" count="8" type="stmt"/>
+        <line num="76" count="8" type="stmt"/>
+        <line num="80" count="21" type="stmt"/>
+        <line num="89" count="21" type="stmt"/>
+        <line num="102" count="21" type="stmt"/>
+        <line num="113" count="11" type="stmt"/>
+        <line num="114" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="115" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
+        <line num="128" count="10" type="stmt"/>
+        <line num="129" count="10" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="179" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="188" count="21" type="stmt"/>
+      </file>
+      <file name="StyleSelector.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/Overview/StyleSelector.jsx">
+        <metrics statements="9" coveredstatements="9" conditionals="10" coveredconditionals="10" methods="2" coveredmethods="2"/>
+        <line num="10" count="20" type="stmt"/>
+        <line num="22" count="20" type="stmt"/>
+        <line num="31" count="20" type="stmt"/>
+        <line num="39" count="20" type="stmt"/>
+        <line num="40" count="20" type="stmt"/>
+        <line num="51" count="79" type="stmt"/>
+        <line num="52" count="79" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="10" type="stmt"/>
+        <line num="71" count="69" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components.QuestionsAndAnswers">
+      <metrics statements="82" coveredstatements="67" conditionals="25" coveredconditionals="16" methods="31" coveredmethods="23"/>
+      <file name="AddAQuestion.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AddAQuestion.jsx">
+        <metrics statements="6" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+      </file>
+      <file name="AddAQuestionModal.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AddAQuestionModal.jsx">
+        <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+      </file>
+      <file name="AddAnswer.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AddAnswer.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+      </file>
+      <file name="AnswerInfo.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AnswerInfo.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+      </file>
+      <file name="AnswerList.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AnswerList.jsx">
+        <metrics statements="16" coveredstatements="11" conditionals="10" coveredconditionals="6" methods="3" coveredmethods="2"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="21" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="40" count="18" type="stmt"/>
+        <line num="41" count="18" type="cond" truecount="1" falsecount="1"/>
+        <line num="42" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="50" count="16" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+      </file>
+      <file name="AnswerListEntry.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AnswerListEntry.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+      </file>
+      <file name="AnswerPictureList.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AnswerPictureList.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+      </file>
+      <file name="AnswerPictureListComponent.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AnswerPictureListComponent.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="2" type="stmt"/>
+      </file>
+      <file name="AnswerPictureListEntry.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/AnswerPictureListEntry.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+      </file>
+      <file name="HelpfulButton.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/HelpfulButton.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+      </file>
+      <file name="HelpfulQuestionButton.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/HelpfulQuestionButton.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+      </file>
+      <file name="MoreAnsweredQuestions.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/MoreAnsweredQuestions.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+      </file>
+      <file name="Question.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/Question.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="2" type="stmt"/>
+      </file>
+      <file name="QuestionListEntry.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/QuestionListEntry.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+      </file>
+      <file name="QuestionsAndAnswers.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/QuestionsAndAnswers.jsx">
+        <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+      </file>
+      <file name="QuestionsList.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/QuestionsList.jsx">
+        <metrics statements="7" coveredstatements="5" conditionals="7" coveredconditionals="5" methods="3" coveredmethods="2"/>
+        <line num="8" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+      </file>
+      <file name="QuestionsSearch.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/QuestionsSearch.jsx">
+        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+      <file name="ReportAnswerButton.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/QuestionsAndAnswers/ReportAnswerButton.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components.RatingsAndReviews">
+      <metrics statements="251" coveredstatements="143" conditionals="144" coveredconditionals="70" methods="87" coveredmethods="29"/>
+      <file name="AddReview.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/AddReview.jsx">
+        <metrics statements="76" coveredstatements="24" conditionals="44" coveredconditionals="15" methods="28" coveredmethods="2"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="76" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="84" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="94" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="99" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="113" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="123" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="159" count="0" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="170" count="2" type="stmt"/>
+        <line num="175" count="0" type="stmt"/>
+        <line num="185" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="193" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="201" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="209" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="217" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="225" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="236" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="243" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="244" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="248" count="0" type="stmt"/>
+        <line num="253" count="0" type="stmt"/>
+        <line num="257" count="0" type="stmt"/>
+      </file>
+      <file name="AverageStar.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/AverageStar.jsx">
+        <metrics statements="16" coveredstatements="16" conditionals="8" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="24" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="26" count="30" type="stmt"/>
+        <line num="27" count="30" type="stmt"/>
+        <line num="30" count="6" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="34" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="40" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="4" type="stmt"/>
+      </file>
+      <file name="PercentRecommend.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/PercentRecommend.jsx">
+        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="24" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+      </file>
+      <file name="ProductBreakdown.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/ProductBreakdown.jsx">
+        <metrics statements="16" coveredstatements="16" conditionals="14" coveredconditionals="12" methods="2" coveredmethods="2"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="62" count="12" type="stmt"/>
+        <line num="63" count="12" type="stmt"/>
+        <line num="64" count="12" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+        <line num="69" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+      </file>
+      <file name="RatingBreakdown.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/RatingBreakdown.jsx">
+        <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+      </file>
+      <file name="RatingsAndReviews.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/RatingsAndReviews.jsx">
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+      </file>
+      <file name="ReviewList.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/ReviewList.jsx">
+        <metrics statements="31" coveredstatements="23" conditionals="10" coveredconditionals="7" methods="8" coveredmethods="6"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="41" count="14" type="stmt"/>
+        <line num="42" count="14" type="stmt"/>
+        <line num="43" count="14" type="stmt"/>
+        <line num="44" count="14" type="stmt"/>
+        <line num="45" count="14" type="stmt"/>
+        <line num="46" count="14" type="stmt"/>
+        <line num="49" count="6" type="stmt"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="60" count="6" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="14" type="stmt"/>
+        <line num="66" count="6" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="74" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="75" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="95" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="14" type="stmt"/>
+        <line num="99" count="22" type="stmt"/>
+      </file>
+      <file name="SingleReviewTile.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/SingleReviewTile.jsx">
+        <metrics statements="30" coveredstatements="14" conditionals="22" coveredconditionals="16" methods="15" coveredmethods="3"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="43" count="22" type="stmt"/>
+        <line num="44" count="22" type="stmt"/>
+        <line num="45" count="22" type="stmt"/>
+        <line num="46" count="22" type="stmt"/>
+        <line num="49" count="22" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="22" type="stmt"/>
+        <line num="51" count="22" type="stmt"/>
+        <line num="52" count="22" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="22" type="cond" truecount="1" falsecount="1"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="92" count="22" type="stmt"/>
+        <line num="98" count="0" type="cond" truecount="4" falsecount="0"/>
+        <line num="99" count="39" type="cond" truecount="2" falsecount="0"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+      </file>
+      <file name="SortRelevance.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/SortRelevance.jsx">
+        <metrics statements="18" coveredstatements="2" conditionals="26" coveredconditionals="1" methods="5" coveredmethods="1"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="10"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="14" type="stmt"/>
+      </file>
+      <file name="StarBreakDown.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/StarBreakDown.jsx">
+        <metrics statements="30" coveredstatements="17" conditionals="12" coveredconditionals="7" methods="16" coveredmethods="4"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="25" count="20" type="stmt"/>
+        <line num="30" count="6" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="7" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="60" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="65" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="66" count="4" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+      </file>
+      <file name="StarFilter.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RatingsAndReviews/StarFilter.jsx">
+        <metrics statements="7" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="18" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components.RelatedItemsAndComparison">
+      <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+      <file name="RelatedItemsAndComparison.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/RelatedItemsAndComparison.jsx">
+        <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="34" count="7" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components.RelatedItemsAndComparison.Outfit">
+      <metrics statements="86" coveredstatements="53" conditionals="24" coveredconditionals="12" methods="26" coveredmethods="13"/>
+      <file name="addoutfit.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/Outfit/addoutfit.jsx">
+        <metrics statements="29" coveredstatements="12" conditionals="6" coveredconditionals="2" methods="8" coveredmethods="3"/>
+        <line num="9" count="11" type="stmt"/>
+        <line num="11" count="11" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="33" count="11" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="11" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="45" count="11" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="68" count="3" type="stmt"/>
+        <line num="81" count="3" type="stmt"/>
+      </file>
+      <file name="outfit.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/Outfit/outfit.jsx">
+        <metrics statements="21" coveredstatements="11" conditionals="8" coveredconditionals="2" methods="3" coveredmethods="1"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="84" count="3" type="stmt"/>
+        <line num="92" count="3" type="stmt"/>
+      </file>
+      <file name="outfitcard.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/Outfit/outfitcard.jsx">
+        <metrics statements="36" coveredstatements="30" conditionals="10" coveredconditionals="8" methods="15" coveredmethods="9"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="70" count="4" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="76" count="4" type="stmt"/>
+        <line num="82" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="90" count="4" type="stmt"/>
+        <line num="93" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="97" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="107" count="3" type="stmt"/>
+        <line num="110" count="3" type="stmt"/>
+        <line num="126" count="3" type="stmt"/>
+        <line num="129" count="3" type="stmt"/>
+        <line num="133" count="3" type="stmt"/>
+        <line num="138" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="FEC.client.src.components.RelatedItemsAndComparison.Relateditems">
+      <metrics statements="113" coveredstatements="64" conditionals="42" coveredconditionals="16" methods="34" coveredmethods="13"/>
+      <file name="itemcard.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/Relateditems/itemcard.jsx">
+        <metrics statements="54" coveredstatements="40" conditionals="24" coveredconditionals="13" methods="21" coveredmethods="9"/>
+        <line num="14" count="35" type="stmt"/>
+        <line num="15" count="33" type="stmt"/>
+        <line num="16" count="33" type="stmt"/>
+        <line num="17" count="33" type="stmt"/>
+        <line num="18" count="33" type="stmt"/>
+        <line num="19" count="33" type="stmt"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="25" count="11" type="stmt"/>
+        <line num="26" count="11" type="stmt"/>
+        <line num="27" count="54" type="stmt"/>
+        <line num="28" count="54" type="stmt"/>
+        <line num="30" count="11" type="stmt"/>
+        <line num="36" count="15" type="stmt"/>
+        <line num="41" count="11" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="48" count="15" type="stmt"/>
+        <line num="53" count="11" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="60" count="15" type="stmt"/>
+        <line num="68" count="11" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="75" count="33" type="stmt"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="81" count="33" type="stmt"/>
+        <line num="82" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="89" count="33" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="92" count="33" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="96" count="33" type="stmt"/>
+        <line num="97" count="15" type="stmt"/>
+        <line num="98" count="15" type="stmt"/>
+        <line num="99" count="15" type="stmt"/>
+        <line num="106" count="33" type="cond" truecount="1" falsecount="1"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="114" count="33" type="stmt"/>
+        <line num="117" count="33" type="cond" truecount="4" falsecount="0"/>
+        <line num="118" count="10" type="stmt"/>
+        <line num="123" count="0" type="cond" truecount="2" falsecount="0"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="144" count="23" type="stmt"/>
+        <line num="147" count="3" type="stmt"/>
+        <line num="160" count="3" type="stmt"/>
+        <line num="164" count="3" type="stmt"/>
+        <line num="168" count="3" type="stmt"/>
+        <line num="173" count="3" type="stmt"/>
+        <line num="183" count="3" type="stmt"/>
+        <line num="193" count="3" type="stmt"/>
+        <line num="207" count="3" type="stmt"/>
+        <line num="220" count="3" type="stmt"/>
+      </file>
+      <file name="relateditems.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/Relateditems/relateditems.jsx">
+        <metrics statements="23" coveredstatements="13" conditionals="8" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="8" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="8" type="stmt"/>
+        <line num="29" count="20" type="stmt"/>
+        <line num="39" count="8" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+        <line num="80" count="3" type="stmt"/>
+        <line num="88" count="3" type="stmt"/>
+        <line num="94" count="3" type="stmt"/>
+        <line num="102" count="3" type="stmt"/>
+      </file>
+      <file name="relatedmodal.jsx" path="/Users/lu/Documents/HR/FEC/client/src/components/RelatedItemsAndComparison/Relateditems/relatedmodal.jsx">
+        <metrics statements="36" coveredstatements="11" conditionals="10" coveredconditionals="1" methods="9" coveredmethods="2"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="88" count="3" type="stmt"/>
+        <line num="103" count="3" type="stmt"/>
+        <line num="110" count="3" type="stmt"/>
+        <line num="120" count="3" type="stmt"/>
+        <line num="127" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
