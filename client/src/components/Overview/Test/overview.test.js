@@ -6,7 +6,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 // import renderer from 'react-test-renderer';
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
 // import Enzyme, { shallow } from 'enzyme';
