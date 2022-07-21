@@ -44,14 +44,14 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
 
   return (
     <>
-      <ButtonWrapper onClick={() => handleAddOutfit(mainProduct)}>
+      <ButtonWrapper onClick={() => handleAddOutfit(mainProduct)} data-testid="addbutton">
         <ButtonContainer>
           <AiOutlinePlus />
         </ButtonContainer></ButtonWrapper>
 
       {outfitList && outfitList.map((item) => {
         return (
-          <div>
+          <div data-testid="outfitWrapper">
             <OutfitCard
               item={parseInt(item)}
               placeHolderImage={placeHolderImage}
@@ -67,7 +67,7 @@ function AddOutfit({ mainProduct, placeHolderImage }) {
 
 const ButtonWrapper = styled.div`
 position: relative;
-height: 100%;
+${'' /* height: 100%; */}
 width: 15vw;
 flex-shrink: 0;
 margin: 0px 40px;

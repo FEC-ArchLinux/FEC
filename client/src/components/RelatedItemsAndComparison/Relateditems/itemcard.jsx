@@ -116,7 +116,7 @@ function ItemCard(props) {
 
   if (product && item) {
     return (
-      <CardContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <CardContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} data-testid="itemcard" >
         <ImgWrapper>
           {carosel && <LeftPicArr onClick={pictureBack} font="4vh"><BsArrowLeftShort /></LeftPicArr> }
           {carosel && <RightPicArr onClick={pictureForward}><BsArrowRightShort /></RightPicArr>}
@@ -146,7 +146,6 @@ function ItemCard(props) {
 
 const CardContainer = styled.div`
 position: relative;
-height: 42vh;
 width: 15vw;
 flex-shrink: 0;
 font-size: 1.5vh;
@@ -167,8 +166,8 @@ position: relative;
 `;
 
 const RelatedImg = styled.img`
-  height: 30vh;
-  width: 100%
+  aspect-ratio: 1/1;
+  width: 100%;
 `;
 
 const LeftPicArr = styled.button`
@@ -207,20 +206,21 @@ const CompareButton = styled.button`
 
 const Carosel = styled.div`
 position:absolute;
-top: 80%;
+top: 70%;
 width: 100%;
 height: 6vh;
 display: flex;
-gap: 1rem;
+gap: 0.3rem;
 flex-direction: row;
 flex-wrap: nowrap;
 overflow-x: scroll;
+overflow-y: hidden;
 
 `
 const ThumbnailPic = styled.img`
 align-self: center;
 aspect-ratio: 1/1;
-height: 6vh;
+height: 100%;
 flex: 0 0 25%;
 
 `

@@ -92,7 +92,7 @@ function OutfitCard(props) {
 
   if (product && item) {
     return (
-      <CardContainer>
+      <CardContainer data-testid="OutfitCard">
         <ImgWrapper>
           {item.photos[0].thumbnail_url ? <RelatedImg  src={item.photos[0].thumbnail_url} onClick={() => { props.setProductId(props.item); }} /> : <RelatedImg src={props.placeHolderImage} />}
           <RemoveButton onClick={()=>(props.handleRemove(props.item))}><FaTimes /></RemoveButton>
@@ -109,7 +109,7 @@ function OutfitCard(props) {
 
 const CardContainer = styled.div`
 position: relative;
-height: 42vh;
+${'' /* height: 42vh; */}
 width: 15vw;
 flex-grow: 0;
 flex-shrink: 0;
@@ -131,8 +131,8 @@ position: relative;
 `;
 
 const RelatedImg = styled.img`
-  height: 30vh;
   width: 100%;
+  aspect-ratio: 1/1;
 `;
 
 const RemoveButton = styled.button`
