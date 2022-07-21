@@ -1,21 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import styled from "styled-components";
 import AnswerListEntry from "./AnswerListEntry.jsx";
 
 function AnswerList({ answerList }) {
   const answerIds = Object.keys(answerList);
   const [answerListCount, SetAnswerListCount] = useState(true);
-
-  const linkButton = {
-    backgroundColor: 'transparent',
-    border: 'none',
-    cursor: 'pointer',
-    fontSize: 'medium',
-    fontStyle: 'extra-bold',
-    textDecoration: 'underline',
-
-  };
 
   // do not render when there are no answers to a question
   if (answerIds.length === 0) {
@@ -60,15 +51,27 @@ function AnswerList({ answerList }) {
           />
         );
       })}
-      <button
+      <LinkButton
         type="button"
-        style={linkButton}
         onClick={() => SetAnswerListCount(!answerListCount)}
       >
         {answerListCount === true ? 'See more answers' : 'Collapse answers'}
-      </button>
+      </LinkButton>
     </>
   );
 }
+
+const LinkButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  fontSize: medium;
+  color: grey;
+  text-decoration: none;
+  &:hover {
+    fontStyle: bold;
+    text-decoration: underline;
+  }
+`;
 
 export default AnswerList;

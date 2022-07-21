@@ -34,22 +34,27 @@ function HelpfulQuestionButton({ questionHelpfulness, questionId }) {
 
   if (helpfulQuestion) {
     return (
-      <span> <b>Helpful ✔</b>
+      <span>
+        <small>
+        <b>Helpful ✔</b>
         {`(${questionHelpfulness + 1})`}
+        </small>
       </span>
     );
   }
   return (
     <span>
-      Helpful?
-      <LinkButton
-        type="button"
-        // style={linkButton}
-        onClick={() => clickHelpfulButton()}
-      >
-        Yes
-      </LinkButton>
-      {`(${questionHelpfulness})`}
+      <small>
+        Helpful?
+        <LinkButton
+          type="button"
+          // style={linkButton}
+          onClick={() => clickHelpfulButton()}
+        >
+          Yes
+        </LinkButton>
+        {`(${questionHelpfulness})`}
+      </small>
     </span>
   );
 }

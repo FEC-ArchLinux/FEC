@@ -17,7 +17,6 @@ function AddAnswer({ questionId }) {
   return (
     <LinkButton
       type="button"
-      // style={qaStyles.linkButton()}
       onClick={() => setShowAddAnswerModal(true)}
     >
       Add Answer
