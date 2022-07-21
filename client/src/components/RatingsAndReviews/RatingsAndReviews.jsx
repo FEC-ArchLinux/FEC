@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import ReviewList from "./ReviewList.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import GH_TOKEN from '../../../../token.js';
+import withClickTracker from '../withClickTracker.jsx';
 
 let MainFlex = styled.div`
   display: flex;
@@ -18,7 +19,8 @@ let MainFlex = styled.div`
 `;
 
 let MainHeader = styled.h3`
-  margin-left: 21%;
+  margin-left: auto;
+  width: 78vw;
 `;
 
 let TopContainer = styled.div`
@@ -34,12 +36,8 @@ function RatingsAndReviews({ productId, clickTracker }) {
   let [star, setStar] = useState([]);
   let [metaTransfer, setMetaTransfer] = useState([]);
 
-  function trackClick(event) {
-    clickTracker(event, 'Ratings and Reviews');
-  }
-
   return (
-    <div onClick={trackClick}>
+    <div onClick={(e) => clickTracker(e, 'Reviews')}>
       <TopContainer id="review-section">
         <MainHeader> Ratings and Reviews </MainHeader>
         <MainFlex>
@@ -51,4 +49,4 @@ function RatingsAndReviews({ productId, clickTracker }) {
   );
 }
 
-export default RatingsAndReviews;
+export default withClickTracker(RatingsAndReviews);

@@ -42,7 +42,6 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal, questionId 
     email: '',
     photos: [],
   });
-  const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/answers/`;
 
   function handleAnswerInputChange(event) {
     event.persist();
@@ -79,6 +78,7 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal, questionId 
     email: answerValues.email,
     photos: answerValues.photos,
   };
+  const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/answers/`;
   const addAnswerConfig = {
     method: 'post',
     url: addAnswerURL,
@@ -89,9 +89,7 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal, questionId 
     data: JSON.stringify(addAnswerParameters),
   };
 
-  function submitAnswer(e) {
-    // console.log(e);
-    // console.log(addAnswerConfig);
+  function submitAnswer() {
     if (!submit) {
       return;
     }

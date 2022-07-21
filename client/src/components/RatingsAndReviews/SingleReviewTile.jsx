@@ -13,7 +13,7 @@ import axios from 'axios';
 import GH_TOKEN from '../../../../token.js';
 
 const ReviewContainer = styled.div`
-  width: 650px;
+  width: 750px;
   border-bottom: 2px solid rgb(105 105 105 / 44%);
   margin-top: 25px;
   padding-bottom: 15px;
@@ -43,6 +43,7 @@ function SingleReviewTile({ review }) {
   const [modalGate, setModalGate] = useState(false);
   const [imageModal, setImageModal] = useState('');
   const [ratingGiven, setRatingGiven] = useState(false);
+  const [seeMore, setSeeMore] = useState(false);
 
   function dateSetter() {
     if (review) {
@@ -94,7 +95,7 @@ function SingleReviewTile({ review }) {
       <span style={{ color: "rgb(105,105,105)", fontSize: "12px", marginLeft: "5px", float: "right" }}>{dateSetter()}</span>
       <span style={{ color: "rgb(105,105,105)", fontSize: "12px", float: "right" }}>{review.recommend ? `✔︎ ${review.reviewer_name}, ` : `${review.reviewer_name}, `}</span><br />
       <span style={{ display: "inline-block", margin: "15px 0px" }}><b>{review.summary}</b></span><br />
-      <span style={{ display: "inline-block", margin: "15px 0px" }}>{review.body}</span><br />
+      {review.body.length > 250 && seeMore === false ? <><span style={{ display: "inline-block", margin: "15px 0px" }}>{review.body.slice(0, 250)}<small onClick={() => setSeeMore(true)}>... <u>(see more)</u></small></span><br /></> : <><span style={{ display: "inline-block", margin: "15px 0px" }}>{review.body}</span><br /></>}
       {review.photos.length > 0 ? review.photos.map((photo, index) => <img onClick={(event) => imageSetter(photo.url)} style={{ border: '1px solid #ccc' }} key={index} src={photo.url} alt="review-img" width="30" height="40" />) : null}<br />
       <span style={{ fontSize: "10px", marginBottom: "5px", display: "inline-block" }}>{review.recommend ? "✅  I recommend this product" : null}</span><br />
       {review.response !== null ? <><span style={{ backgroundColor: 'rgb(105 105 105 / 44%)' }}>{review.response}</span><br /></> : null}

@@ -64,7 +64,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
 
   useEffect(() => {
     getReviewInfo();
-  }, [productId]);
+  }, [productId, newReview]);
 
   function incrementReviews() {
     setPageNumber(pageNumber += 2);
@@ -94,7 +94,7 @@ function ReviewList({ metaTransfer, starFilter, productId }) {
   }
   if (reviewInfo) {
     return (
-      <div className="review-container" style={{ width: "750px", overflowY: 'auto', height: "550px" }}>
+      <div className="review-container" style={{ width: "775px", overflowY: 'auto', height: "550px" }}>
         <SortRelevance reviewCopy={reviewCopy} setCurrentTwo={setCurrentTwo} setPageNumber={setPageNumber} setReviewInfo={setReviewInfo} reviewInfo={reviewInfo} />
         {currentTwo.map((review, index) => <SingleReviewTile review={review} key={review.review_id} />)}
         {pageNumber >= reviewInfo.length ? null : <Button style={{ marginTop: "5px", position: 'sticky', bottom: '0', zIndex: '5' }} onClick={incrementReviews} type="button">MORE REVIEWS</Button>}

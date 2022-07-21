@@ -11,6 +11,11 @@ import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-libra
 // import Enzyme, { shallow } from 'enzyme';
 import ReviewList from './ReviewList.jsx';
 import App from '../App.jsx';
+import PercentRecommend from './PercentRecommend.jsx';
+import ProductBreakdown from './ProductBreakdown.jsx';
+import AddReview from './AddReview.jsx';
+import StarFilter from './StarFilter.jsx';
+import SortRelevance from './SortRelevance.jsx';
 
 describe('test', () => {
   it('should be true', () => {
@@ -33,7 +38,8 @@ describe('Shoulder render app', () => {
 
 describe('ReviewList - Add Reviews Button', () => {
   it('should render button', () => {
-    const reviewList = render(<ReviewList />);
+    const test = 37311;
+    const reviewList = render(<ReviewList productId={test} />);
 
     const button = reviewList.getByText('Add a Review', { exact: false });
 
@@ -49,7 +55,9 @@ describe('render page after axios request', () => {
     const reviewlist = render(<ReviewList productId={test} />);
 
     await waitFor(() => {
-      const button = screen.getByText('MORE REVIEWS');
+      const button = screen.getByText('MORE REVIEWS', {
+        selector: 'button',
+      });
       expect(button).toBeDefined();
     });
     cleanup();
@@ -64,7 +72,9 @@ describe('render page after axios request', () => {
     expect(initialCount.length).toBe(1);
 
     await waitFor(() => {
-      const button = screen.getByText('MORE REVIEWS');
+      const button = screen.getByText('MORE REVIEWS', {
+        selector: 'button',
+      });
       fireEvent.click(button);
       fireEvent.click(button);
     });
@@ -75,25 +85,85 @@ describe('render page after axios request', () => {
   });
 });
 
-// const { container } = render(<ReviewList productId={test} />);
-// await waitFor(() => expect(screen.getByText("More Reviews")).toBeInTheDocument());
+describe('render percent recommend module', () => {
+  it('should render percentage of reviews', async () => {
+    const reviewlist = render(<PercentRecommend />);
 
-// fireEvent.click(button);
-// const reviewContainer = screen.getByTitle("review-container");
-// console.log(reviewContainer);
+    await waitFor(() => {
+      const span = screen.getByText('%', { exact: false });
+      expect(span.innerHTML).toBe("% of reviews recommend this product");
+    });
+    cleanup();
+  });
+});
 
-//   const reviewList = render(<ReviewList productId={37311} />);
-//   const { container } = render(<ReviewList />);
-//
-//   console.log(reviewList);
-//   console.log(button);
+describe('Render and Test ProductBreakdown Component', () => {
+  it('should render marker', async () => {
+    const { findAllByTestId } = render(<ProductBreakdown />);
+    await waitFor(() => {
+      const span = screen.findAllByTestId('marker', { exact: false })
+        .then((spans) => {
+          expect(spans.innerHTML).toBe("🔻");
+        });
+    });
+    cleanup();
+  });
+  it('should render whole breakdown', async () => {
+    const { findAllByTestId } = render(<ProductBreakdown />);
+    await waitFor(() => {
+      const div = screen.findAllByTestId('product-breakdown', { exact: false })
+        .then((divs) => {
+          expect(divs).toBeDefined();
+        });
+    });
+    cleanup();
+  });
+});
 
-// const { container } = renderer.create(<ReviewList />);
+describe('Render and Test AddReview Component', () => {
+  it('should render add review characteristics', async () => {
+    const prop = { characteristics: { Comfort: { id: 127521, value: "3.4444444444444444" }, Fit: { id: 127519, value: "3.0000000000000000" } } };
+    const addReview = render(<AddReview metaTransfer={prop} />);
+    await waitFor(() => {
+      const span = screen.getByText('Comfort', { exact: true });
+      const span2 = screen.getByText('Fit', { exact: true });
+      expect(span.innerHTML).toBe("Comfort");
+      expect(span2.innerHTML).toBe("Fit");
+    });
+    cleanup();
+  });
+  it('should render submit review button', async () => {
+    const prop = { characteristics: { Comfort: { id: 127521, value: "3.4444444444444444" }, Fit: { id: 127519, value: "3.0000000000000000" } } };
+    const addReview = render(<AddReview metaTransfer={prop} />);
+    await waitFor(() => {
+      const button = screen.getByText('Submit Review', { exact: true });
+      const button2 = screen.getByText('Exit', { exact: true });
+      expect(button.innerHTML).toBe("Submit Review");
+      expect(button2.innerHTML).toBe("Exit");
+    });
+    cleanup();
+  });
+});
 
-// const tree = reviewList.toJSON();
-// console.log(tree);
+describe('Render and Test AddReview Component', () => {
+  it('should render add review characteristics', async () => {
+    const starProp = ['1'];
+    const reviewProp = [{ rating: 1 }, { rating: 1 }];
+    const results = StarFilter(reviewProp, starProp);
+    expect(results.length).toBe(2);
+    cleanup();
+  });
+});
 
-// fireEvent.click(button);
+// describe('Render and Test Sort Relevance', () => {
+//   it('should have selectable drop down', async () => {
+//     const overview = render(<SortRelevance productId={37311} />);
 
-// console.log(ReviewContainer);
-// expect(ReviewContainer.length).toBe(4);
+//     await waitFor(() => {
+//       const span = screen.getByText('sorted by', { exact: false });
+//       expect(span.innerHTML).toBe("reviews, sorted by");
+//     });
+
+//     cleanup();
+//   });
+// });

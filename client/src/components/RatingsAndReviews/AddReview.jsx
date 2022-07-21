@@ -173,7 +173,6 @@ function AddReview({ productId, setNewReview, metaTransfer }) {
         <form onSubmit={submitForm}>
           <h3 style={{ marginLeft: "-529px" }}><i>Write Your Review</i></h3>
           <OverviewButtonStyle style={{ marginTop: "-55px", float: "right" }} onClick={(event) => setNewReview(false)} type="button">x</OverviewButtonStyle>
-          <p>About ** product name goes here ** </p>
           <p><b>Overall Product Rating :</b></p>
           <StarRatings rating={starRating} starRatedColor="blue" changeRating={setStarRating} numberOfStars={5} name="rating" starDimension="20px" />{starRater(starRating)}
           <div onChange={recommendSetter}>

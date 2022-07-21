@@ -35,12 +35,6 @@ const modalBody = {
   borderBottom: "10px solid #eee",
 };
 
-// const modalContent
-// https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a
-// wrap in forms onsubmit (required)
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-
 function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, productId }) {
   const [submit, setSubmit] = useState(false);
   const [questionValues, setValues] = useState({
@@ -73,7 +67,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
   };
 
   // I didn't want to do another HTTP request for the title...
-  const productName = document.body.children.root.children[1].children[1].children[0].children[1].children[0].children[4].textContent;
+  const productName = document.body.children[0].children[1].children[0].children[0].children[1].children[0].children[4].textContent;
   const questionParameters = {
     product_id: productId,
     body: questionValues.question,
