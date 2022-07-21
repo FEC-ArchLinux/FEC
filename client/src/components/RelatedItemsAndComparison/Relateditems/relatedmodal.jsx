@@ -66,7 +66,7 @@ function RelatedModal(props) {
     <ModalWrapper>
       <ComparisonTitle>COMPARING</ComparisonTitle>
       <CloseButton type="button" onClick={() => { props.closeModal(false); }}><AiOutlineCloseCircle /></CloseButton>
-      <TableWrapper>
+      <TableWrapper data-testid="comparison" >
       <tr>
         <th>{mainProduct.name}</th>
         <th> </th>

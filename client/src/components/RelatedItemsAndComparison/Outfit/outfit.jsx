@@ -49,7 +49,7 @@ function Outfit({ mainProduct, placeHolderImage, outfitList, handleAddOutfit, ha
 const OutWrapper = styled.div`
 ${'' /* display: flex; */}
 ${'' /* flex-direction: row; */}
-height: 40vh;
+${'' /* height: 40vh; */}
 width: 100%;
 position: relative;
 `;
@@ -59,6 +59,7 @@ flex-direction: row;
 justify-content: flex-start;
 flex-flow: nowrap;
 overflow: scroll;
+overflow-x: hidden;
 overflow-y: hidden;
 height: 100%;
 width: 100%;
