@@ -34,56 +34,74 @@ const modalBody = {
   borderBottom: "10px solid #eee",
 };
 
-const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`;
-let addAnswerConfig = {
-
-};
-
-function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
+function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal, questionId }) {
+  const [submit, setSubmit] = useState(false);
   const [answerValues, setAnswerValues] = useState({
     answer: '',
     nickname: '',
     email: '',
     photos: [],
   });
+  const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/answers/`;
 
   function handleAnswerInputChange(event) {
     event.persist();
-    setAnswerValues((AnswerValue) => ({
-      ...AnswerValues,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
       answer: event.target.value,
     }));
   }
   function handleNicknameInputChange(event) {
     event.persist();
-    setAnswerValues((AnswerValue) => ({
-      ...AnswerValues,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
       nickname: event.target.value,
     }));
   }
   function handleEmailInputChange(event) {
     event.persist();
-    setAnswerValues((AnswerValue) => ({
-      ...AnswerValues,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
       email: event.target.value,
     }));
   }
   function handlePhotosInputChange(event) {
     event.persist();
-    setAnswerValues((AnswerValue) => ({
-      ...AnswerValues,
+    setAnswerValues((answerValue) => ({
+      ...answerValues,
       photos: event.target.value,
     }));
   }
 
-  function submitAnswer() {
-    axios(addAnswerConfig)
-      .then(() => setShowAddAnswerModal(false))
-      .catch((err) => console.error(err));
-  }
+  const addAnswerParameters = {
+    body: answerValues.answer,
+    name: answerValues.nickname,
+    email: answerValues.email,
+    photos: answerValues.photos,
+  };
+  const addAnswerConfig = {
+    method: 'post',
+    url: addAnswerURL,
+    headers: {
+      Authorization: GH_TOKEN,
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify(addAnswerParameters),
+  };
 
-  if (!showAddAnswerModal) {
-    return null;
+  function submitAnswer(e) {
+    // console.log(e);
+    // console.log(addAnswerConfig);
+    if (!submit) {
+      return;
+    }
+    axios(addAnswerConfig)
+      .then((data) => {
+        console.log(data);
+        setShowAddAnswerModal(false);
+        setSubmit(false);
+      })
+      .catch((err) => console.error(err));
   }
 
   return (
@@ -97,12 +115,13 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
     >
       <div style={modalContent}>
         <div style={modalHeader}>
-          <h3 className="AnswerModalTitle">Answer A Question</h3>
+          <h3 className="AnswerModalTitle">Answer a Question</h3>
         </div>
         <div style={modalBody}>
           <form
             action=""
-            method="post"
+            onSubmit="return false;"
+            method="dialog"
           >
             <div>
               <label htmlFor="answerInput">
@@ -111,7 +130,6 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
                   type="text"
                   id="answerInput"
                   name="answer"
-                  placeholder="Why did you like the product or not?"
                   value={answerValues.answer}
                   maxLength="1000"
                   required="required"
@@ -120,14 +138,14 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
               </label>
             </div>
             <div>
-              <label htmlFor="questionNicknameInput">
+              <label htmlFor="answerNicknameInput">
                 *Nickname:
                 <input
                   type="text"
                   id="quesitonNicknameInput"
                   name="nickname"
                   value={answerValues.nickname}
-                  placeholder="Example: jackson11!"
+                  placeholder="Example: jack543!"
                   maxLength="60"
                   required="required"
                   onChange={handleNicknameInputChange}
@@ -148,7 +166,7 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
                   placeholder="Why did you like the product or not?"
                   maxLength="60"
                   value={answerValues.email}
-                  id="questoinEmailInput"
+                  id="answerEmailInput"
                   required="required"
                   onChange={handleEmailInputChange}
                 />
@@ -161,17 +179,15 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
             </div>
             <div>
               <label htmlFor="photos">
-                *photos:
                 <input
-                  type="photos"
+                  type="button"
                   name="photos"
-                  value={answerValues.Photos}
+                  value="Add Photos"
                   id="answerPhotoInput"
-                  onChange={handlePhotosInputChange}
+                  onClick={handlePhotosInputChange}
                 />
                 <div>
-                  Add Photos
-                  <answerPictureList answerPictureList={answerValues.Photos} />
+                  <AnswerPictureList answerPictureList={answerValues.Photos} />
                 </div>
               </label>
             </div>
@@ -186,7 +202,11 @@ function AddAnswerModal({ showAddAnswerModal, setShowAddAnswerModal }) {
               <input
                 type="submit"
                 value="submit"
-                onClick={submitAnswer()}
+                // url={addAnswerURL}
+                onClick={() => {
+                  setSubmit(true);
+                  submitAnswer();
+                }}
               />
             </div>
           </form>

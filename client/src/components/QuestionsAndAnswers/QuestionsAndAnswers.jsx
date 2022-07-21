@@ -30,6 +30,10 @@ function QuestionsAndAnswers({ productId }) {
     axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${productId}`,
       {
+        params: {
+          page: 1,
+          count: 200,
+        },
         headers: { authorization: GH_TOKEN },
       },
     )

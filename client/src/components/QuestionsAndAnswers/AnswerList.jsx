@@ -33,11 +33,12 @@ function AnswerList({ answerList }) {
       />
     );
   }
-
-  // When there is more than 1 answer, include the 'See more answers' button
+  const sortedAnswerIds = answerIds.sort((b, a) => (
+    answerList[a].helpfulness - answerList[b].helpfulness
+  ));
   return (
     <>
-      {answerIds.map((answerId, index) => {
+      {sortedAnswerIds.map((answerId, index) => {
         const answerData = answerList[answerId];
         if (answerListCount) {
           if (index < 1) {

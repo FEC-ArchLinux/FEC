@@ -30,7 +30,7 @@ function AddAQuestion({ productId }) {
       style={boxButtonStyle}
       onClick={() => setShowAddAQuestionModal(true)}
     >
-      ADD A QUESTION +
+      ASK A QUESTION +
     </button>
   );
 }

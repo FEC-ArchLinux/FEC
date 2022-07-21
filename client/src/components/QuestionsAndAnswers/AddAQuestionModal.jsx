@@ -42,12 +42,12 @@ const modalBody = {
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
 
 function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, productId }) {
+  const [submit, setSubmit] = useState(false);
   const [questionValues, setValues] = useState({
     question: '',
     nickname: '',
     email: '',
   });
-  const [submit, setSubmit] = useState(false);
   const addQuestionURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/';
 
   const handleQuestionInputChange = (event) => {
@@ -95,7 +95,6 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
     if (!submit) {
       return;
     }
-    console.log(addQuestionConfig);
     axios(addQuestionConfig)
       .then((data) => {
         console.log((data));
@@ -124,6 +123,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
         <div style={modalBody}>
           <form
             action=""
+            onSubmit="return false;"
             method="dialog"
           >
             <div>
@@ -169,7 +169,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
                   name="email"
                   placeholder="Why did you like the product or not?"
                   value={questionValues.email}
-                  id="questoinEmailInput"
+                  id="questionnEmailInput"
                   required="required"
                   onChange={handleEmailInputChange}
                 />
@@ -190,7 +190,7 @@ function AddAQuestionModal({ showAddAQuestionModal, setShowAddAQuestionModal, pr
               <input
                 type="submit"
                 value="submit"
-                url={addQuestionURL}
+                // url={addQuestionURL}
                 onClick={() => {
                   setSubmit(true);
                   submitQuestion();
