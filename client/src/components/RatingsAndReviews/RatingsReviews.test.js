@@ -23,19 +23,6 @@ describe('test', () => {
   });
 });
 
-describe('Shoulder render app', () => {
-  it('Initial App should render', () => {
-    const app = render(<App />);
-
-    const reviewlist = app.getByText('Ratings and Reviews', {
-      selector: 'h3',
-    });
-
-    expect(reviewlist).toBeDefined();
-    cleanup();
-  });
-});
-
 describe('ReviewList - Add Reviews Button', () => {
   it('should render button', () => {
     const test = 37311;
@@ -151,6 +138,19 @@ describe('Render and Test AddReview Component', () => {
     const reviewProp = [{ rating: 1 }, { rating: 1 }];
     const results = StarFilter(reviewProp, starProp);
     expect(results.length).toBe(2);
+    cleanup();
+  });
+});
+
+describe('Shoulder render app', () => {
+  it('Initial App should render', () => {
+    const app = render(<App />);
+
+    const reviewlist = app.getByText('Ratings and Reviews', {
+      selector: 'h3',
+    });
+
+    expect(reviewlist).toBeDefined();
     cleanup();
   });
 });
