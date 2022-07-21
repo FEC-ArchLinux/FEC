@@ -247,7 +247,7 @@ function ImageGallery(
               <ActiveImageStyle
                 onClick={selectBigPicture}
                 name={index}
-                src={photo.url === null ? placeHolderImage : photo.url}
+                src={photo.thumbnail_url === null ? placeHolderImage : photo.thumbnail_url}
                 alt={altTag}
               />
             </ImageGalleryImgContainer>
@@ -259,7 +259,7 @@ function ImageGallery(
             <ImageGalleryImage
               onClick={selectBigPicture}
               name={index}
-              src={photo.url === null ? placeHolderImage : photo.url}
+              src={photo.thumbnail_url === null ? placeHolderImage : photo.thumbnail_url}
               alt={altTag}
             />
           </ImageGalleryImgContainer>

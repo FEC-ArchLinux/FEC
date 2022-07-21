@@ -6,13 +6,8 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 // import renderer from 'react-test-renderer';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
 // import Enzyme, { shallow } from 'enzyme';
 import Overview from "../Overview.jsx";
@@ -21,14 +16,13 @@ import ProductDescription from "../ProductDescription.jsx";
 
 describe("Overview - Add to Cart Button", () => {
   it("should render button", () => {
-    const overview = render(<Overview productId={37311} />);
+    render(<Overview productId={37311} />);
 
-    const button = overview.getByText("Add to Cart", {
+    const button = screen.getByText("Add to Cart", {
       selector: "button",
     });
 
     expect(button).toBeDefined();
-    cleanup();
   });
 });
 
@@ -51,20 +45,17 @@ describe("Product Description - Slogan", () => {
       ],
     };
 
-    const description = render(
-      <ProductDescription productInfo={productInfo} />
-    );
+    render(<ProductDescription productInfo={productInfo} />);
 
-    const slogan = description.getByText("Blend in to your crowd").textContent;
+    const slogan = screen.getByText("Blend in to your crowd").textContent;
 
     expect(slogan).toBe("Blend in to your crowd");
-    cleanup();
   });
 });
 
 describe("Image Gallery - Down Arrow", () => {
   it("should appear when there are 7+ images for a product", async () => {
-    const overview = render(<Overview productId={37318} />);
+    render(<Overview productId={37318} />);
 
     await waitFor(() => {
       const downArrow = screen.getByText("⇩", {
@@ -72,11 +63,10 @@ describe("Image Gallery - Down Arrow", () => {
       });
       expect(downArrow).toHaveStyleRule("display", "flex");
     });
-    cleanup();
   });
 
   it("should not appear when there are <= 7 images for a product", async () => {
-    const overview = render(<Overview productId={37311} />);
+    render(<Overview productId={37311} />);
 
     await waitFor(() => {
       const downArrow = screen.getByText("⇩", {
@@ -84,37 +74,33 @@ describe("Image Gallery - Down Arrow", () => {
       });
       expect(downArrow).toHaveStyleRule("display", "none");
     });
-    cleanup();
   });
 });
 
 describe("Style Selector - Select Style", () => {
   it("should change active style when a style is clicked", async () => {
-    const overview = render(<Overview productId={37314} />);
+    render(<Overview productId={37314} />);
 
-    await waitFor(() => {
-      const secondStyleImage = screen.getByAltText("Olive Green", {
-        selector: "img",
-      });
-      fireEvent.click(secondStyleImage);
-      const firstGalleryImage = screen.getByAltText("Olive Green 0", {
-        selector: "img",
-      });
-      expect(firstGalleryImage).toBeDefined();
+    const secondStyleImage = await screen.findByAltText("Olive Green", {
+      selector: "img",
     });
-    cleanup();
+    userEvent.click(secondStyleImage);
+    const firstGalleryImage = await screen.findByAltText("Olive Green 0", {
+      selector: "img",
+    });
+    expect(firstGalleryImage).toBeDefined();
   });
 });
 
 describe("Big Image - Select Image Gallery", () => {
   it("should change to given big image when clicked", async () => {
-    const overview = render(<Overview productId={37314} />);
+    render(<Overview productId={37314} />);
 
+    const secondImage = await screen.findByAltText("Black 1", {
+      selector: "img",
+    });
+    userEvent.click(secondImage);
     await waitFor(() => {
-      const secondImage = screen.getByAltText("Black 1", {
-        selector: "img",
-      });
-      fireEvent.click(secondImage);
       const bigImage = screen.getByTestId("big-image", {
         selector: "div",
       });
@@ -123,65 +109,53 @@ describe("Big Image - Select Image Gallery", () => {
         "url(https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80)"
       );
     });
-    cleanup();
   });
 });
 
 describe("Purchase Options - Select Size", () => {
   it('should display "Out of Stock" when there are no products in inventory', async () => {
-    const overview = render(<Overview productId={37312} />);
+    render(<Overview productId={37312} />);
 
-    await waitFor(() => {
-      const dropDown = screen.getByText("Out of Stock", {
-        selector: "option",
-      });
-      expect(dropDown).toBeDefined();
+    const dropDown = await screen.findByText("Out of Stock", {
+      selector: "option",
     });
-    cleanup();
+    expect(dropDown).toBeDefined();
   });
 
   it("should populate quantity selector when valid size is selected", async () => {
-    const overview = render(<Overview productId={37311} />);
+    render(<Overview productId={37311} />);
 
-    await waitFor(() => {
-      const dropDown = screen.getByTestId("sizeDropdown", {
-        selector: "select",
-      });
-      fireEvent.change(dropDown, {
-        target: { value: "1281032" },
-      });
-      const quantityOption = screen.getByText("1", {
-        selector: "option",
-      });
-      expect(quantityOption).toBeDefined();
+    const dropDown = await screen.findByTestId("sizeDropdown", {
+      selector: "select",
     });
-    cleanup();
+    userEvent.selectOptions(dropDown, ["1281032"]);
+    const quantityOption = await screen.findByText("1", {
+      selector: "option",
+    });
+    expect(quantityOption).toBeDefined();
   });
 });
 
 describe("App - Item Search", () => {
   it("should change to new", async () => {
-    const app = render(<App />);
+    render(<App />);
 
-    const search = app.getByTestId("searchBar", {
+    const search = screen.getByTestId("searchBar", {
       selector: "input",
     });
-    fireEvent.change(search, {
-      target: { value: 37318 },
-    });
-    const searchButton = app.getByTestId("searchButton", {
+    await userEvent.type(search, "37318");
+    const searchButton = screen.getByTestId("searchButton", {
       selector: "button",
     });
-    fireEvent.click(searchButton);
-    await waitFor(() => {
-      const bigImage = screen.getByTestId("big-image", {
-        selector: "div",
-      });
-      expect(bigImage).toHaveStyleRule(
-        "background-image",
-        "url(https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)"
-      );
-    });
-    cleanup();
+    userEvent.click(searchButton);
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("big-image")).toHaveStyleRule(
+          "background-image",
+          "url(https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)"
+        );
+      },
+      { timeout: 5000 }
+    );
   });
 });
