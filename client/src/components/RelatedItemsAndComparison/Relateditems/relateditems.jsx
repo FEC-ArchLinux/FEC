@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import ItemCard from "./itemcard.jsx";
 
-
 function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImage }) {
 
   const [imagesToLeft, setImagesToLeft] = useState(false);
@@ -47,7 +46,7 @@ function RelatedItems({ relatedItems, mainProduct, setProductId, placeHolderImag
           {relatedList}
         </ListContainer>
         <RightButtonWrapper>
-          {imagesToRight ? <RightButton onClick={slideRight}><FaChevronRight /></RightButton> : null}
+          {imagesToRight ? <RightButton onClick={slideRight} data-testid="rightbutton"><FaChevronRight /></RightButton> : null}
         </RightButtonWrapper>
       </ListWrapper>
     </div>
@@ -70,6 +69,7 @@ display: flex;
 flex-direction: row;
 justify-content: flex-start;
 overflow: scroll;
+overflow-x: hidden;
 overflow-y: hidden;
 height: 100%;
 width: 100%;
