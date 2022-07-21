@@ -166,6 +166,7 @@ position: relative;
 `;
 
 const RelatedImg = styled.img`
+  object-fit: cover;
   aspect-ratio: 1/1;
   width: 100%;
 `;
@@ -218,6 +219,7 @@ overflow-y: hidden;
 
 `
 const ThumbnailPic = styled.img`
+object-fit: cover;
 align-self: center;
 aspect-ratio: 1/1;
 height: 100%;
